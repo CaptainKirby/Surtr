@@ -543,7 +543,7 @@ public class CharacterMotor : MonoBehaviour
             else
                 groundNormal = lastGroundNormal;
 
-            //movingPlatform.hitPlatform = hit.collider.transform;
+            movingPlatform.hitPlatform = hit.collider.transform;
             movement.hitPoint = hit.point;
             movement.frameVelocity = Vector3.zero; 
         }

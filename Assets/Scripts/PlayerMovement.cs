@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	void FixedUpdate()
 	{
+		Debug.Log (motor.grounded);
 
 
 	}
