@@ -32,6 +32,7 @@ public class SpiritMovement : MonoBehaviour {
 	private Quaternion leftRot;
 	//onetime coRoutine
 	private bool oneTimeCoR;
+	private int dirIndicator = 1;
 	void Start () 
 	{
 		rightRot = Quaternion.Euler(0,-90,0);
@@ -100,14 +101,14 @@ public class SpiritMovement : MonoBehaviour {
 //					jumpPower -= Time.deltaTime * 50;
 //				}
 
-//		if(inputDir.x > 0)
-//		{
-//			this.transform.rotation = rightRot;
-//		}
-//		if(inputDir.x < 0)
-//		{
-//			this.transform.rotation = leftRot;
-//		}
+		if(inputDir.x > 0)
+		{
+			dirIndicator = 1;
+		}
+		if(inputDir.x < 0)
+		{
+			dirIndicator = -1;
+		}
 		
 	}
 	
@@ -119,10 +120,10 @@ public class SpiritMovement : MonoBehaviour {
 		
 		//input
 //		rigidbody.velocity = new Vector3(inputDir.x * speed, -gravity + jumpPower,0);
-		rigidbody.velocity = new Vector3(1 * speed, inputDir.y * speed + -gravity + jumpPower,0);
+		rigidbody.velocity = new Vector3(dirIndicator * speed, inputDir.y * speed + -gravity + jumpPower,0);
 
 //		rigidbody.velocity = new Vector3(-transform.forward.x * speed, inputDir.y * speed,0);
-		Debug.Log (rigidbody.velocity.y);
+//		Debug.Log ((int)inputDir.normalized.x);
 
 //		rigidbody.velocity = new Vector3(Mathf.SmoothDamp(rigidbody.velocity.x, inputDir.x * speed,ref curVelX,0.1f), inputDir.y * speed + -gravity,0);
 		
