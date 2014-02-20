@@ -1,10 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SpiritMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerSwitch.cs">
     <Files>
-      <File FileName="Assets\Scripts\SpiritMovement.cs" Line="35" Column="31" />
       <File FileName="Assets\Scripts\CharacterMotor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EnvironmentBehaviour\PlatformMovement.cs" Line="12" Column="18" />
+      <File FileName="Assets\Scripts\SpiritMovement.cs" Line="71" Column="19" />
+      <File FileName="Assets\Scripts\EnvironmentBehaviour\PlatformMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerSwitch.cs" Line="55" Column="31" />
+      <File FileName="Assets\Scripts\PlayerMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CharacterMotor.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

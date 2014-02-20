@@ -125,9 +125,9 @@ public class SpiritMovement : MonoBehaviour {
 	{
 		if(activeMovement)
 		{
-			rigidbody.AddForce(new Vector3(inputDir.x * speed, -gravity, 0), ForceMode.VelocityChange);
+			rigidbody.AddForce(new Vector3(inputDir.x * speed, -gravity + inputDir.y, 0), ForceMode.VelocityChange);
 
-			rigidbody.AddForce(new Vector3(0, jumpPower,0), ForceMode.Impulse);
+			rigidbody.AddForce(new Vector3(0, jumpPower,0), ForceMode.VelocityChange);
 
 			if(rigidbody.velocity.y < 0)
 			{

@@ -17,6 +17,8 @@ public class PlayerSwitch : MonoBehaviour {
 	private bool curState; //false = player true = spirit
 	private bool fadeFromForm;
 	private Vector3 curVel;
+
+	private int dir = -1; //-1 == left 1 == right
 	void Start () 
 	{
 		playerController = playerObj.GetComponent<CharacterController>();
@@ -25,11 +27,23 @@ public class PlayerSwitch : MonoBehaviour {
 
 		spiritMove = spiritObj.GetComponent<SpiritMovement>();
 		spiritMove.activeMovement = false;
+		spiritObj.renderer.enabled = false;
+		dir = -1;
 	}
 	
 
 	void Update () 
 	{
+		if(Input.GetAxis("Horizontal") >0.2f)
+		{
+			dir = 1;
+		}
+		if(Input.GetAxis("Horizontal") <-0.2f)
+		{
+			dir = -1;
+		}
+
+		Debug.Log(dir);
 		if(!curState)
 		{
 			if(spiritMove.activeMovement)
@@ -50,7 +64,10 @@ public class PlayerSwitch : MonoBehaviour {
 
 			spiritMove.activeMovement = true;
 			spiritObj.renderer.enabled = true;
-			spiritMove.rigidbody.AddForce(playerVelocity*2,ForceMode.Impulse);
+
+			spiritMove.rigidbody.AddForce(new Vector3(dir,0,0) * Mathf.Clamp(playerVelocity.magnitude, 0.3f, 10f) * 2,ForceMode.Impulse);
+			
+
 		}
 
 
