@@ -43,16 +43,17 @@ public class PlayerSwitch : MonoBehaviour {
 			dir = -1;
 		}
 
-		Debug.Log(dir);
+//		Debug.Log(dir);
 		if(!curState)
 		{
+			//player is shown and moved
 			if(spiritMove.activeMovement)
 			{
 				spiritMove.activeMovement = false;
 				playerMove.activeMovement = true;
 				spiritObj.renderer.enabled = false; // skal være fade ud
 			}
-			//player is shown and moved
+
 //			spiritObj.transform.position = Vector3.SmoothDamp(spiritObj.transform.position, playerObj.transform.position, ref curVel, Time.deltaTime * 5f);
 			spiritObj.transform.position = playerObj.transform.position;
 		}
@@ -61,7 +62,6 @@ public class PlayerSwitch : MonoBehaviour {
 		{
 			//spirit is shown and moved
 			playerMove.activeMovement = false;
-
 			spiritMove.activeMovement = true;
 			spiritObj.renderer.enabled = true;
 
@@ -95,5 +95,9 @@ public class PlayerSwitch : MonoBehaviour {
 	// spirit skal kunne 1. fade ud.
 	// 1. player skal kunne komme hen til spirit.
 
+	IEnumerator SpiritFadeout()
+	{
+		yield return null;
+	}
 
 }
