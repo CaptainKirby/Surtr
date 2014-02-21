@@ -33,7 +33,29 @@ public class InputTakerEditor : Editor {
 		{
 			for(int i = 0;i<inputTaker.attatchedObjs.Count;++i) 
 			{
-				inputTaker.attatchedObjs[i] = (GameObject)EditorGUILayout.ObjectField(inputTaker.attatchedObjs[i], typeof(GameObject), true);
+
+//				inputTaker.attatchedObjs[i].rect = EditorGUI.RectField(new	Rect(3,25+45*i,position.width - 6, 25),
+//				                                                       inputTaker.attatchedObjs[i].name,
+//				                                                       inputTaker.attatchedObjs[i].rect);
+//				EditorGUILayout.BeginVertical();
+//				inputTaker.attatchedObjs[i] = (GameObject)EditorGUILayout.ObjectField(inputTaker.attatchedObjs[i], typeof(GameObject), true);
+//				inputTaker.attatchedObjs[i] = (GameObject)EditorGUI.ObjectField(r, inputTaker.attatchedObjs[i], typeof(GameObject), true);
+				Rect r = EditorGUILayout.BeginVertical();
+				GUILayout.Label(inputTaker.attatchedObjs[i].name);
+//				GUILayout.Label(inputTaker.attatchedObjs[i].name + "lala");
+				if(GUI.Button(new Rect(r.x + 150, r.y, 150,15), "delete " + inputTaker.attatchedObjs[i].name))
+				{
+					inputTaker.attatchedObjs.Remove(inputTaker.attatchedObjs[i]);
+					SceneView.RepaintAll();
+				}
+
+				EditorGUILayout.EndVertical();
+//				if(GUI.Button (r, "del"))
+//				{
+//
+////					inputTaker.attatchedObjs.Remove[i];
+//				}
+//				EditorGUILayout.EndVertical();
 			}
 		}
 		
@@ -53,8 +75,13 @@ public class InputTakerEditor : Editor {
 			SceneView.RepaintAll();
 //			Debug.Log ();
 		}
+		if(GUILayout.Button("Remove All"))
+		{
+			inputTaker.attatchedObjs.Clear();
+			SceneView.RepaintAll();
+		}
 
-		toggle = EditorGUILayout.Toggle(toggle);
+//		toggle = EditorGUILayout.Toggle(toggle);
 	}
 
 	static public void Reciever(GameObject target)

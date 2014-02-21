@@ -48,15 +48,35 @@ public class ActionDoerEditor : Editor {
 
 		if(GUILayout.Button("Recieve"))
 		{
+			if(actionDoer.attatchedObj.GetComponent<InputTaker>().attatchedObjs.Contains(actionDoer.gameObject))
+			{
+				actionDoer.attatchedObj.GetComponent<InputTaker>().attatchedObjs.Remove(actionDoer.gameObject);
+				SceneView.RepaintAll();
+			}
 			actionDoer.attatchedObj = attatchedObj;
 			OnClickedBack(curObj); 
 			SceneView.RepaintAll();
 
 		}
 
-		if(GUILayout.Button("Remove From Input"))
-		{
+//		if(GUILayout.Button("Remove From Input"))
+//		{
+//			if(actionDoer.attatchedObj.GetComponent<InputTaker>().attatchedObjs.Contains(actionDoer.gameObject))
+//			{
+//				actionDoer.attatchedObj.GetComponent<InputTaker>().attatchedObjs.Remove(actionDoer.gameObject);
+//				SceneView.RepaintAll();
+//			}
+//			
+//		}
 
+		if(GUILayout.Button("Remove Connection"))
+		{
+//			actionDoer.attatchedObj = null;
+			if(actionDoer.attatchedObj.GetComponent<InputTaker>().attatchedObjs.Contains(actionDoer.gameObject))
+			{
+				actionDoer.attatchedObj.GetComponent<InputTaker>().attatchedObjs.Remove(actionDoer.gameObject);
+			}
+			SceneView.RepaintAll();
 		}
 
 	}
