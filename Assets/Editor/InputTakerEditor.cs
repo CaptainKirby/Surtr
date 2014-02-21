@@ -2,6 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [CustomEditor(typeof(InputTaker))] 
 [System.Serializable]
@@ -15,9 +16,10 @@ public class InputTakerEditor : Editor {
 	public GameObject curObj;
 
 	public static GameObject attatchedObj;
+	public static List<GameObject> attatchedObjs;
 	public static InputTaker inputTaker;
 
-
+	public bool toggle;
 	static InputTakerEditor()
 	{
 		ActionDoerEditor.OnClickedBack += Reciever;
@@ -27,12 +29,20 @@ public class InputTakerEditor : Editor {
 		inputTaker = (InputTaker)target;
 		inputTaker.inputType = (InputTaker.InputType)EditorGUILayout.EnumPopup(inputTaker.inputType);
 
-		if(attatchedObj != null)
+		if(inputTaker.attatchedObjs.Count > 0)
 		{
-			EditorGUILayout.BeginHorizontal();
-			inputTaker.attatchedObj = (GameObject)EditorGUILayout.ObjectField(inputTaker.attatchedObj, typeof(GameObject), true);
-			EditorGUILayout.EndHorizontal();
+			for(int i = 0;i<inputTaker.attatchedObjs.Count;++i) 
+			{
+				inputTaker.attatchedObjs[i] = (GameObject)EditorGUILayout.ObjectField(inputTaker.attatchedObjs[i], typeof(GameObject), true);
+			}
 		}
+		
+//		if(attatchedObj != null)
+//		{
+//			EditorGUILayout.BeginHorizontal();
+//			inputTaker.attatchedObj = (GameObject)EditorGUILayout.ObjectField(inputTaker.attatchedObj, typeof(GameObject), true);
+//			EditorGUILayout.EndHorizontal();
+//		}
 
 		curObj = Selection.activeGameObject;
 
@@ -40,15 +50,24 @@ public class InputTakerEditor : Editor {
 		{
 			if(OnClicked != null)
 			OnClicked(curObj); 
+			SceneView.RepaintAll();
 //			Debug.Log ();
 		}
+
+		toggle = EditorGUILayout.Toggle(toggle);
 	}
 
 	static public void Reciever(GameObject target)
 	{
-		attatchedObj = target;
-		inputTaker.attatchedObj = attatchedObj;
-		Debug.Log (attatchedObj.name + "yolo");
+//		attatchedObjs.Add(target);
+		if(!inputTaker.attatchedObjs.Contains(target))
+		{
+			inputTaker.attatchedObjs.Add(target);
+		}
+
+//		attatchedObj = target;
+//		inputTaker.attatchedObj = attatchedObj;
+//		Debug.Log (attatchedObj.name + "yolo");
 		
 	}
 

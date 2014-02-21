@@ -28,7 +28,7 @@ public class ActionDoerEditor : Editor {
 		ActionDoer actionDoer = (ActionDoer)target;
 //		inputTaker.inputType = (InputTaker.InputType)EditorGUILayout.EnumPopup(inputTaker.inputType);
 //		on = EditorGUILayout.Toggle(on);
-		test = EditorGUILayout.SelectableLabel(test
+//		test = EditorGUILayout.SelectableLabel(test
 		if(attatchedObj != null)
 		{
 			EditorGUILayout.BeginHorizontal();
@@ -50,7 +50,12 @@ public class ActionDoerEditor : Editor {
 		{
 			actionDoer.attatchedObj = attatchedObj;
 			OnClickedBack(curObj); 
-			Repaint ();
+			SceneView.RepaintAll();
+
+		}
+
+		if(GUILayout.Button("Remove From Input"))
+		{
 
 		}
 
