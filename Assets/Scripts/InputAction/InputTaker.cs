@@ -6,10 +6,10 @@ public class InputTaker : MonoBehaviour {
 	public InputType inputType = InputType.clickInput;
 
 	public GameObject attatchedObj;
-
+	private ActionDoer actionDo;
 	void Start () 
 	{
-	
+		actionDo = attatchedObj.GetComponent<ActionDoer>();
 	}
 
 	void Update () 
@@ -21,7 +21,7 @@ public class InputTaker : MonoBehaviour {
 	{
 		if(inputType == InputType.trigger)
 		{
-			Debug.Log (attatchedObj + " will happen");
+			actionDo.DoThing();
 		}
 	}
 

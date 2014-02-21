@@ -16,6 +16,7 @@ public class ActionDoerEditor : Editor {
 	static public GameObject attatchedObj;
 	[SerializeField]
 	private string name;
+	private string test;
 	static ActionDoerEditor()
 	{
 		Debug.Log ("Up and running");
@@ -27,6 +28,7 @@ public class ActionDoerEditor : Editor {
 		ActionDoer actionDoer = (ActionDoer)target;
 //		inputTaker.inputType = (InputTaker.InputType)EditorGUILayout.EnumPopup(inputTaker.inputType);
 //		on = EditorGUILayout.Toggle(on);
+		test = EditorGUILayout.SelectableLabel(test
 		if(attatchedObj != null)
 		{
 			EditorGUILayout.BeginHorizontal();
