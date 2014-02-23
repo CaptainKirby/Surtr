@@ -30,6 +30,7 @@ public class ActionDoerEditor : Editor {
 	{
 		Debug.Log ("Up and running");
 		InputTakerEditor.OnClicked += Reciever;
+		InputTakerEditor.OnClickedDelete += Remover;
 
 	}
 
@@ -38,7 +39,8 @@ public class ActionDoerEditor : Editor {
 //		inputTaker.inputType = (InputTaker.InputType)EditorGUILayout.EnumPopup(inputTaker.inputType);
 //		on = EditorGUILayout.Toggle(on);
 //		test = EditorGUILayout.SelectableLabel(test
-
+//		EditorGUILayout.HelpBox("test",MessageType.None);
+//		EditorGUILayout.LabelField("Input connections: " + attatchedObjs.Count);
 		if(actionDoer.attatchedObjs.Count > 0)
 		{
 			for(int i = 0;i<actionDoer.attatchedObjs.Count;++i) 
@@ -46,6 +48,7 @@ public class ActionDoerEditor : Editor {
 			
 				Rect r = EditorGUILayout.BeginVertical();
 				GUILayout.Label(actionDoer.attatchedObjs[i].name);
+//				actionDoer.attatchedObjs[i] = (GameObject)EditorGUILayout.ObjectField(actionDoer.attatchedObjs[i], typeof(GameObject), true);
 				//				GUILayout.Label(inputTaker.attatchedObjs[i].name + "lala");
 				if(GUI.Button(new Rect(r.x + 150, r.y, 150,15), "delete " + actionDoer.attatchedObjs[i].name))
 				{
@@ -64,12 +67,12 @@ public class ActionDoerEditor : Editor {
 
 
 
-		if(attatchedObj != null)
-		{
-			EditorGUILayout.BeginHorizontal();
-			actionDoer.attatchedObj = (GameObject)EditorGUILayout.ObjectField(actionDoer.attatchedObj, typeof(GameObject), true);
-			EditorGUILayout.EndHorizontal();
-		}
+//		if(attatchedObj != null)
+//		{
+//			EditorGUILayout.BeginHorizontal();
+//			actionDoer.attatchedObj = (GameObject)EditorGUILayout.ObjectField(actionDoer.attatchedObj, typeof(GameObject), true);
+//			EditorGUILayout.EndHorizontal();
+//		}
 		curObj = Selection.activeGameObject;
 
 
@@ -81,7 +84,7 @@ public class ActionDoerEditor : Editor {
 //			attatchedObj = actionDoer.attatchedObj;
 		}
 
-		EditorGUILayout.HelpBox(name,MessageType.None);
+
 
 		if(GUILayout.Button("Recieve"))
 		{
@@ -99,6 +102,7 @@ public class ActionDoerEditor : Editor {
 			}
 			actionDoer.attatchedObj = attatchedObj;
 			OnClickedBack(curObj); 
+			attatchedObjs.Clear();
 			SceneView.RepaintAll();
 
 		}
@@ -127,7 +131,7 @@ public class ActionDoerEditor : Editor {
 
 	static public void Reciever(GameObject target)
 	{
-
+		attatchedObjs.Clear();
 		if(!attatchedObjs.Contains(target))
 		{
 			attatchedObjs.Add(target);
@@ -135,6 +139,17 @@ public class ActionDoerEditor : Editor {
 //		Debug.Log (attatchedObjs2.ToString());
 		attatchedObj = target;
 		Debug.Log (attatchedObj.name + "yolo");		 
+	}
+
+	static public void Remover(GameObject targett)
+	{
+		Debug.Log (targett);
+		if(actionDoer.attatchedObjs.Contains(targett))
+		{
+//			Debug.Log ("REMOVE"); 
+			
+			actionDoer.attatchedObjs.Remove(targett);
+		}
 	}
 
 

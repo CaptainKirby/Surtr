@@ -13,6 +13,9 @@ public class InputTakerEditor : Editor {
 //	public Object thisObj;
 	public delegate void OnAction(GameObject target);
 	public static event OnAction OnClicked;
+
+	public delegate void OnActionDelete(GameObject targett);
+	public static event OnActionDelete OnClickedDelete;
 	public GameObject curObj;
 
 	public static GameObject attatchedObj;
@@ -55,6 +58,7 @@ public class InputTakerEditor : Editor {
 //				GUILayout.Label(inputTaker.attatchedObjs[i].name + "lala");
 				if(GUI.Button(new Rect(r.x + 150, r.y, 150,15), "delete " + inputTaker.attatchedObjs[i].name))
 				{
+					OnClickedDelete(inputTaker.gameObject); 
 					inputTaker.attatchedObjs.Remove(inputTaker.attatchedObjs[i]);
 					SceneView.RepaintAll();
 				}
