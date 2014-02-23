@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class ActionDoer : MonoBehaviour {
@@ -10,6 +11,7 @@ public class ActionDoer : MonoBehaviour {
 	public bool on;
 	[SerializeField]
 	public GameObject attatchedObj;
+	public List<GameObject> attatchedObjs = new List<GameObject>();
 
 	void Start () 
 	{

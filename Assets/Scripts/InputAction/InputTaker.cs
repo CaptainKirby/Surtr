@@ -7,12 +7,21 @@ public class InputTaker : MonoBehaviour {
 	public InputType inputType = InputType.clickInput;
 
 	public GameObject attatchedObj;
-	public  List<GameObject> attatchedObjs ;
+	public  List<GameObject> attatchedObjs  = new List<GameObject>();
+	public List<ActionDoer> actionDoers = new List<ActionDoer>();
 	private ActionDoer actionDo;
+
 
 	void Start () 
 	{
-		actionDo = attatchedObj.GetComponent<ActionDoer>();
+		foreach(GameObject g in attatchedObjs)
+		{
+			if(g.GetComponent<ActionDoer>())
+			{
+				 actionDoers.Add(g.GetComponent<ActionDoer>());
+			}
+		}
+//		actionDo = attatchedObj.GetComponent<ActionDoer>();
 	}
 
 	void Update () 
@@ -24,7 +33,11 @@ public class InputTaker : MonoBehaviour {
 	{
 		if(inputType == InputType.trigger)
 		{
-			actionDo.DoThing();
+			foreach(ActionDoer aD in actionDoers)
+			{
+				aD.DoThing();
+			}
+//			actionDo.DoThing();
 		}
 	}
 

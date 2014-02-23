@@ -20,9 +20,13 @@ public class InputTakerEditor : Editor {
 	public static InputTaker inputTaker;
 
 	public bool toggle;
+	private static GameObject toDelete;
+	private static bool delete;
 	static InputTakerEditor()
 	{
 		ActionDoerEditor.OnClickedBack += Reciever;
+		ActionDoerEditor.OnClickedBackDelete += Remover;
+
 	}
 
 	public override void OnInspectorGUI() {
@@ -31,6 +35,12 @@ public class InputTakerEditor : Editor {
 
 		if(inputTaker.attatchedObjs.Count > 0)
 		{
+			if(delete)
+			{
+				inputTaker.attatchedObjs.Remove (toDelete);
+				delete = false;
+
+			}
 			for(int i = 0;i<inputTaker.attatchedObjs.Count;++i) 
 			{
 
@@ -91,11 +101,23 @@ public class InputTakerEditor : Editor {
 		{
 			inputTaker.attatchedObjs.Add(target);
 		}
+//		
 
 //		attatchedObj = target;
 //		inputTaker.attatchedObj = attatchedObj;
 //		Debug.Log (attatchedObj.name + "yolo");
 		
+	}
+
+	static public void Remover(GameObject targett)
+	{
+		Debug.Log (targett);
+		if(inputTaker.attatchedObjs.Contains(targett))
+		{
+			Debug.Log ("REMOVE"); 
+
+			inputTaker.attatchedObjs.Remove(targett);
+		}
 	}
 
 	
