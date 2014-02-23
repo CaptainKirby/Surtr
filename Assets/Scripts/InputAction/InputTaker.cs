@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+//[ExecuteInEditMode()]  
+[System.Serializable]
 
 public class InputTaker : MonoBehaviour {
 	public enum InputType {clickInput, trigger, pikogpatter}; //ontriggerenter on trigger exit, on collision, keyinput
@@ -8,7 +10,9 @@ public class InputTaker : MonoBehaviour {
 
 	public GameObject attatchedObj;
 	public  List<GameObject> attatchedObjs  = new List<GameObject>();
+	[SerializeField]
 	public List<ActionDoer> actionDoers = new List<ActionDoer>();
+	[SerializeField]
 	private ActionDoer actionDo;
 
 
@@ -58,8 +62,12 @@ public class InputTaker : MonoBehaviour {
 			foreach(GameObject gObj in attatchedObjs)
 			{
 				Gizmos.DrawLine(this.transform.position, gObj.transform.position);
+//				Gizmos.DrawLine((this.transform.position + gObj.transform.position) * 0.5f, new Vector3((this.transform.position.x + gObj.transform.position.x) * 0.5f , (this.transform.position.y + gObj.transform.position.y) * 0.5f, (this.transform.position.z + gObj.transform.position.z) * 0.5f));
 //				Gizmos.DrawIcon(this.transform.position /2, "arrowIcon.png");
 			}
 		}
 	}
-}
+                
+		                 
+ }
+   

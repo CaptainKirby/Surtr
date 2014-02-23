@@ -8,7 +8,7 @@ using System.Collections.Generic;
 [CustomEditor(typeof(ActionDoer))] 
 [System.SerializableAttribute]
 public class ActionDoerEditor : Editor {
-
+//	[System.Serializable]
 	public delegate void OnActionBack(GameObject target);
 	public static event OnActionBack OnClickedBack;
 
@@ -25,7 +25,12 @@ public class ActionDoerEditor : Editor {
 	[SerializeField]
 	private string name;
 	private string test;
+	[SerializeField]
 	public static ActionDoer actionDoer;
+
+
+	//handlers
+
 	static ActionDoerEditor()
 	{
 		Debug.Log ("Up and running");
@@ -35,96 +40,88 @@ public class ActionDoerEditor : Editor {
 	}
 
 	public override void OnInspectorGUI() {
-		 actionDoer = (ActionDoer)target;
+		actionDoer = (ActionDoer)target;
+		curObj = Selection.activeGameObject;
+		actionDoer.takeInput = EditorGUILayout.ToggleLeft(" Recieve input?", actionDoer.takeInput);
 //		inputTaker.inputType = (InputTaker.InputType)EditorGUILayout.EnumPopup(inputTaker.inputType);
 //		on = EditorGUILayout.Toggle(on);
 //		test = EditorGUILayout.SelectableLabel(test
 //		EditorGUILayout.HelpBox("test",MessageType.None);
 //		EditorGUILayout.LabelField("Input connections: " + attatchedObjs.Count);
-		if(actionDoer.attatchedObjs.Count > 0)
+		if(actionDoer.takeInput)
 		{
-			for(int i = 0;i<actionDoer.attatchedObjs.Count;++i) 
+			if(actionDoer.attatchedObjs.Count > 0)
 			{
-			
-				Rect r = EditorGUILayout.BeginVertical();
-				GUILayout.Label(actionDoer.attatchedObjs[i].name);
-//				actionDoer.attatchedObjs[i] = (GameObject)EditorGUILayout.ObjectField(actionDoer.attatchedObjs[i], typeof(GameObject), true);
-				//				GUILayout.Label(inputTaker.attatchedObjs[i].name + "lala");
-				if(GUI.Button(new Rect(r.x + 150, r.y, 150,15), "delete " + actionDoer.attatchedObjs[i].name))
+				for(int i = 0;i<actionDoer.attatchedObjs.Count;++i) 
 				{
-					OnClickedBackDelete(actionDoer.gameObject); 
-
-					actionDoer.attatchedObjs.Remove(actionDoer.attatchedObjs[i]);
-
-					SceneView.RepaintAll();
-				}
 				
-				EditorGUILayout.EndVertical();
+					Rect r = EditorGUILayout.BeginVertical();
+					GUILayout.Label(actionDoer.attatchedObjs[i].name);
+	//				actionDoer.attatchedObjs[i] = (GameObject)EditorGUILayout.ObjectField(actionDoer.attatchedObjs[i], typeof(GameObject), true);
+					//				GUILayout.Label(inputTaker.attatchedObjs[i].name + "lala");
+					if(GUI.Button(new Rect(r.x + 150, r.y, 150,15), "delete " + actionDoer.attatchedObjs[i].name))
+					{
+						OnClickedBackDelete(actionDoer.gameObject); 
 
-			}
-		}
+						actionDoer.attatchedObjs.Remove(actionDoer.attatchedObjs[i]);
 
+						SceneView.RepaintAll();
+					}
+					
+					EditorGUILayout.EndVertical();
 
-
-
-//		if(attatchedObj != null)
-//		{
-//			EditorGUILayout.BeginHorizontal();
-//			actionDoer.attatchedObj = (GameObject)EditorGUILayout.ObjectField(actionDoer.attatchedObj, typeof(GameObject), true);
-//			EditorGUILayout.EndHorizontal();
-//		}
-		curObj = Selection.activeGameObject;
-
-
-
-
-		if(attatchedObj == null)
-		{
-//			Debug.Log ("WHAT");
-//			attatchedObj = actionDoer.attatchedObj;
-		}
-
-
-
-		if(GUILayout.Button("Recieve"))
-		{
-//			if(actionDoer.attatchedObj.GetComponent<InputTaker>().attatchedObjs.Contains(actionDoer.gameObject))
-//			{
-//				actionDoer.attatchedObj.GetComponent<InputTaker>().attatchedObjs.Remove(actionDoer.gameObject);
-//				SceneView.RepaintAll();
-//			}
-			for(int i = 0;i<attatchedObjs.Count;i++)
-			{
-				if(!actionDoer.attatchedObjs.Contains(attatchedObjs[i]))
-				{
-					actionDoer.attatchedObjs.Add(attatchedObjs[i]);
 				}
 			}
-			actionDoer.attatchedObj = attatchedObj;
-			OnClickedBack(curObj); 
-			attatchedObjs.Clear();
-			SceneView.RepaintAll();
+
+
+			if(GUILayout.Button("Recieve"))
+			{
+
+				for(int i = 0;i<attatchedObjs.Count;i++)
+				{
+					if(!actionDoer.attatchedObjs.Contains(attatchedObjs[i]))
+					{
+						actionDoer.attatchedObjs.Add(attatchedObjs[i]);
+					}
+				}
+				actionDoer.attatchedObj = attatchedObj;
+				OnClickedBack(curObj); 
+				attatchedObjs.Clear();
+				SceneView.RepaintAll();
+
+			}
+			if(GUILayout.Button("Remove Connection"))
+			{
+				if(actionDoer.attatchedObj.GetComponent<InputTaker>().attatchedObjs.Contains(actionDoer.gameObject))
+				{
+					actionDoer.attatchedObj.GetComponent<InputTaker>().attatchedObjs.Remove(actionDoer.gameObject);
+				}
+				SceneView.RepaintAll();
+			}
 
 		}
 
-//		if(GUILayout.Button("Remove From Input"))
-//		{
-//			if(actionDoer.attatchedObj.GetComponent<InputTaker>().attatchedObjs.Contains(actionDoer.gameObject))
-//			{
-//				actionDoer.attatchedObj.GetComponent<InputTaker>().attatchedObjs.Remove(actionDoer.gameObject);
-//				SceneView.RepaintAll();
-//			}
-//			
-//		}
 
-		if(GUILayout.Button("Remove Connection"))
+		EditorGUILayout.Space();
+		GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
+		EditorGUILayout.Space();
+
+
+
+
+		//transform position
+		actionDoer.transformMove = EditorGUILayout.ToggleLeft(" Transform move", actionDoer.transformMove);
+		if(actionDoer.transformMove)
 		{
-//			actionDoer.attatchedObj = null;
-			if(actionDoer.attatchedObj.GetComponent<InputTaker>().attatchedObjs.Contains(actionDoer.gameObject))
+			SceneView.RepaintAll(); 
+			actionDoer.resetMove = EditorGUILayout.ToggleLeft(" Reset", actionDoer.resetMove);
+			if(actionDoer.resetMove)
 			{
-				actionDoer.attatchedObj.GetComponent<InputTaker>().attatchedObjs.Remove(actionDoer.gameObject);
+				actionDoer.moveToPos = new Vector3(actionDoer.gameObject.transform.position.x,actionDoer.gameObject.transform.position.y, actionDoer.gameObject.transform.position.z);
+				actionDoer.resetMove = false;
 			}
-			SceneView.RepaintAll();
+			EditorGUILayout.Vector3Field("Move to vector3:", actionDoer.moveToPos);
+
 		}
 
 	}
@@ -152,6 +149,15 @@ public class ActionDoerEditor : Editor {
 		}
 	}
 
+	public void OnSceneGUI () {
+		if(actionDoer.transformMove)
+		{
+			Handles.color = Color.red;
+			Handles.DrawLine(actionDoer.transform.position, actionDoer.moveToPos);
+			actionDoer.moveToPos = Handles.PositionHandle(actionDoer.moveToPos, Quaternion.identity);
+//			actionDoer.moveToPos = Handles.FreeMoveHandle(actionDoer.moveToPos, Quaternion.identity, 1, Vector3.zero, Handles.DrawRectangle);
+		}
+	}
 
 
 }

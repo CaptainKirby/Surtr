@@ -8,7 +8,7 @@ using System.Collections.Generic;
 [System.Serializable]
 [InitializeOnLoad]
 public class InputTakerEditor : Editor {
-
+//	[System.Serializable]
 //	public delegate void ObjectTarget(GameObject gObj);
 //	public Object thisObj;
 	public delegate void OnAction(GameObject target);
@@ -19,7 +19,9 @@ public class InputTakerEditor : Editor {
 	public GameObject curObj;
 
 	public static GameObject attatchedObj;
+	[SerializeField]
 	public static List<GameObject> attatchedObjs;
+	[SerializeField]
 	public static InputTaker inputTaker;
 
 	public bool toggle;
@@ -29,7 +31,7 @@ public class InputTakerEditor : Editor {
 	{
 		ActionDoerEditor.OnClickedBack += Reciever;
 		ActionDoerEditor.OnClickedBackDelete += Remover;
-
+//		inputTaker = (InputTaker)target;
 	}
 
 	public override void OnInspectorGUI() {
@@ -118,11 +120,11 @@ public class InputTakerEditor : Editor {
 		Debug.Log (targett);
 		if(inputTaker.attatchedObjs.Contains(targett))
 		{
-			Debug.Log ("REMOVE"); 
-
 			inputTaker.attatchedObjs.Remove(targett);
 		}
 	}
+
+
 
 	
 
