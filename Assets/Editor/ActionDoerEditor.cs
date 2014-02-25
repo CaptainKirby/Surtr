@@ -110,11 +110,18 @@ public class ActionDoerEditor : Editor {
 
 
 		//transform position
+//		actionDoer.pause = EditorGUILayout.ToggleLeft(" pause", actionDoer.pause);
+		actionDoer.pausable = EditorGUILayout.ToggleLeft(" Pausable", actionDoer.pausable);
+
+		EditorGUILayout.Space();
+		GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
+		EditorGUILayout.Space();
+
 		actionDoer.transformMove = EditorGUILayout.ToggleLeft(" Transform move", actionDoer.transformMove);
 		if(actionDoer.transformMove)
 		{
 			SceneView.RepaintAll(); 
-			actionDoer.resetMove = EditorGUILayout.ToggleLeft(" Reset", actionDoer.resetMove);
+//			actionDoer.resetMove = EditorGUILayout.ToggleLeft(" Reset", actionDoer.resetMove);
 			actionDoer.pingPongMove= EditorGUILayout.ToggleLeft(" Ping Pong", actionDoer.pingPongMove);
 			actionDoer.smoothMove= EditorGUILayout.ToggleLeft(" Smooth Move", actionDoer.smoothMove);
 			actionDoer.moveStartDelay = EditorGUILayout.ToggleLeft(" Start Delay", actionDoer.moveStartDelay);
@@ -129,11 +136,11 @@ public class ActionDoerEditor : Editor {
 			}
 			actionDoer.moveSpeed = EditorGUILayout.FloatField("Move Speed: ", actionDoer.moveSpeed);
 			
-			if(actionDoer.resetMove)
-			{
-				actionDoer.moveToPos = new Vector3(actionDoer.gameObject.transform.position.x,actionDoer.gameObject.transform.position.y, actionDoer.gameObject.transform.position.z);
-				actionDoer.resetMove = false;
-			}
+//			if(actionDoer.resetMove)
+//			{
+//				actionDoer.moveToPos = new Vector3(actionDoer.gameObject.transform.position.x,actionDoer.gameObject.transform.position.y, actionDoer.gameObject.transform.position.z);
+//				actionDoer.resetMove = false;
+//			}
 
 			EditorGUILayout.Vector3Field("Start from vector3:", actionDoer.moveStartPos);
 

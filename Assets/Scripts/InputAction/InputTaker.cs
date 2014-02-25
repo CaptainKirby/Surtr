@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [System.Serializable]
 
 public class InputTaker : MonoBehaviour {
-	public enum InputType {clickInput, trigger, pikogpatter}; //ontriggerenter on trigger exit, on collision, keyinput
+	public enum InputType {clickInput, trigger, spiritShift}; //ontriggerenter on trigger exit, on collision, keyinput
 	public InputType inputType = InputType.clickInput;
 
 	public GameObject attatchedObj;
@@ -14,7 +14,7 @@ public class InputTaker : MonoBehaviour {
 	public List<ActionDoer> actionDoers = new List<ActionDoer>();
 	[SerializeField]
 	private ActionDoer actionDo;
-
+	private bool oneTime;
 
 	void Start () 
 	{
@@ -30,7 +30,36 @@ public class InputTaker : MonoBehaviour {
 
 	void Update () 
 	{
-	
+		if(inputType == InputType.spiritShift)
+		{
+			if(PlayerSwitch.fadeFromForm)
+			{
+//				Debug.Log ("!?!");
+				oneTime = true;
+				foreach(ActionDoer aD in actionDoers)
+				{
+					aD.DoThing();
+//					if(aD.pausable)
+//					{
+//						if(aD.started && !aD.pause)
+//						{
+//							aD.pause = true;
+//							oneTime = false;
+//						}
+//						else if(aD.started && aD.pause)
+//						{
+//							aD.pause = false;
+//							oneTime = false;
+//
+//						}
+////						Debug.Log (aD.pause);
+//					}
+
+				}
+				PlayerSwitch.fadeFromForm = false;
+
+			}
+		}
 	}
 
 	void OnTriggerEnter(Collider col)

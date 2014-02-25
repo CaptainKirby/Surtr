@@ -19,6 +19,12 @@ public class ActionDoer : MonoBehaviour {
 	private bool doit;
 	public bool playOnce;
 
+	[SerializeField]
+	public bool pause;
+	[SerializeField]
+	public bool pausable;
+	[SerializeField]
+	public bool started;
 
 	//transform move
 	[SerializeField]
@@ -100,9 +106,10 @@ public class ActionDoer : MonoBehaviour {
 
 	public void DoThing()
 	{
+
 		if(!doit)
 		{
-			doit = true;
+//			doit = true;
 
 			if(transformMove)
 			{
@@ -112,10 +119,6 @@ public class ActionDoer : MonoBehaviour {
 			{
 				StartCoroutine(TransformRoation());
 			}
-//			if(!playOnce)
-//			{
-//
-//			}
 
 		}
 	}
@@ -128,6 +131,23 @@ public class ActionDoer : MonoBehaviour {
 //		Quaternion startRot = Quaternion.Euler(this.transform.eulerAngles);
 		bool oneWay = false;
 		bool delay = true;
+
+		if(!started)
+		{
+			started = true;
+		}
+
+//		if(started && pausable)
+//		{
+//			if(!pause)
+//			{
+//				pause = true;
+//			}
+//			else
+//			{
+//				pause = false;
+//			}
+//		}
 		if(rotateStartDelay)
 		{
 			yield return new WaitForSeconds(rotateStartDelayTime);
@@ -136,22 +156,27 @@ public class ActionDoer : MonoBehaviour {
 		{
 			while(onOff)
 			{
-				if(mTime < 1f)
+				if(!pause)
 				{
-					mTime += Time.deltaTime * moveSpeed;
-					if(!smoothRotate)
+					if(mTime < 1f)
 					{
-						this.transform.rotation = Quaternion.Lerp(Quaternion.Euler(rotateStartAngle),Quaternion.Euler(rotateToAngle),mTime);
+//						started = true;
+						mTime += Time.deltaTime * moveSpeed;
+						if(!smoothRotate)
+						{
+							this.transform.rotation = Quaternion.Lerp(Quaternion.Euler(rotateStartAngle),Quaternion.Euler(rotateToAngle),mTime);
+						}
+						else
+						{
+							float smoothStep = Mathf.SmoothStep(0.0f, 1.0f, mTime);
+							this.transform.rotation = Quaternion.Lerp(Quaternion.Euler(rotateStartAngle),Quaternion.Euler(rotateToAngle), smoothStep);
+						}
 					}
 					else
 					{
-						float smoothStep = Mathf.SmoothStep(0.0f, 1.0f, mTime);
-						this.transform.rotation = Quaternion.Lerp(Quaternion.Euler(rotateStartAngle),Quaternion.Euler(rotateToAngle), smoothStep);
+						started = false;
+						onOff = false;
 					}
-				}
-				else
-				{
-					onOff = false;
 				}
 					yield return null;
 			}
@@ -160,60 +185,63 @@ public class ActionDoer : MonoBehaviour {
 		{
 			while(onOff)
 			{
-				if(mTime > 1 && !oneWay)
+				if(!pause)
 				{
-					oneWay = true;
-					mTime = 0;
-					if(rotateInbetweenDelay)
+					if(mTime > 1 && !oneWay)
 					{
-						delay = false;
-						yield return new WaitForSeconds(rotateInbetweenDelayTime);
-						delay = true;
-					}
-				}
-				if(mTime > 1 && oneWay)
-				{
-					oneWay = false;
-					mTime = 0;
-					if(rotateInbetweenDelay)
-					{
-						delay = false;
-						yield return new WaitForSeconds(rotateInbetweenDelayTime);
-						delay = true;
-					}
-				}
-				if(delay)
-				{
-					if(!oneWay)
-					{
-						mTime += Time.deltaTime * rotateSpeed;
-						if(!smoothRotate)
+						oneWay = true;
+						mTime = 0;
+						if(rotateInbetweenDelay)
 						{
-							this.transform.rotation = Quaternion.Lerp(Quaternion.Euler(rotateStartAngle),Quaternion.Euler(rotateToAngle),mTime);
-//							this.transform.position = Vector3.Lerp(moveStartPos, moveToPos, mTime);
-						}
-						else
-						{
-							float smoothStep = Mathf.SmoothStep(0.0f, 1.0f, mTime);
-							this.transform.rotation = Quaternion.Lerp(Quaternion.Euler(rotateStartAngle),Quaternion.Euler(rotateToAngle), smoothStep);
-//							this.transform.position = new Vector3(Mathf.SmoothStep(moveStartPos.x, moveToPos.x, mTime), Mathf.SmoothStep(moveStartPos.y, moveToPos.y, mTime), Mathf.SmoothStep(moveStartPos.z, moveToPos.z, mTime));
+							delay = false;
+							yield return new WaitForSeconds(rotateInbetweenDelayTime);
+							delay = true;
 						}
 					}
-					if(oneWay)
+					if(mTime > 1 && oneWay)
 					{
-						mTime += Time.deltaTime * rotateSpeed;
-						if(!smoothRotate)
+						oneWay = false;
+						mTime = 0;
+						if(rotateInbetweenDelay)
 						{
-							this.transform.rotation = Quaternion.Lerp(Quaternion.Euler(rotateToAngle),Quaternion.Euler(rotateStartAngle),mTime);
-//							this.transform.position = Vector3.Lerp(moveToPos, moveStartPos, mTime);
+							delay = false;
+							yield return new WaitForSeconds(rotateInbetweenDelayTime);
+							delay = true;
 						}
-						else
+					}
+					if(delay)
+					{
+						if(!oneWay)
 						{
-							float smoothStep = Mathf.SmoothStep(0.0f, 1.0f, mTime);
-							this.transform.rotation = Quaternion.Lerp(Quaternion.Euler(rotateToAngle),Quaternion.Euler(rotateStartAngle), smoothStep);
-//							this.transform.position = new Vector3(Mathf.SmoothStep(moveToPos.x, moveStartPos.x, mTime), Mathf.SmoothStep(moveToPos.y, moveStartPos.y, mTime), Mathf.SmoothStep(moveToPos.z, moveStartPos.z, mTime));
+							mTime += Time.deltaTime * rotateSpeed;
+							if(!smoothRotate)
+							{
+								this.transform.rotation = Quaternion.Lerp(Quaternion.Euler(rotateStartAngle),Quaternion.Euler(rotateToAngle),mTime);
+	//							this.transform.position = Vector3.Lerp(moveStartPos, moveToPos, mTime);
+							}
+							else
+							{
+								float smoothStep = Mathf.SmoothStep(0.0f, 1.0f, mTime);
+								this.transform.rotation = Quaternion.Lerp(Quaternion.Euler(rotateStartAngle),Quaternion.Euler(rotateToAngle), smoothStep);
+	//							this.transform.position = new Vector3(Mathf.SmoothStep(moveStartPos.x, moveToPos.x, mTime), Mathf.SmoothStep(moveStartPos.y, moveToPos.y, mTime), Mathf.SmoothStep(moveStartPos.z, moveToPos.z, mTime));
+							}
 						}
-						
+						if(oneWay)
+						{
+							mTime += Time.deltaTime * rotateSpeed;
+							if(!smoothRotate)
+							{
+								this.transform.rotation = Quaternion.Lerp(Quaternion.Euler(rotateToAngle),Quaternion.Euler(rotateStartAngle),mTime);
+	//							this.transform.position = Vector3.Lerp(moveToPos, moveStartPos, mTime);
+							}
+							else
+							{
+								float smoothStep = Mathf.SmoothStep(0.0f, 1.0f, mTime);
+								this.transform.rotation = Quaternion.Lerp(Quaternion.Euler(rotateToAngle),Quaternion.Euler(rotateStartAngle), smoothStep);
+	//							this.transform.position = new Vector3(Mathf.SmoothStep(moveToPos.x, moveStartPos.x, mTime), Mathf.SmoothStep(moveToPos.y, moveStartPos.y, mTime), Mathf.SmoothStep(moveToPos.z, moveStartPos.z, mTime));
+							}
+							
+						}
 					}
 				}
 
@@ -230,6 +258,37 @@ public class ActionDoer : MonoBehaviour {
 
 		bool oneWay = false;
 		bool delay = true;
+
+
+		if(!started)
+		{
+			started = true;
+		}
+
+//		if(started && pausable && !pause)
+//		{
+//			if(!pause)
+//			{
+//				pause = true;
+//				Debug.Log ("FJUAEOFO");
+//			}
+////			else
+////			{
+////				pause = false;
+////			}
+//		}
+//		if(started && pausable && pause)
+//		{
+//			if(pause)
+//			{
+//				pause = false;
+//				Debug.Log ("FJUAEOFO");
+//			}
+//			//			else
+//			//			{
+//			//				pause = false;
+//			//			}
+//		}
 		if(moveStartDelay)
 		{
 			yield return new WaitForSeconds(moveStartDelayTime);
@@ -238,58 +297,11 @@ public class ActionDoer : MonoBehaviour {
 		{
 			while(onOff)
 			{
-				if(mTime < 1f)
+				if(!pause)
 				{
-					mTime += Time.deltaTime * moveSpeed;
-					if(!smoothMove)
+					if(mTime < 1f)
 					{
-						this.transform.position = Vector3.Lerp(moveStartPos, moveToPos, mTime);
-					}
-					else
-					{
-						this.transform.position = new Vector3(Mathf.SmoothStep(moveStartPos.x, moveToPos.x, mTime), Mathf.SmoothStep(moveStartPos.y, moveToPos.y, mTime), Mathf.SmoothStep(moveStartPos.z, moveToPos.z, mTime));
-					}
-				}
-				else
-				{
-					onOff = false;
-
-					//doit = false
-				}
-				yield return null;
-				 
-			}
-		}
-		if(pingPongMove)
-		{
-			while(onOff)
-			{
-				if(mTime > 1 && !oneWay)
-				{
-					oneWay = true;
-					mTime = 0;
-					if(moveInbetweenDelay)
-					{
-						delay = false;
-						yield return new WaitForSeconds(moveInbetweenDelayTime);
-						delay = true;
-					}
-				}
-				if(mTime > 1 && oneWay)
-				{
-					oneWay = false;
-					mTime = 0;
-					if(moveInbetweenDelay)
-					{
-						delay = false;
-						yield return new WaitForSeconds(moveInbetweenDelayTime);
-						delay = true;
-					}
-				}
-				if(delay)
-				{
-					if(!oneWay)
-					{
+//						started = true;
 						mTime += Time.deltaTime * moveSpeed;
 						if(!smoothMove)
 						{
@@ -300,18 +312,73 @@ public class ActionDoer : MonoBehaviour {
 							this.transform.position = new Vector3(Mathf.SmoothStep(moveStartPos.x, moveToPos.x, mTime), Mathf.SmoothStep(moveStartPos.y, moveToPos.y, mTime), Mathf.SmoothStep(moveStartPos.z, moveToPos.z, mTime));
 						}
 					}
-					if(oneWay)
+					else
 					{
-						mTime += Time.deltaTime * moveSpeed;
-						if(!smoothMove)
-						{
-							this.transform.position = Vector3.Lerp(moveToPos, moveStartPos, mTime);
-						}
-						else
-						{
-							this.transform.position = new Vector3(Mathf.SmoothStep(moveToPos.x, moveStartPos.x, mTime), Mathf.SmoothStep(moveToPos.y, moveStartPos.y, mTime), Mathf.SmoothStep(moveToPos.z, moveStartPos.z, mTime));
-						}
+						started = false;
+						onOff = false;
 
+						//doit = false
+					}
+				}
+				yield return null;
+				 
+			}
+		}
+		if(pingPongMove)
+		{
+			while(onOff)
+			{
+				if(!pause)
+				{
+					if(mTime > 1 && !oneWay)
+					{
+						oneWay = true;
+						mTime = 0;
+						if(moveInbetweenDelay)
+						{
+							delay = false;
+							yield return new WaitForSeconds(moveInbetweenDelayTime);
+							delay = true;
+						}
+					}
+					if(mTime > 1 && oneWay)
+					{
+						oneWay = false;
+						mTime = 0;
+						if(moveInbetweenDelay)
+						{
+							delay = false;
+							yield return new WaitForSeconds(moveInbetweenDelayTime);
+							delay = true;
+						}
+					}
+					if(delay)
+					{
+						if(!oneWay)
+						{
+							mTime += Time.deltaTime * moveSpeed;
+							if(!smoothMove)
+							{
+								this.transform.position = Vector3.Lerp(moveStartPos, moveToPos, mTime);
+							}
+							else
+							{
+								this.transform.position = new Vector3(Mathf.SmoothStep(moveStartPos.x, moveToPos.x, mTime), Mathf.SmoothStep(moveStartPos.y, moveToPos.y, mTime), Mathf.SmoothStep(moveStartPos.z, moveToPos.z, mTime));
+							}
+						}
+						if(oneWay)
+						{
+							mTime += Time.deltaTime * moveSpeed;
+							if(!smoothMove)
+							{
+								this.transform.position = Vector3.Lerp(moveToPos, moveStartPos, mTime);
+							}
+							else
+							{
+								this.transform.position = new Vector3(Mathf.SmoothStep(moveToPos.x, moveStartPos.x, mTime), Mathf.SmoothStep(moveToPos.y, moveStartPos.y, mTime), Mathf.SmoothStep(moveToPos.z, moveStartPos.z, mTime));
+							}
+
+						}
 					}
 				}
 				yield return null;

@@ -15,7 +15,8 @@ public class PlayerSwitch : MonoBehaviour {
 
 	public KeyCode switchKey= KeyCode.JoystickButton3;
 	private bool curState; //false = player true = spirit
-	private bool fadeFromForm;
+	[HideInInspector]
+	public static bool fadeFromForm;
 	private Vector3 curVel;
 
 	private int dir = -1; //-1 == left 1 == right
@@ -74,6 +75,7 @@ public class PlayerSwitch : MonoBehaviour {
 
 		if(Input.GetKeyDown(switchKey) && !curState && !fadeFromForm)
 		{
+			Debug.Log ("wat");
 			curState = true;
 			fadeFromForm = true;
 		}
@@ -82,11 +84,16 @@ public class PlayerSwitch : MonoBehaviour {
 			curState = false;
 			fadeFromForm = true;
 		}
-		if(Input.GetKeyUp(switchKey))
-		{
-			fadeFromForm = false;
-		}
+//		if(fadeFromForm)
+//		{
+			
+//		}
+//		if(Input.GetKeyUp(switchKey))
+//		{
+//			fadeFromForm = false;
+//		}
 
+		Debug.Log (fadeFromForm);
 		playerVelocity = playerController.velocity;
 //		Debug.Log (playerVelocity.x);
 
