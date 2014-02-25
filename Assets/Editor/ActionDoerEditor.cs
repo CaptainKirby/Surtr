@@ -134,9 +134,54 @@ public class ActionDoerEditor : Editor {
 				actionDoer.moveToPos = new Vector3(actionDoer.gameObject.transform.position.x,actionDoer.gameObject.transform.position.y, actionDoer.gameObject.transform.position.z);
 				actionDoer.resetMove = false;
 			}
+
+			EditorGUILayout.Vector3Field("Start from vector3:", actionDoer.moveStartPos);
+
 			EditorGUILayout.Vector3Field("Move to vector3:", actionDoer.moveToPos);
+
+			Rect r = EditorGUILayout.BeginVertical();
+
+			if(GUI.Button(new Rect(r.x, r.y, 120,15),"Set start position"))
+			{
+				actionDoer.moveStartPos = actionDoer.gameObject.transform.position;
+			}
+			if(GUI.Button(new Rect(r.x + 125, r.y, 150,15),"Move to start position"))
+			{
+				actionDoer.gameObject.transform.position = actionDoer.moveStartPos;
+			}
+			if(GUI.Button(new Rect(r.x + 280, r.y, 50,15),"Reset"))
+			{
+				actionDoer.moveStartPos = new Vector3(0,0,0);
+			}
+
 			EditorGUILayout.Space();
-			GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
+			EditorGUILayout.Space();
+			EditorGUILayout.EndVertical();
+
+			EditorGUILayout.Space();
+
+			Rect r2 = EditorGUILayout.BeginVertical();
+			
+			if(GUI.Button(new Rect(r2.x, r2.y, 120,15),"Set end position"))
+			{
+				actionDoer.moveToPos = actionDoer.gameObject.transform.position;
+			}
+			if(GUI.Button(new Rect(r2.x + 125, r2.y, 150,15),"Move to end position"))
+			{
+				actionDoer.gameObject.transform.position = actionDoer.moveToPos;
+			}
+			if(GUI.Button(new Rect(r2.x + 280, r2.y, 50,15),"Reset"))
+			{
+				actionDoer.moveToPos = new Vector3(0,0,0);
+			}
+			
+			EditorGUILayout.Space();
+			EditorGUILayout.Space();
+			EditorGUILayout.EndVertical();
+
+
+			EditorGUILayout.Space();
+			GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));   
 			EditorGUILayout.Space();
 
 		}
@@ -147,8 +192,67 @@ public class ActionDoerEditor : Editor {
 
 		if(actionDoer.transformRotate)
 		{
+			actionDoer.smoothRotate = EditorGUILayout.ToggleLeft(" Smooth Rotate", actionDoer.smoothRotate);
+			actionDoer.pingPongRotate = EditorGUILayout.ToggleLeft(" Ping Pong", actionDoer.pingPongRotate);
 //			actionDoer.rotateFloat = EditorGUILayout.FloatField(actionDoer.rotateFloat);
-			actionDoer.rotateToAngle = EditorGUILayout.Vector3Field("Rotate to: ",actionDoer.rotateToAngle);
+//			actionDoer.rotateToAngle = EditorGUILayout.Vector3Field("Rotate to: ",actionDoer.rotateToAngle);
+
+			actionDoer.rotateStartDelay = EditorGUILayout.ToggleLeft(" Start Delay", actionDoer.rotateStartDelay);
+			if(actionDoer.rotateStartDelay)
+			{
+				actionDoer.rotateStartDelayTime = EditorGUILayout.FloatField("Start Delay Duration: ", actionDoer.rotateStartDelayTime);
+			}
+			actionDoer.rotateInbetweenDelay = EditorGUILayout.ToggleLeft(" Inbetween Delay ", actionDoer.rotateInbetweenDelay);
+			if(actionDoer.rotateInbetweenDelay)
+			{
+				actionDoer.rotateInbetweenDelayTime = EditorGUILayout.FloatField("Inbetween Delay Duration: ", actionDoer.rotateInbetweenDelayTime);
+			}
+			actionDoer.rotateSpeed = EditorGUILayout.FloatField("Move Speed: ", actionDoer.rotateSpeed);
+
+
+			EditorGUILayout.Vector3Field("Rotate from vector3:", actionDoer.rotateStartAngle);
+			
+			EditorGUILayout.Vector3Field("Rotate to vector3:", actionDoer.rotateToAngle);
+			
+			Rect r = EditorGUILayout.BeginVertical();
+			
+			if(GUI.Button(new Rect(r.x, r.y, 120,15),"Set start rotation"))
+			{
+				actionDoer.rotateStartAngle = actionDoer.gameObject.transform.rotation.eulerAngles;
+			}
+			if(GUI.Button(new Rect(r.x + 125, r.y, 150,15),"Move to start rotation"))
+			{
+				actionDoer.gameObject.transform.rotation = Quaternion.Euler(actionDoer.rotateStartAngle);
+			}
+			if(GUI.Button(new Rect(r.x + 280, r.y, 50,15),"Reset"))
+			{
+				actionDoer.rotateStartAngle = new Vector3(0,0,0);
+			}
+			
+			EditorGUILayout.Space();
+			EditorGUILayout.Space();
+			EditorGUILayout.EndVertical();
+			
+			EditorGUILayout.Space();
+			
+			Rect r2 = EditorGUILayout.BeginVertical();
+			
+			if(GUI.Button(new Rect(r2.x, r2.y, 120,15),"Set end rotation"))
+			{
+				actionDoer.rotateToAngle = actionDoer.gameObject.transform.rotation.eulerAngles;
+			}
+			if(GUI.Button(new Rect(r2.x + 125, r2.y, 150,15),"Move to end rotation"))
+			{
+				actionDoer.gameObject.transform.rotation = Quaternion.Euler(actionDoer.rotateToAngle);
+			}
+			if(GUI.Button(new Rect(r2.x + 280, r2.y, 50,15),"Reset"))
+			{
+				actionDoer.rotateToAngle = new Vector3(0,0,0);
+			}
+			
+			EditorGUILayout.Space();
+			EditorGUILayout.Space();
+			EditorGUILayout.EndVertical();
 		}
 
 	}
