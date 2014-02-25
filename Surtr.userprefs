@@ -1,16 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\InputAction\ActionDoer.cs">
     <Files>
-      <File FileName="Assets\Scripts\InputAction\ActionDoer.cs" Line="124" Column="1" />
+      <File FileName="Assets\Scripts\InputAction\ActionDoer.cs" Line="268" Column="38" />
       <File FileName="Assets\Scripts\SpiritMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EnvironmentBehaviour\PlatformMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerSwitch.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EnvironmentBehaviour\PlatformMovement.cs" Line="13" Column="44" />
+      <File FileName="Assets\Scripts\PlayerSwitch.cs" Line="78" Column="22" />
       <File FileName="Assets\Scripts\PlayerMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\InputAction\InputTaker.cs" Line="58" Column="3" />
-      <File FileName="Assets\Editor\InputTakerEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Editor\ActionDoerEditor.cs" Line="128" Column="3" />
-      <File FileName="Assets\Scripts\InputAction\ActionDoer.cs" Line="111" Column="23" />
+      <File FileName="Assets\Scripts\InputAction\InputTaker.cs" Line="57" Column="6" />
+      <File FileName="Assets\Editor\InputTakerEditor.cs" Line="65" Column="7" />
+      <File FileName="Assets\Editor\ActionDoerEditor.cs" Line="115" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
