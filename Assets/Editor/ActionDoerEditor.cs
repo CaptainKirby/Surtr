@@ -115,13 +115,40 @@ public class ActionDoerEditor : Editor {
 		{
 			SceneView.RepaintAll(); 
 			actionDoer.resetMove = EditorGUILayout.ToggleLeft(" Reset", actionDoer.resetMove);
+			actionDoer.pingPongMove= EditorGUILayout.ToggleLeft(" Ping Pong", actionDoer.pingPongMove);
+			actionDoer.smoothMove= EditorGUILayout.ToggleLeft(" Smooth Move", actionDoer.smoothMove);
+			actionDoer.moveStartDelay = EditorGUILayout.ToggleLeft(" Start Delay", actionDoer.moveStartDelay);
+			if(actionDoer.moveStartDelay)
+			{
+				actionDoer.moveStartDelayTime = EditorGUILayout.FloatField("Start Delay Duration: ", actionDoer.moveStartDelayTime);
+			}
+			actionDoer.moveInbetweenDelay= EditorGUILayout.ToggleLeft(" Inbetween Delay ", actionDoer.moveInbetweenDelay);
+			if(actionDoer.moveInbetweenDelay)
+			{
+				actionDoer.moveInbetweenDelayTime = EditorGUILayout.FloatField("Inbetween Delay Duration: ", actionDoer.moveInbetweenDelayTime);
+			}
+			actionDoer.moveSpeed = EditorGUILayout.FloatField("Move Speed: ", actionDoer.moveSpeed);
+			
 			if(actionDoer.resetMove)
 			{
 				actionDoer.moveToPos = new Vector3(actionDoer.gameObject.transform.position.x,actionDoer.gameObject.transform.position.y, actionDoer.gameObject.transform.position.z);
 				actionDoer.resetMove = false;
 			}
 			EditorGUILayout.Vector3Field("Move to vector3:", actionDoer.moveToPos);
+			EditorGUILayout.Space();
+			GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
+			EditorGUILayout.Space();
 
+		}
+
+
+		//transform rotation
+		actionDoer.transformRotate = EditorGUILayout.ToggleLeft(" Transform rotate", actionDoer.transformRotate);
+
+		if(actionDoer.transformRotate)
+		{
+//			actionDoer.rotateFloat = EditorGUILayout.FloatField(actionDoer.rotateFloat);
+			actionDoer.rotateToAngle = EditorGUILayout.Vector3Field("Rotate to: ",actionDoer.rotateToAngle);
 		}
 
 	}
@@ -156,6 +183,14 @@ public class ActionDoerEditor : Editor {
 			Handles.DrawLine(actionDoer.transform.position, actionDoer.moveToPos);
 			actionDoer.moveToPos = Handles.PositionHandle(actionDoer.moveToPos, Quaternion.identity);
 //			actionDoer.moveToPos = Handles.FreeMoveHandle(actionDoer.moveToPos, Quaternion.identity, 1, Vector3.zero, Handles.DrawRectangle);
+		}
+
+		if(actionDoer.transformRotate)
+		{
+			Handles.color = new Color(1,1,1,0.5f);
+//			Handles.DrawLine(actionDoer.transform.position, actionDoer.rotateToAngle);
+
+//			Handles.DrawSolidArc(actionDoer.transform.position, actionDoer.transform.forward, actionDoer.transform.right, 15, 5);
 		}
 	}
 
