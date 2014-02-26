@@ -62,6 +62,7 @@ public class InputTakerEditor : Editor {
 				{
 					OnClickedDelete(inputTaker.gameObject); 
 					inputTaker.attatchedObjs.Remove(inputTaker.attatchedObjs[i]);
+					inputTaker.actionDoers.Remove(inputTaker.attatchedObjs[i].GetComponent<ActionDoer>());
 					SceneView.RepaintAll();
 				}
 

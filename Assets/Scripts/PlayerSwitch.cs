@@ -73,27 +73,36 @@ public class PlayerSwitch : MonoBehaviour {
 
 
 
-		if(Input.GetKeyDown(switchKey) && !curState && !fadeFromForm)
+		if(Input.GetKeyDown(switchKey))
 		{
-			Debug.Log ("wat");
-			curState = true;
+//			Debug.Log ("wat22222");
+			curState = !curState;
+//			StartCoroutine(ClickOnce());
 			fadeFromForm = true;
+//			curState = true;
+//			fadeFromForm = !fadeFromForm;
 		}
-		if(Input.GetKeyDown(switchKey) && curState && !fadeFromForm)
+		else
 		{
-			curState = false;
-			fadeFromForm = true;
+//			Debug.Log (fadeFromForm);
+			fadeFromForm = false;
+
 		}
+//		if(Input.GetKeyDown(switchKey) && curState && !fadeFromForm)
+//		{
+//			curState = false;
+//			fadeFromForm = !fadeFromForm;
+//		}
 //		if(fadeFromForm)
 //		{
-			
+//			fadeFromForm = false;
 //		}
 //		if(Input.GetKeyUp(switchKey))
 //		{
 //			fadeFromForm = false;
 //		}
 
-		Debug.Log (fadeFromForm);
+//		Debug.Log (fadeFromForm);
 		playerVelocity = playerController.velocity;
 //		Debug.Log (playerVelocity.x);
 
@@ -106,5 +115,13 @@ public class PlayerSwitch : MonoBehaviour {
 	{
 		yield return null;
 	}
+
+//	IEnumerator ClickOnce()
+//	{
+//		curState = !curState;
+//		fadeFromForm = !fadeFromForm;
+//		yield return new WaitForEndOfFrame();
+//		fadeFromForm = !fadeFromForm;
+//	}
 
 }

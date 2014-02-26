@@ -98,7 +98,7 @@ public class ActionDoer : MonoBehaviour {
 
 	void Update () 
 	{
-
+//		Debug.Log (pause);
 	}
 
 
@@ -106,25 +106,77 @@ public class ActionDoer : MonoBehaviour {
 
 	public void DoThing()
 	{
-
-		if(!doit)
+		if(pausable)
 		{
-//			doit = true;
+			if(!doit)
+			{
 
+				if(started && pausable)
+				{ 
+					if(!pause)
+					{
+						pause = true;
+					}
+					else
+					{
+						pause = false;
+					}
+				}
+				if(!started)
+				{
+					started = true;
+					if(transformMove)
+					{
+						StartCoroutine(TransformPosition());
+					}
+					if(transformRotate)
+					{
+						StartCoroutine(TransformRoation()); 
+					}
+				}
+
+
+
+			}
+		}
+		if(!pausable)
+		{
 			if(transformMove)
 			{
 				StartCoroutine(TransformPosition());
 			}
 			if(transformRotate)
 			{
-				StartCoroutine(TransformRoation());
+				StartCoroutine(TransformRoation()); 
 			}
+		}
+//		if(pausable && !pause)
+//		{
+//			if(!doit && !started)
+//			{
+//
+//				started = true;
+//				if(transformMove)
+//				{
+//					StartCoroutine(TransformPosition());
+//				}
+//				if(transformRotate)
+//				{
+//					StartCoroutine(TransformRoation()); 
+//				}
+//			}
+//			if(started && !pause)
+//			{
+//				pause = true;
+////				started = false;
+//			}
 
 		}
-	}
+
 
 	IEnumerator TransformRoation()
 	{
+//		Debug.Log ("TEST");
 		bool onOff = true;
 		float mTime = 0;
 //		Vector3 startRot = Quaternion.Euler(this.transform.eulerAngles);
@@ -132,22 +184,9 @@ public class ActionDoer : MonoBehaviour {
 		bool oneWay = false;
 		bool delay = true;
 
-		if(!started)
-		{
-			started = true;
-		}
 
-//		if(started && pausable)
-//		{
-//			if(!pause)
-//			{
-//				pause = true;
-//			}
-//			else
-//			{
-//				pause = false;
-//			}
-//		}
+
+//		
 		if(rotateStartDelay)
 		{
 			yield return new WaitForSeconds(rotateStartDelayTime);
@@ -174,7 +213,10 @@ public class ActionDoer : MonoBehaviour {
 					}
 					else
 					{
-						started = false;
+						if(!playOnce)
+						{
+							started = false;
+						}
 						onOff = false;
 					}
 				}
@@ -260,35 +302,7 @@ public class ActionDoer : MonoBehaviour {
 		bool delay = true;
 
 
-		if(!started)
-		{
-			started = true;
-		}
 
-//		if(started && pausable && !pause)
-//		{
-//			if(!pause)
-//			{
-//				pause = true;
-//				Debug.Log ("FJUAEOFO");
-//			}
-////			else
-////			{
-////				pause = false;
-////			}
-//		}
-//		if(started && pausable && pause)
-//		{
-//			if(pause)
-//			{
-//				pause = false;
-//				Debug.Log ("FJUAEOFO");
-//			}
-//			//			else
-//			//			{
-//			//				pause = false;
-//			//			}
-//		}
 		if(moveStartDelay)
 		{
 			yield return new WaitForSeconds(moveStartDelayTime);
@@ -314,7 +328,10 @@ public class ActionDoer : MonoBehaviour {
 					}
 					else
 					{
-						started = false;
+						if(!playOnce)
+						{
+							started = false;
+						}
 						onOff = false;
 
 						//doit = false

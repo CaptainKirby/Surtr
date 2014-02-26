@@ -112,6 +112,7 @@ public class ActionDoerEditor : Editor {
 		//transform position
 //		actionDoer.pause = EditorGUILayout.ToggleLeft(" pause", actionDoer.pause);
 		actionDoer.pausable = EditorGUILayout.ToggleLeft(" Pausable", actionDoer.pausable);
+		actionDoer.playOnce = EditorGUILayout.ToggleLeft(" Play Once", actionDoer.playOnce);
 
 		EditorGUILayout.Space();
 		GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));

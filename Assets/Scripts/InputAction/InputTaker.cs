@@ -16,8 +16,10 @@ public class InputTaker : MonoBehaviour {
 	private ActionDoer actionDo;
 	private bool oneTime;
 
+	private PlayerSwitch pS;
 	void Start () 
 	{
+		pS = GameObject.Find("Player").GetComponent<PlayerSwitch>();
 		foreach(GameObject g in attatchedObjs)
 		{
 			if(g.GetComponent<ActionDoer>())
@@ -30,11 +32,15 @@ public class InputTaker : MonoBehaviour {
 
 	void Update () 
 	{
+//		if(pS.fadeFromForm)
+//		{
+//			Debug.Log ("HNUIGBEI");
+//		}
 		if(inputType == InputType.spiritShift)
 		{
 			if(PlayerSwitch.fadeFromForm)
 			{
-//				Debug.Log ("!?!");
+				Debug.Log ("!?!");
 				oneTime = true;
 				foreach(ActionDoer aD in actionDoers)
 				{
@@ -56,9 +62,10 @@ public class InputTaker : MonoBehaviour {
 //					}
 
 				}
-				PlayerSwitch.fadeFromForm = false;
-
 			}
+
+
+
 		}
 	}
 
