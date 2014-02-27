@@ -17,6 +17,9 @@ public class InputTaker : MonoBehaviour {
 	private bool oneTime;
 
 	private PlayerSwitch pS;
+
+	private bool inside;
+
 	void Start () 
 	{
 		pS = GameObject.Find("Player").GetComponent<PlayerSwitch>();
@@ -32,6 +35,19 @@ public class InputTaker : MonoBehaviour {
 
 	void Update () 
 	{
+		if(inside)
+		{
+			if(inputType == InputType.clickInput)
+			{
+				if(Input.GetKeyDown(KeyCode.JoystickButton2))
+				{
+					foreach(ActionDoer aD in actionDoers)
+					{
+						aD.DoThing();
+					}
+				}
+			}
+		}
 //		if(pS.fadeFromForm)
 //		{
 //			Debug.Log ("HNUIGBEI");
@@ -78,6 +94,19 @@ public class InputTaker : MonoBehaviour {
 				aD.DoThing();
 			}
 //			actionDo.DoThing();
+		}
+
+		if(inputType == InputType.clickInput)
+		{
+			inside = true;
+		}
+	}
+
+	void OnTriggerExit(Collider col)
+	{
+		if(inputType == InputType.clickInput)
+		{
+			inside = false;
 		}
 	}
 

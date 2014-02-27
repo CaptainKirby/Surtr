@@ -75,6 +75,10 @@ public class InputTakerEditor : Editor {
 //				EditorGUILayout.EndVertical();
 			}
 		}
+		if(inputTaker.inputType == InputTaker.InputType.clickInput)
+		{
+//			inputTaker.clickedButton = EditorGUILayout.TextField(inputTaker.clickedButton);
+		}
 		
 //		if(attatchedObj != null)
 //		{
