@@ -85,6 +85,28 @@ public class InputTaker : MonoBehaviour {
 		}
 	}
 
+	void ControllerColliderHit(Collider col)
+	{
+		if(inputType == InputType.trigger)
+		{
+			foreach(ActionDoer aD in actionDoers)
+			{
+				aD.DoThing();
+				if(aD.callFunction)
+				{
+					aD.collidingObject = col.gameObject;
+					//					aD.Invoke(aD.dynFunctionName, 0);
+				}
+			}
+			//			actionDo.DoThing();
+		}
+		
+		if(inputType == InputType.clickInput)
+		{
+			inside = true;
+		}
+	}
+
 	void OnTriggerEnter(Collider col)
 	{
 		if(inputType == InputType.trigger)
@@ -92,6 +114,11 @@ public class InputTaker : MonoBehaviour {
 			foreach(ActionDoer aD in actionDoers)
 			{
 				aD.DoThing();
+				if(aD.callFunction)
+				{
+					aD.collidingObject = col.gameObject;
+//					aD.Invoke(aD.dynFunctionName, 0);
+				}
 			}
 //			actionDo.DoThing();
 		}

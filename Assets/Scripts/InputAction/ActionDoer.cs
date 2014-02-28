@@ -73,8 +73,22 @@ public class ActionDoer : MonoBehaviour {
 	[SerializeField]
 	public float rotateInbetweenDelayTime;
 
+
+	//call dynamic function
+	[SerializeField]
+	public bool callFunction;
+//	[SerializeField]
+//	public delegate void DynamicFunction();
+	[SerializeField]
+	public string dynFunctionName = null;
+//	[SerializeField]
+	//trigger on colliding object
+	[SerializeField]
+	public GameObject collidingObject;
+
 	void Start () 
 	{
+//		dynFunctionName = nameOfTheFunction;
 		if(transformMove)
 		{
 			if(moveStartPos == new Vector3(0,0,0))
@@ -106,6 +120,17 @@ public class ActionDoer : MonoBehaviour {
 
 	public void DoThing()
 	{
+		if(callFunction)
+		{
+			if(collidingObject)
+			{
+				MonoBehaviour[] allMbs = collidingObject.GetComponents<MonoBehaviour>();
+				foreach(MonoBehaviour mb in allMbs)
+				{
+					mb.Invoke (dynFunctionName, 0);
+				}
+			}
+		}
 		if(pausable)
 		{
 			if(!doit)
@@ -403,10 +428,14 @@ public class ActionDoer : MonoBehaviour {
 		}
 	}
 
-	void OnDrawGizmos()
+	public void OnDrawGizmos()
 	{
-//		Gizmos.DrawLine(this.transform.position, transform.forward);
-//		Gizmos.DrawCube(this.transform.position,
+		if(transformMove)
+		{
+			Gizmos.color = Color.gray;
+			Gizmos.DrawLine(this.transform.position, moveToPos); 
+		}
+		
 	}
 
 

@@ -29,6 +29,8 @@ public class ActionDoerEditor : Editor {
 	public static ActionDoer actionDoer;
 
 
+	[SerializeField]
+
 	//handlers
 
 	static ActionDoerEditor()
@@ -48,6 +50,7 @@ public class ActionDoerEditor : Editor {
 //		test = EditorGUILayout.SelectableLabel(test
 //		EditorGUILayout.HelpBox("test",MessageType.None);
 //		EditorGUILayout.LabelField("Input connections: " + attatchedObjs.Count);
+
 		if(actionDoer.takeInput)
 		{
 			if(actionDoer.attatchedObjs.Count > 0)
@@ -114,6 +117,12 @@ public class ActionDoerEditor : Editor {
 		actionDoer.pausable = EditorGUILayout.ToggleLeft(" Pausable", actionDoer.pausable);
 		actionDoer.playOnce = EditorGUILayout.ToggleLeft(" Play Once", actionDoer.playOnce);
 
+		actionDoer.callFunction = EditorGUILayout.ToggleLeft("Invoke Function", actionDoer.callFunction);
+
+		if(actionDoer.callFunction)
+		{
+			actionDoer.dynFunctionName = EditorGUILayout.TextField("Invoke Func. Name",actionDoer.dynFunctionName);
+		}
 		EditorGUILayout.Space();
 		GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));
 		EditorGUILayout.Space();
@@ -288,23 +297,24 @@ public class ActionDoerEditor : Editor {
 		}
 	}
 
-	public void OnSceneGUI () {
-		if(actionDoer.transformMove)
-		{
-			Handles.color = Color.red;
-			Handles.DrawLine(actionDoer.transform.position, actionDoer.moveToPos);
-			actionDoer.moveToPos = Handles.PositionHandle(actionDoer.moveToPos, Quaternion.identity);
-//			actionDoer.moveToPos = Handles.FreeMoveHandle(actionDoer.moveToPos, Quaternion.identity, 1, Vector3.zero, Handles.DrawRectangle);
-		}
+//	public void OnSceneGUI () {
+//		if(actionDoer.transformMove)
+//		{
+//			Handles.color = Color.red;
+//			Handles.DrawLine(actionDoer.transform.position, actionDoer.moveToPos);
+//			actionDoer.moveToPos = Handles.PositionHandle(actionDoer.moveToPos, Quaternion.identity);
+////			actionDoer.moveToPos = Handles.FreeMoveHandle(actionDoer.moveToPos, Quaternion.identity, 1, Vector3.zero, Handles.DrawRectangle);
+//		}
+//
+//		if(actionDoer.transformRotate)
+//		{
+//			Handles.color = new Color(1,1,1,0.5f);
+////			Handles.DrawLine(actionDoer.transform.position, actionDoer.rotateToAngle);
+//
+////			Handles.DrawSolidArc(actionDoer.transform.position, actionDoer.transform.forward, actionDoer.transform.right, 15, 5);
+//		}
+//	}
 
-		if(actionDoer.transformRotate)
-		{
-			Handles.color = new Color(1,1,1,0.5f);
-//			Handles.DrawLine(actionDoer.transform.position, actionDoer.rotateToAngle);
-
-//			Handles.DrawSolidArc(actionDoer.transform.position, actionDoer.transform.forward, actionDoer.transform.right, 15, 5);
-		}
-	}
 
 
 }

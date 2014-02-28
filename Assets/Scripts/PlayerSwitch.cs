@@ -14,7 +14,8 @@ public class PlayerSwitch : MonoBehaviour {
 	private Vector3 spiritVelocity;
 
 	public KeyCode switchKey= KeyCode.JoystickButton3;
-	private bool curState; //false = player true = spirit
+	[HideInInspector]
+	public bool curState; //false = player true = spirit
 	[HideInInspector]
 	public static bool fadeFromForm;
 	private Vector3 curVel;
@@ -116,6 +117,10 @@ public class PlayerSwitch : MonoBehaviour {
 		yield return null;
 	}
 
+//	void ChangeState()
+//	{
+//		curState = !curState;
+//	}
 //	IEnumerator ClickOnce()
 //	{
 //		curState = !curState;

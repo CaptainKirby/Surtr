@@ -36,8 +36,12 @@ public class SpiritMovement : MonoBehaviour {
 
 	[HideInInspector]
 	public bool activeMovement;
+
+	[HideInInspector]
+	public PlayerSwitch pSwitch;
 	void Start () 
 	{
+		pSwitch = GameObject.FindObjectOfType<PlayerSwitch>();
 		activeMovement = true;
 		rightRot = Quaternion.Euler(0,-90,0);
 		leftRot = Quaternion.Euler(0,90,0);
@@ -155,5 +159,13 @@ public class SpiritMovement : MonoBehaviour {
 	bool IsGrounded()
 	{
 		return  Physics.Raycast(transform.position, -Vector3.up,groundedCheckRange);
+	}
+
+	void ChangeState()
+	{
+		if(pSwitch.curState)
+		{
+			pSwitch.curState = !pSwitch.curState;
+		}
 	}
 }
