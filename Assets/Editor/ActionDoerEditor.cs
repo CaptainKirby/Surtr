@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 [InitializeOnLoad]
-[CustomEditor(typeof(ActionDoer))] 
+[CustomEditor(typeof(ActionHandler))] 
 [System.SerializableAttribute]
 public class ActionDoerEditor : Editor {
 //	[System.Serializable]
@@ -26,7 +26,7 @@ public class ActionDoerEditor : Editor {
 	private string name;
 	private string test;
 	[SerializeField]
-	public static ActionDoer actionDoer;
+	public static ActionHandler actionDoer;
 
 
 	[SerializeField]
@@ -42,7 +42,7 @@ public class ActionDoerEditor : Editor {
 	}
 
 	public override void OnInspectorGUI() {
-		actionDoer = (ActionDoer)target;
+		actionDoer = (ActionHandler)target;
 		curObj = Selection.activeGameObject;
 		actionDoer.takeInput = EditorGUILayout.ToggleLeft(" Recieve input?", actionDoer.takeInput);
 //		inputTaker.inputType = (InputTaker.InputType)EditorGUILayout.EnumPopup(inputTaker.inputType);

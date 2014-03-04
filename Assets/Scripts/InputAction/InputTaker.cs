@@ -11,9 +11,9 @@ public class InputTaker : MonoBehaviour {
 	public GameObject attatchedObj;
 	public  List<GameObject> attatchedObjs  = new List<GameObject>();
 	[SerializeField]
-	public List<ActionDoer> actionDoers = new List<ActionDoer>();
+	public List<ActionHandler> actionDoers = new List<ActionHandler>();
 	[SerializeField]
-	private ActionDoer actionDo;
+	private ActionHandler actionDo;
 	private bool oneTime;
 
 	private PlayerSwitch pS;
@@ -25,9 +25,9 @@ public class InputTaker : MonoBehaviour {
 		pS = GameObject.Find("Player").GetComponent<PlayerSwitch>();
 		foreach(GameObject g in attatchedObjs)
 		{
-			if(g.GetComponent<ActionDoer>())
+			if(g.GetComponent<ActionHandler>())
 			{
-				 actionDoers.Add(g.GetComponent<ActionDoer>());
+				 actionDoers.Add(g.GetComponent<ActionHandler>());
 			}
 		}
 //		actionDo = attatchedObj.GetComponent<ActionDoer>();
@@ -41,7 +41,7 @@ public class InputTaker : MonoBehaviour {
 			{
 				if(Input.GetKeyDown(KeyCode.JoystickButton2))
 				{
-					foreach(ActionDoer aD in actionDoers)
+					foreach(ActionHandler aD in actionDoers)
 					{
 						aD.DoThing();
 					}
@@ -58,24 +58,9 @@ public class InputTaker : MonoBehaviour {
 			{
 				Debug.Log ("!?!");
 				oneTime = true;
-				foreach(ActionDoer aD in actionDoers)
+				foreach(ActionHandler aD in actionDoers)
 				{
 					aD.DoThing();
-//					if(aD.pausable)
-//					{
-//						if(aD.started && !aD.pause)
-//						{
-//							aD.pause = true;
-//							oneTime = false;
-//						}
-//						else if(aD.started && aD.pause)
-//						{
-//							aD.pause = false;
-//							oneTime = false;
-//
-//						}
-////						Debug.Log (aD.pause);
-//					}
 
 				}
 			}
@@ -89,7 +74,7 @@ public class InputTaker : MonoBehaviour {
 	{
 		if(inputType == InputType.trigger)
 		{
-			foreach(ActionDoer aD in actionDoers)
+			foreach(ActionHandler aD in actionDoers)
 			{
 				aD.DoThing();
 				if(aD.callFunction)
@@ -111,7 +96,7 @@ public class InputTaker : MonoBehaviour {
 	{
 		if(inputType == InputType.trigger)
 		{
-			foreach(ActionDoer aD in actionDoers)
+			foreach(ActionHandler aD in actionDoers)
 			{
 				aD.DoThing();
 				if(aD.callFunction)

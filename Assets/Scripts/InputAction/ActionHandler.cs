@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 [System.Serializable]
 //[ExecuteInEditMode()]  
-public class ActionDoer : MonoBehaviour {
+public class ActionHandler : MonoBehaviour {
 //	[System.Serializable]
 	//transform pos, rot, scale, ping-pong, color 
 	public bool takeInput = true;
@@ -18,6 +18,10 @@ public class ActionDoer : MonoBehaviour {
 	public List<GameObject> attatchedObjs = new List<GameObject>();
 	private bool doit;
 	public bool playOnce;
+
+	public delegate void TakeActionDelegate();
+	public event TakeActionDelegate TakeAction;
+
 
 	[SerializeField]
 	public bool pause;
@@ -120,61 +124,66 @@ public class ActionDoer : MonoBehaviour {
 
 	public void DoThing()
 	{
-		if(callFunction)
+//		if(
+		if(TakeAction != null)
 		{
-			if(collidingObject)
-			{
-				MonoBehaviour[] allMbs = collidingObject.GetComponents<MonoBehaviour>();
-				foreach(MonoBehaviour mb in allMbs)
-				{
-					mb.Invoke (dynFunctionName, 0);
-				}
-			}
+			TakeAction();
 		}
-		if(pausable)
-		{
-			if(!doit)
-			{
-
-				if(started && pausable)
-				{ 
-					if(!pause)
-					{
-						pause = true;
-					}
-					else
-					{
-						pause = false;
-					}
-				}
-				if(!started)
-				{
-					started = true;
-					if(transformMove)
-					{
-						StartCoroutine(TransformPosition());
-					}
-					if(transformRotate)
-					{
-						StartCoroutine(TransformRoation()); 
-					}
-				}
-
-
-
-			}
-		}
-		if(!pausable)
-		{
-			if(transformMove)
-			{
-				StartCoroutine(TransformPosition());
-			}
-			if(transformRotate)
-			{
-				StartCoroutine(TransformRoation()); 
-			}
-		}
+//		if(callFunction)
+//		{
+//			if(collidingObject)
+//			{
+//				MonoBehaviour[] allMbs = collidingObject.GetComponents<MonoBehaviour>();
+//				foreach(MonoBehaviour mb in allMbs)
+//				{
+//					mb.Invoke (dynFunctionName, 0);
+//				}
+//			}
+//		}
+//		if(pausable)
+//		{
+//			if(!doit)
+//			{
+//
+//				if(started && pausable)
+//				{ 
+//					if(!pause)
+//					{
+//						pause = true;
+//					}
+//					else
+//					{
+//						pause = false;
+//					}
+//				}
+//				if(!started)
+//				{
+//					started = true;
+//					if(transformMove)
+//					{
+//						StartCoroutine(TransformPosition());
+//					}
+//					if(transformRotate)
+//					{
+//						StartCoroutine(TransformRoation()); 
+//					}
+//				}
+//
+//
+//
+//			}
+//		}
+//		if(!pausable)
+//		{
+//			if(transformMove)
+//			{
+//				StartCoroutine(TransformPosition());
+//			}
+//			if(transformRotate)
+//			{
+//				StartCoroutine(TransformRoation()); 
+//			}
+//		}
 //		if(pausable && !pause)
 //		{
 //			if(!doit && !started)

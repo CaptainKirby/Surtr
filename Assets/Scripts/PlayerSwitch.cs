@@ -18,6 +18,9 @@ public class PlayerSwitch : MonoBehaviour {
 	public bool curState; //false = player true = spirit
 	[HideInInspector]
 	public static bool fadeFromForm;
+
+//	public delegate void FadeFromFormDelegate();
+//	public event FadeFromFormDelegate FadeFromForm;
 	private Vector3 curVel;
 
 	private int dir = -1; //-1 == left 1 == right
