@@ -107,7 +107,7 @@ public class InputTaker : MonoBehaviour {
 			}
 //			actionDo.DoThing();
 		}
-
+//		
 		if(inputType == InputType.clickInput)
 		{
 			inside = true;
