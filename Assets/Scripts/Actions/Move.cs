@@ -37,6 +37,7 @@ public class Move : MonoBehaviour {
 
 	void Awake()
 	{
+		gameObject.transform.position = moveStartPos;
 		ActionHandler actionHandler =  GetComponent<ActionHandler>();
 		actionHandler.TakeAction += TransformPositionT;
 //		actionHandler = GetComponent<ActionHandler>();

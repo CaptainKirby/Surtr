@@ -93,22 +93,22 @@ public class ActionHandler : MonoBehaviour {
 	void Start () 
 	{
 //		dynFunctionName = nameOfTheFunction;
-		if(transformMove)
-		{
-			if(moveStartPos == new Vector3(0,0,0))
-			{
-				moveStartPos = this.transform.position;
-			}
-			this.transform.position = moveStartPos;
-		}
-		if(transformRotate)
-		{
-			if(rotateStartAngle ==  new Vector3(0,0,0))
-			{
-				rotateStartAngle = this.transform.rotation.eulerAngles;
-			}
-			this.transform.rotation = Quaternion.Euler(rotateStartAngle);
-		}
+//		if(transformMove)
+//		{
+//			if(moveStartPos == new Vector3(0,0,0))
+//			{
+//				moveStartPos = this.transform.position;
+//			}
+//			this.transform.position = moveStartPos;
+//		}
+//		if(transformRotate)
+//		{
+//			if(rotateStartAngle ==  new Vector3(0,0,0))
+//			{
+//				rotateStartAngle = this.transform.rotation.eulerAngles;
+//			}
+//			this.transform.rotation = Quaternion.Euler(rotateStartAngle);
+//		}
 
 
 	}
