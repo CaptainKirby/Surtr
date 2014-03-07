@@ -32,7 +32,9 @@ public class Move : MonoBehaviour {
 	public bool playOnce;
 	public bool started;
 	//find action script
-
+	public bool animCurveUse;
+	public AnimationCurve animCurve;
+	public float curveValue;
 //	public ActionHandler actionHandler;
 
 	void Awake()
@@ -66,8 +68,10 @@ public class Move : MonoBehaviour {
 
 	private void TransformPositionT()
 	{
-
-		StartCoroutine(TransformPosition());
+		if(!started)
+		{
+			StartCoroutine(TransformPosition());
+		}
 		started = true;
 	}
 
@@ -96,13 +100,25 @@ public class Move : MonoBehaviour {
 					{
 						//						started = true;
 						mTime += Time.deltaTime * moveSpeed;
-						if(!smoothMove)
+						if(animCurveUse)
 						{
-							this.transform.position = Vector3.Lerp(moveStartPos, moveToPos, mTime);
+							curveValue = animCurve.Evaluate(mTime);
+						}
+						if(!animCurveUse)
+						{
+							if(!smoothMove)
+							{
+								this.transform.position = Vector3.Lerp(moveStartPos, moveToPos, mTime);
+							}
+							else
+							{
+								this.transform.position = new Vector3(Mathf.SmoothStep(moveStartPos.x, moveToPos.x, mTime), Mathf.SmoothStep(moveStartPos.y, moveToPos.y, mTime), Mathf.SmoothStep(moveStartPos.z, moveToPos.z, mTime));
+							}
 						}
 						else
 						{
-							this.transform.position = new Vector3(Mathf.SmoothStep(moveStartPos.x, moveToPos.x, mTime), Mathf.SmoothStep(moveStartPos.y, moveToPos.y, mTime), Mathf.SmoothStep(moveStartPos.z, moveToPos.z, mTime));
+							this.transform.position = Vector3.Lerp(moveStartPos, moveToPos, curveValue);
+
 						}
 					}
 					else
@@ -126,6 +142,10 @@ public class Move : MonoBehaviour {
 			{
 				if(!pause)
 				{
+					if(animCurveUse)
+					{
+						curveValue = animCurve.Evaluate(mTime);
+					}
 					if(mTime > 1 && !oneWay)
 					{
 						oneWay = true;
@@ -153,25 +173,48 @@ public class Move : MonoBehaviour {
 						if(!oneWay)
 						{
 							mTime += Time.deltaTime * moveSpeed;
-							if(!smoothMove)
+							if(animCurveUse)
 							{
-								this.transform.position = Vector3.Lerp(moveStartPos, moveToPos, mTime);
+								curveValue = animCurve.Evaluate(mTime);
+							}
+							if(!animCurveUse)
+							{
+								if(!smoothMove)
+								{
+									this.transform.position = Vector3.Lerp(moveStartPos, moveToPos, mTime);
+								}
+								else
+								{
+									this.transform.position = new Vector3(Mathf.SmoothStep(moveStartPos.x, moveToPos.x, mTime), Mathf.SmoothStep(moveStartPos.y, moveToPos.y, mTime), Mathf.SmoothStep(moveStartPos.z, moveToPos.z, mTime));
+								}
 							}
 							else
 							{
-								this.transform.position = new Vector3(Mathf.SmoothStep(moveStartPos.x, moveToPos.x, mTime), Mathf.SmoothStep(moveStartPos.y, moveToPos.y, mTime), Mathf.SmoothStep(moveStartPos.z, moveToPos.z, mTime));
+								this.transform.position = Vector3.Lerp(moveStartPos, moveToPos, curveValue);
+
 							}
 						}
 						if(oneWay)
 						{
 							mTime += Time.deltaTime * moveSpeed;
-							if(!smoothMove)
+							if(animCurveUse)
 							{
-								this.transform.position = Vector3.Lerp(moveToPos, moveStartPos, mTime);
+								curveValue = animCurve.Evaluate(mTime);
+							}
+							if(!animCurveUse)
+							{
+								if(!smoothMove)
+								{
+									this.transform.position = Vector3.Lerp(moveToPos, moveStartPos, mTime);
+								}
+								else
+								{
+									this.transform.position = new Vector3(Mathf.SmoothStep(moveToPos.x, moveStartPos.x, mTime), Mathf.SmoothStep(moveToPos.y, moveStartPos.y, mTime), Mathf.SmoothStep(moveToPos.z, moveStartPos.z, mTime));
+								}
 							}
 							else
 							{
-								this.transform.position = new Vector3(Mathf.SmoothStep(moveToPos.x, moveStartPos.x, mTime), Mathf.SmoothStep(moveToPos.y, moveStartPos.y, mTime), Mathf.SmoothStep(moveToPos.z, moveStartPos.z, mTime));
+								this.transform.position = Vector3.Lerp(moveToPos, moveStartPos,curveValue);
 							}
 							
 						}
@@ -180,5 +223,14 @@ public class Move : MonoBehaviour {
 				yield return null;
 			}
 		}
+//		if(animCurveUse)
+//		{
+//			while(true)
+//			{
+//				mTime += Time.deltaTime * moveSpeed;
+//				Debug.Log (animCurve.Evaluate(mTime));
+//				yield return null;
+//			}
+//		}
 	}
 }

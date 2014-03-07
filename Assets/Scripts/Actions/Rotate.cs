@@ -50,8 +50,10 @@ public class Rotate : MonoBehaviour {
 	}
 	private void TransformRotationT()
 	{
-		
-		StartCoroutine(TransformRotation());
+		if(!started)
+		{
+			StartCoroutine(TransformRotation());
+		}
 		started = true;
 	}
 	IEnumerator TransformRotation()

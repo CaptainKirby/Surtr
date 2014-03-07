@@ -73,8 +73,13 @@ public class MoveEditor : Editor {
 			EditorGUILayout.Space();
 			EditorGUILayout.Space();
 			EditorGUILayout.EndVertical();
-			
-			
+			EditorGUILayout.Space();
+			move.animCurveUse = EditorGUILayout.ToggleLeft("Use Animation Curve", move.animCurveUse);
+			if(move.animCurveUse)
+			{	
+//				move.animCurve = AnimationCurve.Linear(0,0,1,1);
+				EditorGUILayout.CurveField(move.animCurve);
+			}
 			EditorGUILayout.Space();
 			GUILayout.Box("", GUILayout.ExpandWidth(true), GUILayout.Height(1));   
 			EditorGUILayout.Space();
