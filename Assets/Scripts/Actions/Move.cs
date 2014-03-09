@@ -26,7 +26,12 @@ public class Move : MonoBehaviour {
 	public Vector3 moveToPos = Vector3.zero; 
 	[SerializeField]
 	public Vector3 moveStartPos = Vector3.zero;
-	
+
+	private Vector3 moveStartPos2;
+	private Vector3 moveToPos2;
+	public bool moveBack;
+	private bool movedB;
+	private bool callMoveBack;
 	public bool pauseable;
 	public bool pause;
 	public bool playOnce;
@@ -35,12 +40,18 @@ public class Move : MonoBehaviour {
 	public bool animCurveUse;
 	public AnimationCurve animCurve;
 	public float curveValue;
+//	public bool onOff = true;
+
+	private float mTime;
+	private ActionHandler actionHandler;
 //	public ActionHandler actionHandler;
 
 	void Awake()
 	{
+//		onOff = true;
 		gameObject.transform.position = moveStartPos;
-		ActionHandler actionHandler =  GetComponent<ActionHandler>();
+		 actionHandler =  GetComponent<ActionHandler>();
+
 		actionHandler.TakeAction += TransformPositionT;
 //		actionHandler = GetComponent<ActionHandler>();
 
@@ -68,24 +79,73 @@ public class Move : MonoBehaviour {
 
 	private void TransformPositionT()
 	{
+
+//		if(started && moveBack && onOff)
+//		{
+//			onOff = false;
+//		}
+//		if(started && moveBack && !onOff)
+//		{
+//			onOff = true;
+//			moveToPos = moveStartPos;
+//			moveStartPos = this.transform.position;
+//			StartCoroutine(TransformPosition());
+//
+//
+//		}
+//		if(started && !movedB && moveBack)
+//		{
+
+
+//			moveToPos = moveStartPos;
+//			moveStartPos = this.transform.position;
+//			StartCoroutine(TransformPosition());
+//		}
 		if(!started)
 		{
+//			Debug.Log ("started");
+			started = true;
+			mTime = 0;
 			StartCoroutine(TransformPosition());
 		}
-		started = true;
-	}
+		else if(started && moveBack)
+		{
+			moveToPos2 = moveStartPos;
+			moveStartPos2 = moveToPos;
+//			onOff = false;
+			moveToPos = moveToPos2;
+			moveStartPos = moveStartPos2;
 
+			mTime = 1- mTime;
+			StartCoroutine(TransformPosition());
+//			onOff = true;
+//			Debug.Log ("WHALALAL");
+		}
+
+	}
+	
 	IEnumerator TransformPosition()
-	{
-		bool onOff = true;
-		float mTime = 0f;
+	{		
+//		actionHandler.TakeAction -= TransformPositionT;
+
+
+
+		bool onOff = true; 
+//		mTime = 0f;
 		//		Vector3 startPos = this.transform.position;
 		
 		bool oneWay = false;
 		bool delay = true;
-		
-		
-		
+//		callMoveBack = true;
+//		if(moveBack)
+//		{
+//			if(movedB)
+//			{
+//				moveToPos = moveStartPos;
+//
+//			}
+//		}
+//		
 		if(moveStartDelay)
 		{
 			yield return new WaitForSeconds(moveStartDelayTime);
@@ -127,8 +187,13 @@ public class Move : MonoBehaviour {
 						{
 							started = false;
 						}
+//						actionHandler.TakeAction += TransformPositionT;
+
 						onOff = false;
-						
+
+						Debug.Log ("DONE");
+						moveToPos = moveStartPos2;
+						moveStartPos = moveToPos2;
 						//doit = false
 					}
 				}

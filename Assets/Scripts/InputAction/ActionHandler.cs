@@ -127,7 +127,10 @@ public class ActionHandler : MonoBehaviour {
 //		if(
 		if(TakeAction != null)
 		{
-			TakeAction();
+//			foreach(GameObject gObj in attatchedObjs)
+//			{
+				TakeAction();
+//			}
 		}
 //		if(callFunction)
 //		{

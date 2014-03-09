@@ -46,6 +46,15 @@ public class InputTakerEditor : Editor {
 				delete = false;
 
 			}
+//			for(int i = 0;i<inputTaker.actionDoers.Count;++i)
+//			{
+//				Rect r = EditorGUILayout.BeginVertical();
+//				GUILayout.Label(inputTaker.actionDoers[i].name);
+//				//				GUILayout.Label(inputTaker.attatchedObjs[i].name + "lala");
+//
+//				
+//				EditorGUILayout.EndVertical();
+//			}
 			for(int i = 0;i<inputTaker.attatchedObjs.Count;++i) 
 			{
 

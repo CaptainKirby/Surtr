@@ -77,6 +77,14 @@ public class SpiritMovement : MonoBehaviour {
 				jumpReleased = false;
 				jumpKeyDown = true;
 			}
+
+			if(Input.GetKey(jumpKey2) && !jumpKeyDown && !grounded && jumpReleased)
+			{
+				jumpReleased = false;
+				jumpKeyDown = true;
+
+			}
+
 			if(!Input.GetKey(jumpKey2))
 			{
 				jumpKeyDown = false;
@@ -131,10 +139,12 @@ public class SpiritMovement : MonoBehaviour {
 		{
 			rigidbody.AddForce(new Vector3(inputDir.x * speed, -gravity, 0), ForceMode.VelocityChange);
 
+
 			if(!grounded && inputDir.y < 0 )
 			{
 				rigidbody.AddForce(new Vector3(0, inputDir.y, 0), ForceMode.VelocityChange);
 			}
+
 			rigidbody.AddForce(new Vector3(0, jumpPower,0), ForceMode.VelocityChange);
 
 			if(rigidbody.velocity.y < 0)

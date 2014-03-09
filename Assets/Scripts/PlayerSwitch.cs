@@ -33,6 +33,7 @@ public class PlayerSwitch : MonoBehaviour {
 		spiritMove = spiritObj.GetComponent<SpiritMovement>();
 		spiritMove.activeMovement = false;
 		spiritObj.renderer.enabled = false;
+		spiritObj.collider.enabled = false;
 		dir = -1;
 	}
 	
@@ -54,6 +55,7 @@ public class PlayerSwitch : MonoBehaviour {
 			//player is shown and moved
 			if(spiritMove.activeMovement)
 			{
+				spiritObj.collider.enabled = false;
 				spiritMove.activeMovement = false;
 				playerMove.activeMovement = true;
 				spiritObj.renderer.enabled = false; // skal være fade ud
@@ -69,7 +71,7 @@ public class PlayerSwitch : MonoBehaviour {
 			playerMove.activeMovement = false;
 			spiritMove.activeMovement = true;
 			spiritObj.renderer.enabled = true;
-
+			spiritObj.collider.enabled = true;
 			spiritMove.rigidbody.AddForce(new Vector3(dir,0,0) * Mathf.Clamp(playerVelocity.magnitude, 0.3f, 10f) * 2,ForceMode.Impulse);
 			
 

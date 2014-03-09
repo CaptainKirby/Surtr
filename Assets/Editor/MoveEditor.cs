@@ -15,10 +15,13 @@ public class MoveEditor : Editor {
 //		{
 //			SceneView.RepaintAll(); 
 			move.pauseable = EditorGUILayout.ToggleLeft("Pauseable", move.pauseable);
+			move.moveBack = EditorGUILayout.ToggleLeft("Move Back", move.moveBack);
 			//			move.resetMove = EditorGUILayout.ToggleLeft(" Reset", move.resetMove);
 			move.pingPongMove= EditorGUILayout.ToggleLeft(" Ping Pong", move.pingPongMove);
 			move.smoothMove= EditorGUILayout.ToggleLeft(" Smooth Move", move.smoothMove);
 			move.moveStartDelay = EditorGUILayout.ToggleLeft(" Start Delay", move.moveStartDelay);
+//			move.onOff = EditorGUILayout.ToggleLeft("gbeug", move.onOff);
+			
 			if(move.moveStartDelay) 
 			{
 				move.moveStartDelayTime = EditorGUILayout.FloatField("Start Delay Duration: ", move.moveStartDelayTime);

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [System.Serializable]
 
 public class InputTaker : MonoBehaviour {
-	public enum InputType {clickInput, trigger, spiritShift}; //ontriggerenter on trigger exit, on collision, keyinput
+	public enum InputType {clickInput, trigger, spiritShift, pressurePlate}; //ontriggerenter on trigger exit, on collision, keyinput
 	public InputType inputType = InputType.clickInput;
 
 	public GameObject attatchedObj;
@@ -25,9 +25,13 @@ public class InputTaker : MonoBehaviour {
 		pS = GameObject.Find("Player").GetComponent<PlayerSwitch>();
 		foreach(GameObject g in attatchedObjs)
 		{
+
 			if(g.GetComponent<ActionHandler>())
 			{
-				 actionDoers.Add(g.GetComponent<ActionHandler>());
+//				if(actionDoers.Contains(g.GetComponent<ActionHandler>()))
+//				{
+					actionDoers.Add(g.GetComponent<ActionHandler>());
+//				}
 			}
 		}
 //		actionDo = attatchedObj.GetComponent<ActionDoer>();
@@ -94,6 +98,17 @@ public class InputTaker : MonoBehaviour {
 
 	void OnTriggerEnter(Collider col)
 	{
+//		Debug.Log (actionDoers.Count);
+		if(inputType == InputType.pressurePlate)
+		{
+			foreach(ActionHandler aD in actionDoers)
+			{
+//				Debug.Log (aD.gameObject);
+
+				aD.DoThing();
+			}
+		}
+
 		if(inputType == InputType.trigger)
 		{
 			foreach(ActionHandler aD in actionDoers)
@@ -119,6 +134,13 @@ public class InputTaker : MonoBehaviour {
 		if(inputType == InputType.clickInput)
 		{
 			inside = false;
+		}
+		if(inputType == InputType.pressurePlate)
+		{
+			foreach(ActionHandler aD in actionDoers)
+			{
+				aD.DoThing();
+			}
 		}
 	}
 
