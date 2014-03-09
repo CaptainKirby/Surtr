@@ -83,6 +83,7 @@ public class SpiritMovement : MonoBehaviour {
 				jumpReleased = false;
 				jumpKeyDown = true;
 
+
 			}
 
 			if(!Input.GetKey(jumpKey2))
