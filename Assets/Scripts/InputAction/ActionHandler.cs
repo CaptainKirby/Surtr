@@ -19,7 +19,7 @@ public class ActionHandler : MonoBehaviour {
 	private bool doit;
 	public bool playOnce;
 
-	public delegate void TakeActionDelegate();
+	public delegate void TakeActionDelegate(GameObject gObj, bool stop);
 	public event TakeActionDelegate TakeAction;
 
 
@@ -122,14 +122,14 @@ public class ActionHandler : MonoBehaviour {
 
 
 
-	public void DoThing()
+	public void DoThing(GameObject gObj, bool stop)
 	{
 //		if(
 		if(TakeAction != null)
 		{
 //			foreach(GameObject gObj in attatchedObjs)
 //			{
-				TakeAction();
+				TakeAction(gObj, stop);
 //			}
 		}
 //		if(callFunction)

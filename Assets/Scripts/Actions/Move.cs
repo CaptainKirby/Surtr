@@ -45,14 +45,15 @@ public class Move : MonoBehaviour {
 	private float mTime;
 	private ActionHandler actionHandler;
 //	public ActionHandler actionHandler;
-
 	void Awake()
 	{
 //		onOff = true;
 		gameObject.transform.position = moveStartPos;
-		 actionHandler =  GetComponent<ActionHandler>();
-
-		actionHandler.TakeAction += TransformPositionT;
+		actionHandler =  GetComponent<ActionHandler>();
+		if(actionHandler)
+		{
+			actionHandler.TakeAction += TransformPositionT;
+		}
 //		actionHandler = GetComponent<ActionHandler>();
 
 	}
@@ -77,8 +78,10 @@ public class Move : MonoBehaviour {
 
 	}
 
-	private void TransformPositionT()
+	private void TransformPositionT(GameObject gObj, bool stop)
 	{
+		if(!gObj.CompareTag("Spirit"))
+		{
 
 //		if(started && moveBack && onOff)
 //		{
@@ -101,25 +104,26 @@ public class Move : MonoBehaviour {
 //			moveStartPos = this.transform.position;
 //			StartCoroutine(TransformPosition());
 //		}
-		if(!started)
-		{
-//			Debug.Log ("started");
-			started = true;
-			mTime = 0;
-			StartCoroutine(TransformPosition());
-		}
-		else if(started && moveBack)
-		{
-			moveToPos2 = moveStartPos;
-			moveStartPos2 = moveToPos;
-//			onOff = false;
-			moveToPos = moveToPos2;
-			moveStartPos = moveStartPos2;
+			if(!started)
+			{
+//				Debug.Log ("started");
+				started = true;
+				mTime = 0;
+				StartCoroutine(TransformPosition());
+			}
+			else if(started && moveBack)
+			{
+				moveToPos2 = moveStartPos;
+				moveStartPos2 = moveToPos;
+	//			onOff = false;
+				moveToPos = moveToPos2;
+				moveStartPos = moveStartPos2;
 
-			mTime = 1- mTime;
-			StartCoroutine(TransformPosition());
-//			onOff = true;
-//			Debug.Log ("WHALALAL");
+				mTime = 1- mTime;
+				StartCoroutine(TransformPosition());
+	//			onOff = true;
+	//			Debug.Log ("WHALALAL");
+			}
 		}
 
 	}
@@ -154,6 +158,8 @@ public class Move : MonoBehaviour {
 		{
 			while(onOff)
 			{
+				if(this.enabled)
+				{
 				if(!pause)
 				{
 					if(mTime < 1f)
@@ -197,14 +203,17 @@ public class Move : MonoBehaviour {
 						//doit = false
 					}
 				}
+				}
 				yield return null;
-				
+			
 			}
 		}
 		if(pingPongMove)
 		{
 			while(onOff)
 			{
+				if(this.enabled)
+				{
 				if(!pause)
 				{
 					if(animCurveUse)
@@ -285,7 +294,9 @@ public class Move : MonoBehaviour {
 						}
 					}
 				}
+				}
 				yield return null;
+			
 			}
 		}
 //		if(animCurveUse)

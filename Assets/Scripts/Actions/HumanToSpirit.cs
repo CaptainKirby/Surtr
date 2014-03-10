@@ -15,7 +15,7 @@ public class HumanToSpirit : MonoBehaviour {
 		actionHandler.TakeAction += ToSpirit;
 	}
 
-	void ToSpirit()
+	void ToSpirit(GameObject gObj, bool stop) 
 	{
 		if(playerSwitch.curState)
 		{

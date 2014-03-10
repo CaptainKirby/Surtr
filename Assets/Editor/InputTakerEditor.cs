@@ -88,7 +88,7 @@ public class InputTakerEditor : Editor {
 		{
 //			inputTaker.clickedButton = EditorGUILayout.TextField(inputTaker.clickedButton);
 		}
-		
+		inputTaker.causeStop = EditorGUILayout.ToggleLeft("Cause Stop", inputTaker.causeStop);
 //		if(attatchedObj != null)
 //		{
 //			EditorGUILayout.BeginHorizontal();

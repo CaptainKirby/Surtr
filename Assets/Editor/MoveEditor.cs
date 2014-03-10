@@ -6,7 +6,7 @@ using System.Collections;
 public class MoveEditor : Editor {
 
 	public Move move;
-	public override void OnInspectorGUI() 
+	public  void OnInspectorGUI() 
 	{
 		move = (Move)target;
 

@@ -10,7 +10,7 @@ public class OutOfSpirit : MonoBehaviour {
 		ActionHandler actionHandler =  GetComponent<ActionHandler>();
 		actionHandler.TakeAction += OutSpirit;
 	}
-	void OutSpirit()
+	void OutSpirit(GameObject gObj, bool stop)
 	{
 		if(playerSwitch.curState)
 		{

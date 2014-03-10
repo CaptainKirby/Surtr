@@ -6,10 +6,12 @@ public class PlayerMovement : MonoBehaviour {
 	[HideInInspector]
 	public bool activeMovement = true;
 	private CharacterMotor motor;
+
 	void Start () 
 	{
 		activeMovement = true;
 		motor = GetComponent<CharacterMotor>();
+
 	}
 	
 
@@ -24,6 +26,7 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			motor.inputMoveDirection = Vector3.right * Input.GetAxis("Horizontal");
 			motor.inputJump = Input.GetKey(KeyCode.Joystick1Button0);
+
 		}
 		else
 		{

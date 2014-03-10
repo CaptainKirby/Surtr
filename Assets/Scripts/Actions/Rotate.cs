@@ -48,7 +48,7 @@ public class Rotate : MonoBehaviour {
 			}
 		}
 	}
-	private void TransformRotationT()
+	private void TransformRotationT(GameObject gObj, bool stop)
 	{
 		if(!started)
 		{

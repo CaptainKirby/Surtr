@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class InputTaker : MonoBehaviour {
 	public enum InputType {clickInput, trigger, spiritShift, pressurePlate}; //ontriggerenter on trigger exit, on collision, keyinput
 	public InputType inputType = InputType.clickInput;
-
+	public bool causeStop;
 	public GameObject attatchedObj;
 	public  List<GameObject> attatchedObjs  = new List<GameObject>();
 	[SerializeField]
@@ -47,7 +47,14 @@ public class InputTaker : MonoBehaviour {
 				{
 					foreach(ActionHandler aD in actionDoers)
 					{
-						aD.DoThing();
+						if(causeStop)
+						{
+							aD.DoThing(aD.gameObject, true);
+						}
+						else
+						{
+						aD.DoThing(aD.gameObject, false);
+						}
 					}
 				}
 			}
@@ -64,7 +71,14 @@ public class InputTaker : MonoBehaviour {
 				oneTime = true;
 				foreach(ActionHandler aD in actionDoers)
 				{
-					aD.DoThing();
+					if(causeStop)
+					{
+						aD.DoThing(aD.gameObject, true);
+					}
+					else
+					{
+						aD.DoThing(aD.gameObject, false);
+					}
 
 				}
 			}
@@ -80,12 +94,19 @@ public class InputTaker : MonoBehaviour {
 		{
 			foreach(ActionHandler aD in actionDoers)
 			{
-				aD.DoThing();
-				if(aD.callFunction)
+				if(causeStop)
 				{
-					aD.collidingObject = col.gameObject;
-					//					aD.Invoke(aD.dynFunctionName, 0);
+					aD.DoThing(col.gameObject, true);
 				}
+				else
+				{
+					aD.DoThing(col.gameObject, false);
+				}
+//				if(aD.callFunction)
+//				{
+//					aD.collidingObject = col.gameObject;
+//					//					aD.Invoke(aD.dynFunctionName, 0);
+//				}
 			}
 			//			actionDo.DoThing();
 		}
@@ -101,24 +122,38 @@ public class InputTaker : MonoBehaviour {
 //		Debug.Log (actionDoers.Count);
 		if(inputType == InputType.pressurePlate)
 		{
-			foreach(ActionHandler aD in actionDoers)
-			{
-//				Debug.Log (aD.gameObject);
+				foreach(ActionHandler aD in actionDoers)
+				{
+	//				Debug.Log (aD.gameObject);
 
-				aD.DoThing();
-			}
+				if(causeStop)
+				{
+					aD.DoThing(col.gameObject, true);
+				}
+				else
+				{
+					aD.DoThing(col.gameObject, false);
+				}
+				}
 		}
 
 		if(inputType == InputType.trigger)
 		{
 			foreach(ActionHandler aD in actionDoers)
 			{
-				aD.DoThing();
-				if(aD.callFunction)
+				if(causeStop)
 				{
-					aD.collidingObject = col.gameObject;
-//					aD.Invoke(aD.dynFunctionName, 0);
+					aD.DoThing(col.gameObject, true);
 				}
+				else
+				{
+					aD.DoThing(col.gameObject, false);
+				}
+//				if(aD.callFunction)
+//				{
+//					aD.collidingObject = col.gameObject;
+////					aD.Invoke(aD.dynFunctionName, 0);
+//				}
 			}
 //			actionDo.DoThing();
 		}
@@ -137,10 +172,20 @@ public class InputTaker : MonoBehaviour {
 		}
 		if(inputType == InputType.pressurePlate)
 		{
-			foreach(ActionHandler aD in actionDoers)
-			{
-				aD.DoThing();
-			}
+//			if(!col.CompareTag("Spirit"))
+//			{
+				foreach(ActionHandler aD in actionDoers)
+				{
+				if(causeStop)
+				{
+					aD.DoThing(col.gameObject, true);
+				}
+				else
+				{
+					aD.DoThing(col.gameObject, false);
+				}
+				}
+//			}
 		}
 	}
 
