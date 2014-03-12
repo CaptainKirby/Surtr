@@ -44,6 +44,7 @@ public class Move : MonoBehaviour {
 
 	private float mTime;
 	private ActionHandler actionHandler;
+	public bool playOnAwake;
 //	public ActionHandler actionHandler;
 	void Awake()
 	{
@@ -58,6 +59,12 @@ public class Move : MonoBehaviour {
 
 	}
 	void Start () {
+		if(!started && playOnAwake)
+		{
+			started = true;
+			mTime = 0;
+			StartCoroutine(TransformPosition());
+		}
 		//subscripte to doit delegate
 //		if(actionHandler != null)
 //		{
@@ -68,6 +75,7 @@ public class Move : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+
 		if(started && pauseable)
 		{
 			if(PlayerSwitch.fadeFromForm)
