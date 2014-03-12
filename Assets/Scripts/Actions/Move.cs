@@ -128,7 +128,7 @@ public class Move : MonoBehaviour {
 				moveStartPos = moveStartPos2;
 
 				mTime = 1- mTime;
-				StartCoroutine(TransformPosition());
+//				StartCoroutine(TransformPosition());
 	//			onOff = true;
 	//			Debug.Log ("WHALALAL");
 			}

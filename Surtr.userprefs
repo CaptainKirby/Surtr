@@ -1,22 +1,22 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Actions\Move.cs">
     <Files>
-      <File FileName="Assets\Scripts\Actions\OutOfSpirit.cs" Line="13" Column="43" />
+      <File FileName="Assets\Scripts\Actions\OutOfSpirit.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SpiritMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EnvironmentBehaviour\PlatformMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EnvironmentBehaviour\PlatformMovement.cs" Line="16" Column="1" />
       <File FileName="Assets\Scripts\PlayerSwitch.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PlayerMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\InputAction\InputTaker.cs" Line="182" Column="6" />
-      <File FileName="Assets\Editor\InputTakerEditor.cs" Line="91" Column="89" />
-      <File FileName="Assets\Editor\ActionDoerEditor.cs" Line="15" Column="60" />
-      <File FileName="Assets\Scripts\InputAction\ActionHandler.cs" Line="126" Column="3" />
-      <File FileName="Assets\Editor\MoveEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Actions\Move.cs" Line="280" Column="24" />
-      <File FileName="Assets\Scripts\Actions\Rotate.cs" Line="51" Column="60" />
-      <File FileName="Assets\Editor\RotateEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Actions\HumanToSpirit.cs" Line="18" Column="42" />
-      <File FileName="Assets\Scripts\Actions\Stop.cs" Line="31" Column="23" />
+      <File FileName="Assets\Scripts\InputAction\InputTaker.cs" Line="67" Column="4" />
+      <File FileName="Assets\Editor\InputTakerEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets\Editor\ActionDoerEditor.cs" Line="320" Column="2" />
+      <File FileName="Assets\Scripts\InputAction\ActionHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Editor\MoveEditor.cs" Line="94" Column="1" />
+      <File FileName="Assets\Scripts\Actions\Move.cs" Line="321" Column="1" />
+      <File FileName="Assets\Scripts\Actions\Rotate.cs" Line="1" Column="1" />
+      <File FileName="Assets\Editor\RotateEditor.cs" Line="85" Column="1" />
+      <File FileName="Assets\Scripts\Actions\HumanToSpirit.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Actions\Stop.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
