@@ -9,6 +9,7 @@ public class TargetFollow : MonoBehaviour {
 	private float curVel2;
 
 	public float followSpeed;
+	public float offsetY = 5;
 	private Vector3 refPos;
 	void Start () 
 	{
@@ -19,7 +20,7 @@ public class TargetFollow : MonoBehaviour {
 	void FixedUpdate () 
 	{
 		refPos.x = Mathf.SmoothDamp(this.transform.position.x, target.position.x, ref curVel, Time.deltaTime * followSpeed);
-		refPos.y = Mathf.SmoothDamp(this.transform.position.y, target.position.y, ref curVel2, Time.deltaTime * followSpeed);
+		refPos.y = Mathf.SmoothDamp(this.transform.position.y, target.position.y + offsetY, ref curVel2, Time.deltaTime * followSpeed);
 
 		transform.position = refPos;
 	}

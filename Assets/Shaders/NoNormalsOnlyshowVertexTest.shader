@@ -6,6 +6,7 @@
     }
     SubShader {
       Tags { "RenderType" = "Opaque" }
+     
       CGPROGRAM		
       	#pragma surface surf WrapLambert fullforwardshadows
 		
