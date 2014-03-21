@@ -28,7 +28,7 @@ public class SnowVerticeMove : MonoBehaviour {
 
 //		overlapSphere = Physics.OverlapSphere(deformTarget, 5.0f);
 //		Vector3 posNorm = deformTarget.transform.position;
-		Debug.Log (deformTarget.transform.position);
+//		Debug.Log (deformTarget.transform.position);
 		Vector3 charPoint = this.transform.InverseTransformPoint(deformTarget.transform.position);
 		for(int i = 0; i < vertices.Length; i++)
 		{
