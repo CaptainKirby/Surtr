@@ -11,9 +11,11 @@ public class TargetFollow : MonoBehaviour {
 	public float followSpeed;
 	public float offsetY = 5;
 	private Vector3 refPos;
+	public float zPos;
 	void Start () 
 	{
 		refPos = this.transform.position;
+		zPos = refPos.z;
 	}
 	
 
@@ -21,7 +23,7 @@ public class TargetFollow : MonoBehaviour {
 	{
 		refPos.x = Mathf.SmoothDamp(this.transform.position.x, target.position.x, ref curVel, Time.deltaTime * followSpeed);
 		refPos.y = Mathf.SmoothDamp(this.transform.position.y, target.position.y + offsetY, ref curVel2, Time.deltaTime * followSpeed);
-
+		refPos.z = zPos;
 		transform.position = refPos;
 	}
 }

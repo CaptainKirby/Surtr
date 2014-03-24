@@ -20,7 +20,7 @@ public class SpiritMovement : MonoBehaviour {
 	private float jumpPower;
 	public bool jumpKeyDown;
 	private KeyCode jumpKey = KeyCode.Space;
-	private KeyCode jumpKey2 = KeyCode.Joystick1Button0;
+	private KeyCode jumpKey2 = KeyCode.JoystickButton0;
 	private bool jumping;
 	public float jumpMaxDuration = 0.3f;
 	public  float jumpSlow;
