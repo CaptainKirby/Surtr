@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour {
 	[HideInInspector]
 	public bool activeMovement = true;
 	private CharacterMotor motor;
-
+	public float pushPower = 2.0f;
+	public float weight = 6.0f;
 	void Start () 
 	{
 		activeMovement = true;
@@ -34,6 +35,27 @@ public class PlayerMovement : MonoBehaviour {
 		}
 
 
+	}
+
+	void OnControllerColliderHit (ControllerColliderHit hit)
+	{
+		Rigidbody body = hit.collider.attachedRigidbody;
+		
+		Vector3 force = Vector3.zero;
+		
+		// no rigidbody
+		if (body == null || body.isKinematic) { return; }
+		
+		// We use gravity and weight to push things down, we use
+		// our velocity and push power to push things other directions
+//		if (hit.moveDirection.y < -0.3f) {
+//			force = new Vector3 (0, -0.5f, 0) * motor.movement.gravity * weight;
+//		} else {
+			force = hit.controller.velocity * pushPower;
+//		}
+		
+		// Apply the push
+		body.AddForceAtPosition(force, hit.point);
 	}
 	
 }

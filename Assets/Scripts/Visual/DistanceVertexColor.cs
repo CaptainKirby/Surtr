@@ -13,6 +13,10 @@ public class DistanceVertexColor : MonoBehaviour {
 	public float maxZ = 100;
 	public float fadePos = 5.0f;
 	public float fadeLength = 5.0f;
+	public bool update;
+	public bool substract;
+	public bool multiply;
+	public bool add;
 //	public bool useBaseColor; //fix!
 
 	void Start () 
@@ -25,7 +29,18 @@ public class DistanceVertexColor : MonoBehaviour {
 		{
 			orgColors[i] = mesh.colors[i];
 			Vector3 worldPos = this.transform.TransformPoint( vertices[i]);
-			newColors[i] = Color32.Lerp(orgColors[i] + closeColor, orgColors[i] + farColor, (worldPos.z - minZ - fadePos) / (maxZ-minZ) / fadeLength);
+			if(add)
+			{
+				newColors[i] = Color32.Lerp(orgColors[i] + closeColor, orgColors[i] + farColor, (worldPos.z - minZ - fadePos) / (maxZ-minZ) / fadeLength);
+			}
+			if(substract)
+			{
+				newColors[i] = Color32.Lerp(orgColors[i] - closeColor, orgColors[i] - farColor, (worldPos.z - minZ - fadePos) / (maxZ-minZ) / fadeLength);
+			}
+			if(multiply)
+			{
+				newColors[i] = Color32.Lerp(orgColors[i] * closeColor, orgColors[i] * farColor, (worldPos.z - minZ - fadePos) / (maxZ-minZ) / fadeLength);
+			}
 			
 		}
 		mesh.colors = newColors;
@@ -34,6 +49,28 @@ public class DistanceVertexColor : MonoBehaviour {
 
 	void Update()
 	{
+		if(update)
+		{
+			for(int i = 0; i < vertices.Length; i++)
+			{
+//				orgColors[i] = mesh.colors[i];
+				Vector3 worldPos = this.transform.TransformPoint( vertices[i]);
+				if(add)
+				{
+					newColors[i] = Color32.Lerp(orgColors[i] + closeColor, orgColors[i] + farColor, (worldPos.z - minZ - fadePos) / (maxZ-minZ) / fadeLength);
+				}
+				if(substract)
+				{
+					newColors[i] = Color32.Lerp(orgColors[i] - closeColor, orgColors[i] - farColor, (worldPos.z - minZ - fadePos) / (maxZ-minZ) / fadeLength);
+				}
+				if(multiply)
+				{
+					newColors[i] = Color32.Lerp(orgColors[i] * closeColor, orgColors[i] * farColor, (worldPos.z - minZ - fadePos) / (maxZ-minZ) / fadeLength);
+				}
+				
+			}
+			mesh.colors = newColors;
+		}
 	}
 
 

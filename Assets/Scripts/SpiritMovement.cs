@@ -179,4 +179,5 @@ public class SpiritMovement : MonoBehaviour {
 			pSwitch.curState = !pSwitch.curState;
 		}
 	}
+
 }
