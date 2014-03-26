@@ -159,6 +159,7 @@ public class SpiritMovement : MonoBehaviour {
 
 	IEnumerator Jump()
 	{
+		Debug.Log ("testtt");
 		oneTimeCoR = true;
 		jumping = true;
 		yield return new WaitForSeconds(jumpMaxDuration);

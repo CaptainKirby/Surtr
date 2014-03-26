@@ -37,29 +37,55 @@ public class PlayerMovement : MonoBehaviour {
 
 	}
 
-	void OnControllerColliderHit (ControllerColliderHit hit)
-	{
-		Rigidbody body = hit.collider.attachedRigidbody;
-		
-		Vector3 force = Vector3.zero;
-		
-		// no rigidbody
-		if (body == null || body.isKinematic) { return; }
-		
-		// We use gravity and weight to push things down, we use
-		// our velocity and push power to push things other directions
-//		if (hit.moveDirection.y < -0.3f) {
-//			force = new Vector3 (0, -0.5f, 0) * motor.movement.gravity * weight;
-//		} else {
-			force = hit.controller.velocity * pushPower;
+//	void OnControllerColliderHit (ControllerColliderHit hit)
+//	{
+//		Rigidbody body = hit.collider.attachedRigidbody;
+//		
+//		Vector3 force = Vector3.zero;
+//		
+//		// no rigidbody
+//		if (body == null || body.isKinematic) { return; }
+//		
+//		// We use gravity and weight to push things down, we use
+//		// our velocity and push power to push things other directions
+////		if (hit.moveDirection.y > -0.3f) {
+//////			force = new Vector3 (0, -0.5f, 0) * motor.movement.gravity * weight;
+////		} else {
+////			force = hit.controller.velocity * pushPower - body.velocity;
+////		}
+//		
+//		// Apply the push
+////		body.AddForceAtPosition(force, hit.point);
+////		if (hit.moveDirection.y < -1.0F){
+////			Debug.Log ("return");
+////			return;
+//
+////		Debug.Log (hit.point.y);
+////		if(!motor.grounded)
+////			return;
+////		}
+//		if (Vector3.Dot(this.transform.position - hit.transform.position, hit.transform.up) > 0.5f) {
+//
+//			return;
+////			return true; // object B is above object A
+//			
 //		}
-		
-		// Apply the push
-		body.AddForceAtPosition(force, hit.point);
+//		else{
+//
+//
+//		Vector3 pushDir = motor.movement.velocity;
+////		Vector3 pushDir = new Vector3(hit.moveDirection.x, hit.moveDirection.y, hit.moveDirection.z);
+//		body.velocity =  new Vector3(pushDir.x * pushPower, 0, body.velocity.z);
+//		}
+//	}
+//
+	void LateUpdate()
+	{
+		transform.position = new Vector3(transform.position.x, transform.position.y, 0 );
 	}
 	
 }
-		
+
 
 
 
