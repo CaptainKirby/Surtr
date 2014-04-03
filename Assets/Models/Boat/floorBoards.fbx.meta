@@ -11,6 +11,13 @@ ModelImporter:
     100010: pCube80
     100012: pCube81
     100014: pCube82
+    100016: pCube222
+    100018: pCube223
+    100020: pCube224
+    100022: pCube225
+    100024: pCube226
+    100026: pCube227
+    100028: pCube228
     400000: //RootNode
     400002: pCube75
     400004: pCube76
@@ -19,6 +26,13 @@ ModelImporter:
     400010: pCube80
     400012: pCube81
     400014: pCube82
+    400016: pCube222
+    400018: pCube223
+    400020: pCube224
+    400022: pCube225
+    400024: pCube226
+    400026: pCube227
+    400028: pCube228
     2300000: pCube75
     2300002: pCube76
     2300004: pCube77
@@ -26,6 +40,13 @@ ModelImporter:
     2300008: pCube80
     2300010: pCube81
     2300012: pCube82
+    2300014: pCube222
+    2300016: pCube223
+    2300018: pCube224
+    2300020: pCube225
+    2300022: pCube226
+    2300024: pCube227
+    2300026: pCube228
     3300000: pCube75
     3300002: pCube76
     3300004: pCube77
@@ -33,6 +54,13 @@ ModelImporter:
     3300008: pCube80
     3300010: pCube81
     3300012: pCube82
+    3300014: pCube222
+    3300016: pCube223
+    3300018: pCube224
+    3300020: pCube225
+    3300022: pCube226
+    3300024: pCube227
+    3300026: pCube228
     4300000: pCube75
     4300002: pCube76
     4300004: pCube77
@@ -40,6 +68,13 @@ ModelImporter:
     4300008: pCube80
     4300010: pCube81
     4300012: pCube82
+    4300014: pCube222
+    4300016: pCube223
+    4300018: pCube224
+    4300020: pCube225
+    4300022: pCube226
+    4300024: pCube227
+    4300026: pCube228
     9500000: //RootNode
   materials:
     importMaterials: 0
