@@ -9,27 +9,37 @@ ModelImporter:
     100006: pCylinder8
     100008: pCylinder9
     100010: //RootNode
+    100012: polySurface28
+    100014: polySurface29
     400000: pCube333
     400002: pCylinder10
     400004: pCylinder7
     400006: pCylinder8
     400008: pCylinder9
     400010: //RootNode
+    400012: polySurface28
+    400014: polySurface29
     2300000: pCube333
     2300002: pCylinder10
     2300004: pCylinder7
     2300006: pCylinder8
     2300008: pCylinder9
+    2300010: polySurface28
+    2300012: polySurface29
     3300000: pCube333
     3300002: pCylinder10
     3300004: pCylinder7
     3300006: pCylinder8
     3300008: pCylinder9
+    3300010: polySurface28
+    3300012: polySurface29
     4300000: pCube333
     4300002: pCylinder7
     4300004: pCylinder8
     4300006: pCylinder9
     4300008: pCylinder10
+    4300010: polySurface28
+    4300012: polySurface29
     9500000: //RootNode
   materials:
     importMaterials: 0
