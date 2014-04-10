@@ -4,12 +4,27 @@ ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
     100000: //RootNode
+    100002: pCube306
+    100004: pCube307
+    100006: pPlane13
     400000: //RootNode
+    400002: pCube306
+    400004: pCube307
+    400006: pPlane13
     2300000: //RootNode
+    2300002: pCube306
+    2300004: pCube307
+    2300006: pPlane13
     3300000: //RootNode
+    3300002: pCube306
+    3300004: pCube307
+    3300006: pPlane13
     4300000: pCube112
     4300002: polySurface5
     4300004: pCube151
+    4300006: pPlane13
+    4300008: pCube306
+    4300010: pCube307
     9500000: //RootNode
   materials:
     importMaterials: 0

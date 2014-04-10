@@ -7,6 +7,7 @@
     SubShader {
       Tags { "RenderType" = "Opaque" }
      Cull Off
+//       Blend SrcAlpha OneMinusSrcAlpha
       CGPROGRAM		
       	#pragma surface surf WrapLambert fullforwardshadows
 		
