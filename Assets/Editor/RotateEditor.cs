@@ -14,6 +14,7 @@ public class RotateEditor : Editor {
 //		if(rotate.transformrotate)
 //		{
 //			SceneView.RepaintAll(); 
+		rotate.playOnAwake = EditorGUILayout.ToggleLeft("Play on awake", rotate.playOnAwake);
 			rotate.pauseable = EditorGUILayout.ToggleLeft("Pauseable", rotate.pauseable);
 			//			rotate.resetrotate = EditorGUILayout.ToggleLeft(" Reset", rotate.resetrotate);
 			rotate.pingPongRotate = EditorGUILayout.ToggleLeft(" Ping Pong", rotate.pingPongRotate);

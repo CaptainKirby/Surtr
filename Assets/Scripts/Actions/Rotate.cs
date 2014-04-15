@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof (ActionHandler))]
+
 public class Rotate : MonoBehaviour {
 	[SerializeField]
 	public bool transformRotate; 
@@ -23,10 +25,12 @@ public class Rotate : MonoBehaviour {
 	[SerializeField]
 	public float rotateInbetweenDelayTime;
 
+	private float mTime;
 	public bool pauseable;
 	public bool pause;
 	public bool playOnce;
 	public bool started;
+	public bool playOnAwake;
 	// Use this for initialization
 	void Awake()
 	{
@@ -36,7 +40,14 @@ public class Rotate : MonoBehaviour {
 		//		actionHandler = GetComponent<ActionHandler>();
 		
 	}
-	
+	void Start () {
+		if(!started && playOnAwake)
+		{
+			started = true;
+			mTime = 0;
+			StartCoroutine(TransformRotation());
+		}
+	}
 	// Update is called once per frame
 	void Update () 
 	{ 
@@ -60,7 +71,7 @@ public class Rotate : MonoBehaviour {
 	{
 		//		Debug.Log ("TEST");
 		bool onOff = true;
-		float mTime = 0; 
+//		float mTime = 0; 
 		//		Vector3 startRot = Quaternion.Euler(this.transform.eulerAngles);
 		//		Quaternion startRot = Quaternion.Euler(this.transform.eulerAngles);
 		bool oneWay = false;

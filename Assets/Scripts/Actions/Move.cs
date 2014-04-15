@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent (typeof (ActionHandler))]
 public class Move : MonoBehaviour {
 
 	[SerializeField]
