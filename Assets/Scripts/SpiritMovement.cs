@@ -39,9 +39,13 @@ public class SpiritMovement : MonoBehaviour {
 
 	[HideInInspector]
 	public PlayerSwitch pSwitch;
+	[HideInInspector]
+	public Transform player;
 	void Start () 
 	{
+
 		pSwitch = GameObject.FindObjectOfType<PlayerSwitch>();
+		player = pSwitch.gameObject.transform;
 		activeMovement = true;
 		rightRot = Quaternion.Euler(0,-90,0);
 		leftRot = Quaternion.Euler(0,90,0);
@@ -138,21 +142,29 @@ public class SpiritMovement : MonoBehaviour {
 	{
 		if(activeMovement)
 		{
-			rigidbody.AddForce(new Vector3(inputDir.x * speed, -gravity, 0), ForceMode.VelocityChange);
+//			if(Vector3.Distance(player.position, this.transform.position) > 15)
+//			{
+//
+//			}
 
 
-			if(!grounded && inputDir.y < 0 )
-			{
-				rigidbody.AddForce(new Vector3(0, inputDir.y, 0), ForceMode.VelocityChange);
-			}
+			rigidbody.AddForce(new Vector3(inputDir.x * speed, inputDir.y * speed - gravity, 0), ForceMode.VelocityChange);
 
+
+//			if(!grounded && inputDir.y < 0 )
+//			{
+//				rigidbody.AddForce(new Vector3(0, inputDir.y, 0), ForceMode.VelocityChange);
+//			}
+//
 			rigidbody.AddForce(new Vector3(0, jumpPower,0), ForceMode.VelocityChange);
+//
+//			if(rigidbody.velocity.y < 0)
+//			{
+//				//falling
+//				rigidbody.AddForce(new Vector3(0, inputDir.y/diluteInput,0), ForceMode.VelocityChange);
+//			}
 
-			if(rigidbody.velocity.y < 0)
-			{
-				//falling
-				rigidbody.AddForce(new Vector3(0, inputDir.y/diluteInput,0), ForceMode.VelocityChange);
-			}
+//			Debug.Log (Vector3.Distance(this.gameObject.transform.position, player.gameObject.transform.position));
 		}
 
 	}
