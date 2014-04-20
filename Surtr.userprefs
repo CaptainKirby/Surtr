@@ -1,11 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Actions\Rotate.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Actions\Move.cs">
     <Files>
-      <File FileName="Assets\Editor\MoveEditor.cs" Line="9" Column="41" />
-      <File FileName="Assets\Scripts\Actions\Move.cs" Line="45" Column="2" />
-      <File FileName="Assets\Scripts\Actions\Rotate.cs" Line="37" Column="50" />
-      <File FileName="Assets\Editor\RotateEditor.cs" Line="86" Column="1" />
+      <File FileName="Surtr.sln" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Actions\Move.cs" Line="209" Column="1" />
+      <File FileName="Assets\Editor\MoveEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Actions\Move.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Actions\Rotate.cs" Line="1" Column="1" />
+      <File FileName="Assets\Editor\RotateEditor.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
