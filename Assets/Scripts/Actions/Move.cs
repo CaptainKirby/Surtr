@@ -213,7 +213,7 @@ public class Move : MonoBehaviour {
 					}
 				}
 				}
-				yield return null;
+				yield return new WaitForFixedUpdate();
 			
 			}
 		}
@@ -304,8 +304,8 @@ public class Move : MonoBehaviour {
 					}
 				}
 				}
-				yield return null;
-			
+				yield return new WaitForFixedUpdate();
+
 			}
 		}
 //		if(animCurveUse)

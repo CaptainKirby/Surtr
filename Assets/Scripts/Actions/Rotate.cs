@@ -113,7 +113,7 @@ public class Rotate : MonoBehaviour {
 						onOff = false;
 					}
 				}
-				yield return null;
+				yield return new WaitForFixedUpdate();
 			}
 		}
 		if(pingPongRotate)
@@ -180,7 +180,7 @@ public class Rotate : MonoBehaviour {
 					}
 				}
 				
-				yield return null;
+				yield return new WaitForFixedUpdate();
 			}
 		}
 		
