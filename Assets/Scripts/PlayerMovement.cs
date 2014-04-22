@@ -8,8 +8,18 @@ public class PlayerMovement : MonoBehaviour {
 	private CharacterMotor motor;
 	public float pushPower = 2.0f;
 	public float weight = 6.0f;
+
+	public bool movingRight;
+	public bool movingLeft;
+	public bool idle;
+	private bool movedRight;
+	private bool movedLeft;
+
+	private GameObject charGfx;
+	private Animator charAnim;
 	void Start () 
 	{
+		charAnim = GetComponentInChildren<Animator>(); 
 		activeMovement = true;
 		motor = GetComponent<CharacterMotor>();
 
@@ -19,9 +29,64 @@ public class PlayerMovement : MonoBehaviour {
 	void Update () 
 	{
 
+		charAnim.SetBool("walkRight", movingRight);
+		charAnim.SetBool("walkLeft", movingLeft);
+		charAnim.SetBool("idle", idle);
+
+
 		// til hoppet skal jeg finde input dir retning(venstre el. højre).
 		// i meget kort tid skal jeg checke om hop knappen er hold inde i kort eller længere tid for at finde ud af hvor langt hopet skal være(ddete skal ske undervejs i hoppet)
 		// der skal være en smule styring iblandet kraften fra hoppet
+
+//		Debug.Log (motor.movement.velocity.x);
+//		if(motor.movement.velocity.x > 0.1f && !movingRight)
+//		{
+//
+//			movingRight = true;
+//			movingLeft = false;
+//			idle = false;
+//
+//		}
+//		if(motor.movement.velocity.x < -0.1f && !movingLeft)
+//		{
+//			movingLeft = true;
+//			movingRight = false;
+//			idle = false;
+//		}
+//
+//		if(motor.movement.velocity.x > -0.1f && motor.movement.velocity.x < 0.1f && !idle)
+//		{
+//			idle = true;
+//			movingLeft = false;
+//			movingRight = false;
+//		}
+		if(Input.GetAxis("Horizontal") > 0.1f && !movingRight)
+		{
+			
+			movingRight = true;
+			movingLeft = false;
+			idle = false;
+			movedRight = true;
+			movedLeft = true;
+			
+		}
+
+		if(Input.GetAxis("Horizontal") < -0.1f && !movingLeft)
+		{
+			movingLeft = true;
+			movingRight = false;
+			idle = false;
+			movedRight = false;
+			movedLeft = true;
+		}
+		
+		if(Input.GetAxis("Horizontal") > -0.1f && Input.GetAxis("Horizontal") < 0.1f && !idle)
+		{
+			idle = true;
+			movingLeft = false;
+			movingRight = false;
+
+		}
 
 		if(activeMovement)
 		{

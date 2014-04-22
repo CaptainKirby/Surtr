@@ -19,6 +19,7 @@ public class MoveEditor : Editor {
 			move.moveBack = EditorGUILayout.ToggleLeft("Move Back", move.moveBack);
 			//			move.resetMove = EditorGUILayout.ToggleLeft(" Reset", move.resetMove);
 			move.pingPongMove= EditorGUILayout.ToggleLeft(" Ping Pong", move.pingPongMove);
+			move.backAndForth= EditorGUILayout.ToggleLeft(" Back and Forth", move.backAndForth);
 			move.smoothMove= EditorGUILayout.ToggleLeft(" Smooth Move", move.smoothMove);
 			move.moveStartDelay = EditorGUILayout.ToggleLeft(" Start Delay", move.moveStartDelay);
 //			move.onOff = EditorGUILayout.ToggleLeft("gbeug", move.onOff);

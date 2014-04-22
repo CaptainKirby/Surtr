@@ -137,19 +137,29 @@ public class SpiritMovement : MonoBehaviour {
 		}
 		
 	}
-	
+
+	float f = 0f;
+
 	void FixedUpdate()
 	{
 		if(activeMovement)
 		{
+
+			Vector3 p2s = this.transform.position - player.position;
 //			if(Vector3.Distance(player.position, this.transform.position) > 15)
 //			{
 //
 //			}
-
-
-			rigidbody.AddForce(new Vector3(inputDir.x * speed, inputDir.y * speed - gravity, 0), ForceMode.VelocityChange);
-
+//			Debug.Log (Vector3.Dot(inputDir, -player.up));
+			if(Vector3.Distance(player.position, this.transform.position) > 15)
+			{
+				f += Time.deltaTime;
+				rigidbody.AddForce(-p2s / 30 * f, ForceMode.VelocityChange);
+			}
+			else { 
+				f = 0f;
+				rigidbody.AddForce(new Vector3(inputDir.x * speed, inputDir.y * speed - gravity, 0), ForceMode.VelocityChange);
+			}
 
 //			if(!grounded && inputDir.y < 0 )
 //			{

@@ -10,6 +10,8 @@ public class Move : MonoBehaviour {
 	[SerializeField]
 	public bool pingPongMove;
 	[SerializeField]
+	public bool backAndForth;
+	[SerializeField]
 	public bool smoothMove;
 	[SerializeField]
 	public float moveSpeed = 1;
@@ -163,7 +165,7 @@ public class Move : MonoBehaviour {
 		{
 			yield return new WaitForSeconds(moveStartDelayTime);
 		}
-		if(!pingPongMove)
+		if(!pingPongMove && !backAndForth)
 		{
 			while(onOff)
 			{
@@ -306,6 +308,97 @@ public class Move : MonoBehaviour {
 				}
 				yield return new WaitForFixedUpdate();
 
+			}
+		}
+		if(backAndForth)
+		{
+			while(onOff)
+			{
+				if(this.enabled)
+				{
+					if(!pause)
+					{
+						if(animCurveUse)
+						{
+							curveValue = animCurve.Evaluate(mTime);
+						}
+						if(mTime > 1 && !oneWay)
+						{
+							oneWay = true;
+							mTime = 0;
+							if(moveInbetweenDelay)
+							{
+								delay = false;
+								yield return new WaitForSeconds(moveInbetweenDelayTime);
+								delay = true;
+							}
+						}
+//						if(mTime > 1 && oneWay)
+//						{
+//							oneWay = false;
+//							mTime = 0;
+//							if(moveInbetweenDelay)
+//							{
+//								delay = false;
+//								yield return new WaitForSeconds(moveInbetweenDelayTime);
+//								delay = true;
+//							}
+//						}
+						if(delay)
+						{
+							if(!oneWay)
+							{
+								mTime += Time.deltaTime * moveSpeed;
+								if(animCurveUse)
+								{
+									curveValue = animCurve.Evaluate(mTime);
+								}
+								if(!animCurveUse)
+								{
+									if(!smoothMove)
+									{
+										this.transform.position = Vector3.Lerp(moveStartPos, moveToPos, mTime);
+									}
+									else
+									{
+										this.transform.position = new Vector3(Mathf.SmoothStep(moveStartPos.x, moveToPos.x, mTime), Mathf.SmoothStep(moveStartPos.y, moveToPos.y, mTime), Mathf.SmoothStep(moveStartPos.z, moveToPos.z, mTime));
+									}
+								}
+								else
+								{
+									this.transform.position = Vector3.Lerp(moveStartPos, moveToPos, curveValue);
+									
+								}
+							}
+							if(oneWay)
+							{
+								mTime += Time.deltaTime * moveSpeed;
+								if(animCurveUse)
+								{
+									curveValue = animCurve.Evaluate(mTime);
+								}
+								if(!animCurveUse)
+								{
+									if(!smoothMove)
+									{
+										this.transform.position = Vector3.Lerp(moveToPos, moveStartPos, mTime);
+									}
+									else
+									{
+										this.transform.position = new Vector3(Mathf.SmoothStep(moveToPos.x, moveStartPos.x, mTime), Mathf.SmoothStep(moveToPos.y, moveStartPos.y, mTime), Mathf.SmoothStep(moveToPos.z, moveStartPos.z, mTime));
+									}
+								}
+								else
+								{
+									this.transform.position = Vector3.Lerp(moveToPos, moveStartPos,curveValue);
+								}
+								
+							}
+						}
+					}
+				}
+				yield return new WaitForFixedUpdate();
+				
 			}
 		}
 //		if(animCurveUse)
