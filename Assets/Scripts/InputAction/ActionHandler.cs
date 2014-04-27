@@ -329,116 +329,116 @@ public class ActionHandler : MonoBehaviour {
 		}
 
 	}
-	IEnumerator TransformPosition()
-	{
-		bool onOff = true;
-		float mTime = 0f;
-//		Vector3 startPos = this.transform.position;
-
-		bool oneWay = false;
-		bool delay = true;
-
-
-
-		if(moveStartDelay)
-		{
-			yield return new WaitForSeconds(moveStartDelayTime);
-		}
-		if(!pingPongMove)
-		{
-			while(onOff)
-			{
-				if(!pause)
-				{
-					if(mTime < 1f)
-					{
-//						started = true;
-						mTime += Time.deltaTime * moveSpeed;
-						if(!smoothMove)
-						{
-							this.transform.position = Vector3.Lerp(moveStartPos, moveToPos, mTime);
-						}
-						else
-						{
-							this.transform.position = new Vector3(Mathf.SmoothStep(moveStartPos.x, moveToPos.x, mTime), Mathf.SmoothStep(moveStartPos.y, moveToPos.y, mTime), Mathf.SmoothStep(moveStartPos.z, moveToPos.z, mTime));
-						}
-					}
-					else
-					{
-						if(!playOnce)
-						{
-							started = false;
-						}
-						onOff = false;
-
-						//doit = false
-					}
-				}
-				yield return null;
-				 
-			}
-		}
-		if(pingPongMove)
-		{
-			while(onOff)
-			{
-				if(!pause)
-				{
-					if(mTime > 1 && !oneWay)
-					{
-						oneWay = true;
-						mTime = 0;
-						if(moveInbetweenDelay)
-						{
-							delay = false;
-							yield return new WaitForSeconds(moveInbetweenDelayTime);
-							delay = true;
-						}
-					}
-					if(mTime > 1 && oneWay)
-					{
-						oneWay = false;
-						mTime = 0;
-						if(moveInbetweenDelay)
-						{
-							delay = false;
-							yield return new WaitForSeconds(moveInbetweenDelayTime);
-							delay = true;
-						}
-					}
-					if(delay)
-					{
-						if(!oneWay)
-						{
-							mTime += Time.deltaTime * moveSpeed;
-							if(!smoothMove)
-							{
-								this.transform.position = Vector3.Lerp(moveStartPos, moveToPos, mTime);
-							}
-							else
-							{
-								this.transform.position = new Vector3(Mathf.SmoothStep(moveStartPos.x, moveToPos.x, mTime), Mathf.SmoothStep(moveStartPos.y, moveToPos.y, mTime), Mathf.SmoothStep(moveStartPos.z, moveToPos.z, mTime));
-							}
-						}
-						if(oneWay)
-						{
-							mTime += Time.deltaTime * moveSpeed;
-							if(!smoothMove)
-							{
-								this.transform.position = Vector3.Lerp(moveToPos, moveStartPos, mTime);
-							}
-							else
-							{
-								this.transform.position = new Vector3(Mathf.SmoothStep(moveToPos.x, moveStartPos.x, mTime), Mathf.SmoothStep(moveToPos.y, moveStartPos.y, mTime), Mathf.SmoothStep(moveToPos.z, moveStartPos.z, mTime));
-							}
-
-						}
-					}
-				}
-				yield return null;
-			}
-		}
-	}
+//	IEnumerator TransformPosition()
+//	{
+//		bool onOff = true;
+//		float mTime = 0f;
+////		Vector3 startPos = this.transform.position;
+//
+//		bool oneWay = false;
+//		bool delay = true;
+//
+//
+//
+//		if(moveStartDelay)
+//		{
+//			yield return new WaitForSeconds(moveStartDelayTime);
+//		}
+//		if(!pingPongMove)
+//		{
+//			while(onOff)
+//			{
+//				if(!pause)
+//				{
+//					if(mTime < 1f)
+//					{
+////						started = true;
+//						mTime += Time.deltaTime * moveSpeed;
+//						if(!smoothMove)
+//						{
+//							this.transform.position = Vector3.Lerp(moveStartPos, moveToPos, mTime);
+//						}
+//						else
+//						{
+//							this.transform.position = new Vector3(Mathf.SmoothStep(moveStartPos.x, moveToPos.x, mTime), Mathf.SmoothStep(moveStartPos.y, moveToPos.y, mTime), Mathf.SmoothStep(moveStartPos.z, moveToPos.z, mTime));
+//						}
+//					}
+//					else
+//					{
+//						if(!playOnce)
+//						{
+//							started = false;
+//						}
+//						onOff = false;
+//
+//						//doit = false
+//					}
+//				}
+//				yield return null;
+//				 
+//			}
+//		}
+//		if(pingPongMove)
+//		{
+//			while(onOff)
+//			{
+//				if(!pause)
+//				{
+//					if(mTime > 1 && !oneWay)
+//					{
+//						oneWay = true;
+//						mTime = 0;
+//						if(moveInbetweenDelay)
+//						{
+//							delay = false;
+//							yield return new WaitForSeconds(moveInbetweenDelayTime);
+//							delay = true;
+//						}
+//					}
+//					if(mTime > 1 && oneWay)
+//					{
+//						oneWay = false;
+//						mTime = 0;
+//						if(moveInbetweenDelay)
+//						{
+//							delay = false;
+//							yield return new WaitForSeconds(moveInbetweenDelayTime);
+//							delay = true;
+//						}
+//					}
+//					if(delay)
+//					{
+//						if(!oneWay)
+//						{
+//							mTime += Time.deltaTime * moveSpeed;
+//							if(!smoothMove)
+//							{
+//								this.transform.position = Vector3.Lerp(moveStartPos, moveToPos, mTime);
+//							}
+//							else
+//							{
+//								this.transform.position = new Vector3(Mathf.SmoothStep(moveStartPos.x, moveToPos.x, mTime), Mathf.SmoothStep(moveStartPos.y, moveToPos.y, mTime), Mathf.SmoothStep(moveStartPos.z, moveToPos.z, mTime));
+//							}
+//						}
+//						if(oneWay)
+//						{
+//							mTime += Time.deltaTime * moveSpeed;
+//							if(!smoothMove)
+//							{
+//								this.transform.position = Vector3.Lerp(moveToPos, moveStartPos, mTime);
+//							}
+//							else
+//							{
+//								this.transform.position = new Vector3(Mathf.SmoothStep(moveToPos.x, moveStartPos.x, mTime), Mathf.SmoothStep(moveToPos.y, moveStartPos.y, mTime), Mathf.SmoothStep(moveToPos.z, moveStartPos.z, mTime));
+//							}
+//
+//						}
+//					}
+//				}
+//				yield return null;
+//			}
+//		}
+//	}
 
 	public void OnDrawGizmos()
 	{

@@ -15,11 +15,12 @@ public class PlayerMovement : MonoBehaviour {
 	private bool movedRight;
 	private bool movedLeft;
 
-	private GameObject charGfx;
+	public Transform charGfx;
 	private Animator charAnim;
 	void Start () 
 	{
 		charAnim = GetComponentInChildren<Animator>(); 
+		charGfx = transform.GetChild(0);
 		activeMovement = true;
 		motor = GetComponent<CharacterMotor>();
 
@@ -62,7 +63,7 @@ public class PlayerMovement : MonoBehaviour {
 //		}
 		if(Input.GetAxis("Horizontal") > 0.1f && !movingRight)
 		{
-			
+			charGfx.eulerAngles = new Vector3(0,90,0);
 			movingRight = true;
 			movingLeft = false;
 			idle = false;
@@ -73,6 +74,8 @@ public class PlayerMovement : MonoBehaviour {
 
 		if(Input.GetAxis("Horizontal") < -0.1f && !movingLeft)
 		{
+			charGfx.eulerAngles = new Vector3(0,-90,0);
+
 			movingLeft = true;
 			movingRight = false;
 			idle = false;

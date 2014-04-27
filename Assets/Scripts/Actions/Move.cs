@@ -25,10 +25,10 @@ public class Move : MonoBehaviour {
 	public float moveInbetweenDelayTime;
 	[SerializeField]
 	public bool resetMove;
-	[SerializeField]
-	public Vector3 moveToPos = Vector3.zero; 
-	[SerializeField]
-	public Vector3 moveStartPos = Vector3.zero;
+//	[SerializeField]
+	public Vector3 moveToPos; 
+//	[SerializeField]
+	public Vector3 moveStartPos;
 
 	private Vector3 moveStartPos2;
 	private Vector3 moveToPos2;
@@ -124,6 +124,7 @@ public class Move : MonoBehaviour {
 			}
 			else if(started && moveBack)
 			{
+				Debug.Log ("TGESUIGSGN");
 				moveToPos2 = moveStartPos;
 				moveStartPos2 = moveToPos;
 	//			onOff = false;
@@ -131,7 +132,7 @@ public class Move : MonoBehaviour {
 				moveStartPos = moveStartPos2;
 
 				mTime = 1- mTime;
-//				StartCoroutine(TransformPosition());
+				StartCoroutine(TransformPosition());
 	//			onOff = true;
 	//			Debug.Log ("WHALALAL");
 			}
@@ -200,7 +201,7 @@ public class Move : MonoBehaviour {
 					}
 					else
 					{
-						if(!playOnce)
+						if(!moveBack)
 						{
 							started = false;
 						}
@@ -209,8 +210,11 @@ public class Move : MonoBehaviour {
 						onOff = false;
 
 						Debug.Log ("DONE");
-						moveToPos = moveStartPos2;
-						moveStartPos = moveToPos2;
+//							if(moveBack)
+//							{
+//								moveToPos = moveStartPos2;
+//								moveStartPos = moveToPos2;
+//							}
 						//doit = false
 					}
 				}

@@ -188,15 +188,15 @@ public class InputTaker : MonoBehaviour {
 //			}
 		}
 	}
-
-	void OnGUI()
-	{
-		if(GUI.Button(new Rect(Screen.width / 2 - 50, 5, 100, 30), "Click"))
-		{
-//			if(OnClicked != null) 
-//				OnClicked(); 
-		}
-	}
+//
+//	void OnGUI()
+//	{
+//		if(GUI.Button(new Rect(Screen.width / 2 - 50, 5, 100, 30), "Click"))
+//		{
+////			if(OnClicked != null) 
+////				OnClicked(); 
+//		}
+//	}
 
 	void OnDrawGizmos()
 	{
