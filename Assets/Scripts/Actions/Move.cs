@@ -68,6 +68,10 @@ public class Move : MonoBehaviour {
 			mTime = 0;
 			StartCoroutine(TransformPosition());
 		}
+		if(pauseable)
+		{
+			pause = !pause;
+		}
 		//subscripte to doit delegate
 //		if(actionHandler != null)
 //		{

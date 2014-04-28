@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour {
 	private bool movedRight;
 	private bool movedLeft;
 
+	private bool sprinting;
+	public float sprintSpeed = 5;
+	private float sprintValue= 1;
 	public Transform charGfx;
 	private Animator charAnim;
 	void Start () 
@@ -34,7 +37,17 @@ public class PlayerMovement : MonoBehaviour {
 		charAnim.SetBool("walkLeft", movingLeft);
 		charAnim.SetBool("idle", idle);
 
-
+//		Debug.Log (Input.GetAxis("RTrigger"));
+		if(Input.GetAxis("RTrigger") > 0.8f && !sprinting)
+		{
+			sprinting = true;
+			sprintValue = sprintSpeed;
+		}
+		if(Input.GetAxis("RTrigger") < 0.8f && sprinting)
+		{
+			sprinting = false;
+			sprintValue = 1;
+		}
 		// til hoppet skal jeg finde input dir retning(venstre el. højre).
 		// i meget kort tid skal jeg checke om hop knappen er hold inde i kort eller længere tid for at finde ud af hvor langt hopet skal være(ddete skal ske undervejs i hoppet)
 		// der skal være en smule styring iblandet kraften fra hoppet
@@ -93,7 +106,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		if(activeMovement)
 		{
-			motor.inputMoveDirection = Vector3.right * Input.GetAxis("Horizontal");
+			motor.inputMoveDirection = Vector3.right * Input.GetAxis("Horizontal") * sprintValue;
 			motor.inputJump = Input.GetKey(KeyCode.JoystickButton0);
 
 		}

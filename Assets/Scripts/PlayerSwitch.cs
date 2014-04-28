@@ -5,7 +5,7 @@ public class PlayerSwitch : MonoBehaviour {
 
 	public GameObject playerObj;
 	public GameObject spiritObj;
-
+	public bool switchFreely;
 	private CharacterController playerController;
 	private PlayerMovement playerMove;
 	private Vector3 playerVelocity;
@@ -73,9 +73,10 @@ public class PlayerSwitch : MonoBehaviour {
 			spiritObj.renderer.enabled = true;
 			spiritObj.collider.enabled = true;
 			spiritMove.rigidbody.AddForce(new Vector3(dir,0,0) * Mathf.Clamp(playerVelocity.magnitude, 0.3f, 10f) * 2,ForceMode.Impulse);
-			
+
 
 		}
+
 
 
 
@@ -88,12 +89,23 @@ public class PlayerSwitch : MonoBehaviour {
 //			curState = true;
 //			fadeFromForm = !fadeFromForm;
 		}
-		else
+		else if(switchFreely && Input.GetKeyDown(KeyCode.JoystickButton2) && spiritMove.grounded)
 		{
-//			Debug.Log (fadeFromForm);
-			fadeFromForm = false;
+			playerObj.transform.position = new Vector3(spiritObj.transform.position.x, spiritObj.transform.position.y +0.2f, spiritObj.transform.position.z);
+			curState = !curState;
+			fadeFromForm = true;
 
 		}
+		else
+		{
+////			Debug.Log (fadeFromForm);
+			fadeFromForm = false;
+//
+		}
+//		if(fadeFromForm)
+//		{
+//			fadeFromForm = false;
+//		}
 //		if(Input.GetKeyDown(switchKey) && curState && !fadeFromForm)
 //		{
 //			curState = false;
