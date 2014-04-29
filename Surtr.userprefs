@@ -1,19 +1,23 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerSwitch.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Shaders\Refraction.shader">
     <Files>
+      <File FileName="Assets\Scripts\SpiritMovement.cs" Line="55" Column="1" />
       <File FileName="Assets\Scripts\Screenshots.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Actions\FadeOutAndIn.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Actions\Move.cs" Line="73" Column="19" />
-      <File FileName="Assets\Scripts\InputAction\InputTaker.cs" Line="29" Column="39" />
-      <File FileName="Assets\Scripts\PlayerMovement.cs" Line="49" Column="20" />
+      <File FileName="Assets\Scripts\Actions\Move.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\InputAction\InputTaker.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerMovement.cs" Line="1" Column="1" />
       <File FileName="Assets\Editor\InputTakerEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerSwitch.cs" Line="84" Column="4" />
-      <File FileName="Assets\Scripts\Actions\HumanToSpirit.cs" Line="19" Column="3" />
+      <File FileName="Assets\Scripts\PlayerSwitch.cs" Line="81" Column="4" />
+      <File FileName="Assets\Scripts\Actions\HumanToSpirit.cs" Line="1" Column="1" />
       <File FileName="Assets\Editor\MoveEditor.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\InputAction\ActionHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SpiritMovement.cs" Line="154" Column="71" />
-      <File FileName="Assets\Scripts\EnvironmentBehaviour\SpiritActivate.cs" Line="95" Column="8" />
+      <File FileName="Assets\Scripts\EnvironmentBehaviour\SpiritActivate.cs" Line="1" Column="1" />
+      <File FileName="Assets\Shaders\NoNormalsOnlyshowVertexTestTransparent.shader" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\TargetFollow.cs" Line="35" Column="30" />
+      <File FileName="..\Project_Friendship\Assets\Standard Assets\Glass Refraction (Pro Only)\Sources\Shaders\Glass-Stained-BumpDistort.shader" Line="20" Column="57" />
+      <File FileName="Assets\Shaders\Refraction.shader" Line="104" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

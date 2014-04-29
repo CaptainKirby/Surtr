@@ -26,6 +26,11 @@ public class SpiritMovement : MonoBehaviour {
 	public  float jumpSlow;
 	private bool jumpReleased = true;
 
+	public bool movingRight;
+	public bool movingLeft;
+	public bool idle;
+	private bool movedRight;
+	private bool movedLeft;
 
 	private Quaternion rightRot;
 	private Quaternion leftRot;
@@ -41,9 +46,16 @@ public class SpiritMovement : MonoBehaviour {
 	public PlayerSwitch pSwitch;
 	[HideInInspector]
 	public Transform player;
+
+	public Animator spiritAnim;
+	private Transform spiritGfx;
+	void Awake()
+	{
+		spiritAnim = GetComponentInChildren<Animator>(); 
+
+	}
 	void Start () 
 	{
-
 		pSwitch = GameObject.FindObjectOfType<PlayerSwitch>();
 		player = pSwitch.gameObject.transform;
 		activeMovement = true;
@@ -52,6 +64,9 @@ public class SpiritMovement : MonoBehaviour {
 		jumpSlow = movementMax;
 		moveMaxStart = movementMax;
 		gravity = gravityForce;
+		spiritGfx = transform.GetChild(0);
+		Debug.Log ("GSG");
+
 	}
 	
 	
@@ -63,6 +78,10 @@ public class SpiritMovement : MonoBehaviour {
 		// der skal være en smule styring iblandet kraften fra hoppet
 		if(activeMovement)
 		{
+			spiritAnim.SetBool("walkRight", movingRight);
+			spiritAnim.SetBool("walkLeft", movingLeft);
+			spiritAnim.SetBool("idle", idle);
+
 			if(!grounded)
 			{
 				gravity = gravityForce;
@@ -126,14 +145,30 @@ public class SpiritMovement : MonoBehaviour {
 				
 			}
 
-			if(inputDir.x > 0)
+			if(inputDir.x > 0.1f && !movingRight)
 			{
+				spiritGfx.eulerAngles = new Vector3(0,90,0);
 				dirIndicator = 1;
+				movingRight = true;
+				movingLeft = false;
+				idle = false;
 			}
-			if(inputDir.x < 0)
+			if(inputDir.x < -0.1f && !movingLeft)
 			{
+				spiritGfx.eulerAngles = new Vector3(0,-90,0);
+
 				dirIndicator = -1;
+				movingLeft = true;
+				movingRight = false;
+				idle = false;
 			}
+			if(inputDir.x < 0.1f && inputDir.x > -0.1f && !idle)
+			{
+				idle = true;
+				movingLeft = false;
+				movingRight = false;
+			}
+			
 		}
 		
 	}

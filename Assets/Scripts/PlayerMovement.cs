@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour {
 	private float sprintValue= 1;
 	public Transform charGfx;
 	private Animator charAnim;
+	public bool spiritActive;
 	void Start () 
 	{
 		charAnim = GetComponentInChildren<Animator>(); 

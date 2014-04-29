@@ -5,6 +5,8 @@ public class PlayerSwitch : MonoBehaviour {
 
 	public GameObject playerObj;
 	public GameObject spiritObj;
+	public GameObject spiritGfx;
+	public GameObject spiritGfxMesh;
 	public bool switchFreely;
 	private CharacterController playerController;
 	private PlayerMovement playerMove;
@@ -31,9 +33,14 @@ public class PlayerSwitch : MonoBehaviour {
 		playerMove = playerObj.GetComponent<PlayerMovement>();
 
 		spiritMove = spiritObj.GetComponent<SpiritMovement>();
+		spiritGfx = spiritObj.transform.GetChild(0).gameObject;
+		spiritGfxMesh = spiritGfx.transform.GetChild(0).gameObject;
+
 		spiritMove.activeMovement = false;
-		spiritObj.renderer.enabled = false;
+//		spiritObj.renderer.enabled = false;
 		spiritObj.collider.enabled = false;
+		spiritGfx.SetActive(false);
+
 		dir = -1;
 	}
 	
@@ -58,22 +65,28 @@ public class PlayerSwitch : MonoBehaviour {
 				spiritObj.collider.enabled = false;
 				spiritMove.activeMovement = false;
 				playerMove.activeMovement = true;
-				spiritObj.renderer.enabled = false; // skal være fade ud
+//				spiritObj.renderer.enabled = false; // skal være fade ud
+				playerMove.spiritActive = false;
+				StartCoroutine("SpiritFadeout", false);
+
 			}
 
 //			spiritObj.transform.position = Vector3.SmoothDamp(spiritObj.transform.position, playerObj.transform.position, ref curVel, Time.deltaTime * 5f);
-			spiritObj.transform.position = playerObj.transform.position;
 		}
 
 		if(curState && playerMove.activeMovement)
 		{
 			//spirit is shown and moved
+			spiritObj.transform.position = playerObj.transform.position;
+
 			playerMove.activeMovement = false;
 			spiritMove.activeMovement = true;
-			spiritObj.renderer.enabled = true;
+//			spiritObj.renderer.enabled = true;
+			spiritGfx.SetActive(true);
 			spiritObj.collider.enabled = true;
 			spiritMove.rigidbody.AddForce(new Vector3(dir,0,0) * Mathf.Clamp(playerVelocity.magnitude, 0.3f, 10f) * 2,ForceMode.Impulse);
-
+			playerMove.spiritActive = true;
+			StartCoroutine("SpiritFadeout", true);
 
 		}
 
@@ -129,9 +142,43 @@ public class PlayerSwitch : MonoBehaviour {
 	// spirit skal kunne 1. fade ud.
 	// 1. player skal kunne komme hen til spirit.
 
-	IEnumerator SpiritFadeout()
+	IEnumerator SpiritFadeout(bool turnOnSpirit)
 	{
-		yield return null;
+		bool onOff = true;
+		float mTime = 0;
+		Color curCol = spiritGfxMesh.renderer.material.color;
+		while(onOff)
+		{
+			if(turnOnSpirit)
+			{
+				if(mTime < 1)
+				{
+					mTime += Time.deltaTime;
+					spiritGfxMesh.renderer.material.color = Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 1), mTime);
+				}
+				else
+				{
+					onOff = false;
+				}
+			}
+			else
+			{
+				if(mTime < 1)
+				{
+					mTime += Time.deltaTime;
+					spiritGfxMesh.renderer.material.color = Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 0), mTime);
+				}
+				else
+				{
+					onOff = false;
+
+					spiritGfx.SetActive(false);
+
+				}
+
+			}
+			yield return null;
+		}
 	}
 
 //	void ChangeState()
