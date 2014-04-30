@@ -3,7 +3,7 @@ using System.Collections;
 [RequireComponent (typeof (ActionHandler))]
 
 public class FadeOutAndIn : MonoBehaviour {
-	bool faded = false;
+	public bool faded = false;
 	private ActionHandler actionHandler;
 	// Use this for initialization
 	void Awake () {

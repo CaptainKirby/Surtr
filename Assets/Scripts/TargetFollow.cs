@@ -28,11 +28,12 @@ public class TargetFollow : MonoBehaviour {
 	{
 		if(!pSwitch.curState && target != player.transform)
 		{
-			target = player.transform;
+			StartCoroutine(TargetToPlayer());
 		}
 		if(pSwitch.curState && target != spirit.transform)
 		{
-			target = spirit.transform;
+			StartCoroutine(TargetToSpirit());
+
 		}
 	}
 	void FixedUpdate () 
@@ -42,4 +43,27 @@ public class TargetFollow : MonoBehaviour {
 		refPos.z = zPos;
 		transform.position = refPos;
 	}
+
+	IEnumerator TargetToSpirit()
+	{
+		yield return new WaitForSeconds(0.05f);
+		target = spirit.transform;
+	}
+	IEnumerator TargetToPlayer()
+	{
+		yield return new WaitForEndOfFrame();
+		target = player.transform;
+	}
+//		if(!pSwitch.curState && target != player.transform)
+//		{
+//			yield return new WaitForSeconds(0.1f);
+//			target = player.transform;
+//		}
+//		if(pSwitch.curState && target != spirit.transform)
+//		{
+//			yield return new WaitForSeconds(0.1f);
+//
+//			target = spirit.transform;
+//		}
+//	}
 }

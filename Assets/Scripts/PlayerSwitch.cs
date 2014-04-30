@@ -77,7 +77,7 @@ public class PlayerSwitch : MonoBehaviour {
 		if(curState && playerMove.activeMovement)
 		{
 			//spirit is shown and moved
-			spiritObj.transform.position = playerObj.transform.position;
+			spiritObj.transform.position = new Vector3(playerObj.transform.position.x, playerObj.transform.position.y + 1, playerObj.transform.position.z);
 
 			playerMove.activeMovement = false;
 			spiritMove.activeMovement = true;
