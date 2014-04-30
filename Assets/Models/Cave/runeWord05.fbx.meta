@@ -1,22 +1,13 @@
 fileFormatVersion: 2
-guid: 253ad2c24f0154b41af8afd3c2338714
+guid: ec28c12571e82034b97de1297897dacd
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: pCube7
-    100002: polySurface82
-    100004: polySurface84
-    100006: //RootNode
-    400000: pCube7
-    400002: polySurface82
-    400004: polySurface84
-    400006: //RootNode
-    2300000: polySurface82
-    2300002: polySurface84
-    3300000: polySurface82
-    3300002: polySurface84
-    4300000: polySurface82
-    4300002: polySurface84
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: pPlane19
     9500000: //RootNode
   materials:
     importMaterials: 0
