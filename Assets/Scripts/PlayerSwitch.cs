@@ -26,6 +26,7 @@ public class PlayerSwitch : MonoBehaviour {
 	private Vector3 curVel;
 
 	private int dir = -1; //-1 == left 1 == right
+	private bool switchable;
 	void Start () 
 	{
 		playerController = playerObj.GetComponent<CharacterController>();
@@ -42,6 +43,7 @@ public class PlayerSwitch : MonoBehaviour {
 		spiritGfx.SetActive(false);
 
 		dir = -1;
+		switchable =true;
 	}
 	
 
@@ -60,7 +62,7 @@ public class PlayerSwitch : MonoBehaviour {
 		if(!curState)
 		{
 			//player is shown and moved
-			if(spiritMove.activeMovement)
+			if(spiritMove.activeMovement && switchable)
 			{
 				spiritObj.collider.enabled = false;
 				spiritMove.activeMovement = false;
@@ -74,7 +76,7 @@ public class PlayerSwitch : MonoBehaviour {
 //			spiritObj.transform.position = Vector3.SmoothDamp(spiritObj.transform.position, playerObj.transform.position, ref curVel, Time.deltaTime * 5f);
 		}
 
-		if(curState && playerMove.activeMovement)
+		if(curState && playerMove.activeMovement&& switchable)
 		{
 			//spirit is shown and moved
 			spiritObj.transform.position = new Vector3(playerObj.transform.position.x, playerObj.transform.position.y + 1, playerObj.transform.position.z);
@@ -93,7 +95,7 @@ public class PlayerSwitch : MonoBehaviour {
 
 
 
-		if(Input.GetKeyDown(switchKey))
+		if(Input.GetKeyDown(switchKey) && switchable)
 		{
 //			Debug.Log ("wat22222");
 			curState = !curState;
@@ -102,7 +104,7 @@ public class PlayerSwitch : MonoBehaviour {
 //			curState = true;
 //			fadeFromForm = !fadeFromForm;
 		}
-		else if(switchFreely && Input.GetKeyDown(KeyCode.JoystickButton2) && spiritMove.grounded)
+		else if(switchFreely && Input.GetKeyDown(KeyCode.JoystickButton2) && spiritMove.grounded && switchable)
 		{
 			playerObj.transform.position = new Vector3(spiritObj.transform.position.x, spiritObj.transform.position.y +0.2f, spiritObj.transform.position.z);
 			curState = !curState;
@@ -147,25 +149,27 @@ public class PlayerSwitch : MonoBehaviour {
 		bool onOff = true;
 		float mTime = 0;
 		Color curCol = spiritGfxMesh.renderer.material.color;
+		switchable = false;
 		while(onOff)
 		{
 			if(turnOnSpirit)
 			{
 				if(mTime < 1)
 				{
-					mTime += Time.deltaTime;
+					mTime += Time.deltaTime * 1.5f;
 					spiritGfxMesh.renderer.material.color = Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 1), mTime);
 				}
 				else
 				{
 					onOff = false;
+					switchable = true;
 				}
 			}
 			else
 			{
 				if(mTime < 1)
 				{
-					mTime += Time.deltaTime;
+					mTime += Time.deltaTime * 1.5f;
 					spiritGfxMesh.renderer.material.color = Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 0), mTime);
 				}
 				else
@@ -173,12 +177,15 @@ public class PlayerSwitch : MonoBehaviour {
 					onOff = false;
 
 					spiritGfx.SetActive(false);
+					switchable = true;
 
 				}
 
 			}
 			yield return null;
 		}
+
+
 	}
 
 //	void ChangeState()
