@@ -1,16 +1,16 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Shaders\NoNormalsOnlyshowVertexTestRim.shader">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Actions\Move.cs">
     <Files>
-      <File FileName="Assets\Shaders\NoNormalsOnlyshowVertexTestRim.shader" Line="37" Column="26" />
+      <File FileName="Assets\Shaders\NoNormalsOnlyshowVertexTestRim.shader" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SpiritMovement.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Screenshots.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Actions\FadeOutAndIn.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Actions\Move.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\InputAction\InputTaker.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Actions\Move.cs" Line="85" Column="25" />
+      <File FileName="Assets\Scripts\InputAction\InputTaker.cs" Line="47" Column="6" />
       <File FileName="Assets\Scripts\PlayerMovement.cs" Line="1" Column="1" />
       <File FileName="Assets\Editor\InputTakerEditor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerSwitch.cs" Line="184" Column="5" />
+      <File FileName="Assets\Scripts\PlayerSwitch.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Actions\HumanToSpirit.cs" Line="1" Column="1" />
       <File FileName="Assets\Editor\MoveEditor.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\InputAction\ActionHandler.cs" Line="1" Column="1" />

@@ -82,7 +82,7 @@ public class Move : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-
+//		Debug.Log (started);
 		if(started && pauseable)
 		{
 			if(PlayerSwitch.fadeFromForm)
@@ -114,7 +114,7 @@ public class Move : MonoBehaviour {
 //		if(started && !movedB && moveBack)
 //		{
 
-
+			Debug.Log ("TEST");
 //			moveToPos = moveStartPos;
 //			moveStartPos = this.transform.position;
 //			StartCoroutine(TransformPosition());
@@ -341,6 +341,18 @@ public class Move : MonoBehaviour {
 								delay = true;
 							}
 						}
+
+//						else
+//						{
+//							if(!moveBack)
+//							{
+//								started = false;
+//							}
+//							
+//							onOff = false;
+//							
+//							Debug.Log ("DONE");
+//						}
 //						if(mTime > 1 && oneWay)
 //						{
 //							oneWay = false;
@@ -399,6 +411,12 @@ public class Move : MonoBehaviour {
 								else
 								{
 									this.transform.position = Vector3.Lerp(moveToPos, moveStartPos,curveValue);
+								}
+								if(mTime > 1)
+								{
+									Debug.Log ("DONE!!!");
+									onOff = false;
+									started = false;
 								}
 								
 							}
