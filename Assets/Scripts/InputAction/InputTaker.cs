@@ -139,6 +139,8 @@ public class InputTaker : MonoBehaviour {
 
 		if(inputType == InputType.trigger)
 		{
+//					Debug.Log ("GUIEGNUIO");
+
 			foreach(ActionHandler aD in actionDoers)
 			{
 				if(causeStop)
