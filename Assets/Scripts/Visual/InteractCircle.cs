@@ -9,37 +9,48 @@ public class InteractCircle : MonoBehaviour {
 	public float minScale = 0.8f;
 	private float curVel;
 	private Transform player;
-	public float dist;
+	private Transform spirit;
+	private float distP;
+	private float distS;
+
 	private Vector3 startScale;
-	private bool fadedIn;
+	public bool fadedIn;
 	private Color noAlphaColor;
 	private Color startColor;
+	public float distanceCut = 5;
+	public bool spiritInteract;
+	public bool playerInteract;
 	void Start () 
 	{
 		startColor = renderer.material.color;
 		noAlphaColor = new Color (renderer.material.color.r, renderer.material.color.g, renderer.material.color.b, 0);
 		startScale = transform.localScale;
 		player = GameObject.Find("Player").transform;
+		spirit = GameObject.Find("Spirit").transform;
 		if(outerCircle)
 		{
 			StartCoroutine(Scale ());
 		}
 		StartCoroutine(DistanceCheck());
 
+
 	}
 
 	void Update () 
 	{
-		if(!fadedIn && dist < 5)
+		//if spiritdist
+
+		if(!fadedIn && distS > distanceCut)
 		{
+//			Debug.Log ("YOLO");
 			fadedIn = true;
-			StartCoroutine("Fade", false);
+			StartCoroutine("Fade", true);
 		}
 
-		if(fadedIn && dist > 5)
+		if(fadedIn && distS < distanceCut)
 		{
 			fadedIn = false;
-			StartCoroutine("Fade", true);
+			StartCoroutine("Fade", false);
 		}
 	}
 
@@ -47,7 +58,9 @@ public class InteractCircle : MonoBehaviour {
 	{
 		while(true)
 		{
-			dist = Vector3.Distance(player.position, this.transform.position);
+			distP = Vector3.Distance(player.position, this.transform.position);
+			distS = Vector3.Distance(spirit.position, this.transform.position);
+
 			yield return new WaitForSeconds(0.5f);
 		}
 	}

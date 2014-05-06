@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour {
 	public Transform charGfx;
 	private Animator charAnim;
 	public bool spiritActive;
+	public bool jumping;
+	public bool inSpirit;
 	void Start () 
 	{
 		charAnim = GetComponentInChildren<Animator>(); 
@@ -37,7 +39,8 @@ public class PlayerMovement : MonoBehaviour {
 		charAnim.SetBool("walkRight", movingRight);
 		charAnim.SetBool("walkLeft", movingLeft);
 		charAnim.SetBool("idle", idle);
-
+		charAnim.SetBool ("jumping", jumping);
+		charAnim.SetBool ("inSpirit", inSpirit);
 //		Debug.Log (Input.GetAxis("RTrigger"));
 		if(Input.GetAxis("RTrigger") > 0.8f && !sprinting)
 		{
@@ -75,6 +78,8 @@ public class PlayerMovement : MonoBehaviour {
 //			movingLeft = false;
 //			movingRight = false;
 //		}
+		if(!inSpirit)
+		{
 		if(Input.GetAxis("Horizontal") > 0.1f && !movingRight)
 		{
 			charGfx.eulerAngles = new Vector3(0,90,0);
@@ -104,17 +109,26 @@ public class PlayerMovement : MonoBehaviour {
 			movingRight = false;
 
 		}
-
+		}
 		if(activeMovement)
 		{
 			motor.inputMoveDirection = Vector3.right * Input.GetAxis("Horizontal") * sprintValue;
 			motor.inputJump = Input.GetKey(KeyCode.JoystickButton0);
+			if(motor.jumping.jumping)
+			{
+				jumping = true;
+			}
+			else
+			{
+				jumping = false;
+			}
 
 		}
 		else
 		{
 			motor.inputMoveDirection = Vector3.zero;
 		}
+
 
 
 	}

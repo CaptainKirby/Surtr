@@ -27,6 +27,7 @@ public class PlayerSwitch : MonoBehaviour {
 
 	private int dir = -1; //-1 == left 1 == right
 	private bool switchable;
+
 	void Start () 
 	{
 		playerController = playerObj.GetComponent<CharacterController>();
@@ -64,6 +65,8 @@ public class PlayerSwitch : MonoBehaviour {
 			//player is shown and moved
 			if(spiritMove.activeMovement && switchable)
 			{
+				playerMove.inSpirit = false;
+
 				spiritObj.collider.enabled = false;
 				spiritMove.activeMovement = false;
 				playerMove.activeMovement = true;
@@ -79,6 +82,7 @@ public class PlayerSwitch : MonoBehaviour {
 		if(curState && playerMove.activeMovement&& switchable)
 		{
 			//spirit is shown and moved
+			playerMove.inSpirit = true;
 			spiritObj.transform.position = new Vector3(playerObj.transform.position.x, playerObj.transform.position.y + 1, playerObj.transform.position.z);
 
 			playerMove.activeMovement = false;

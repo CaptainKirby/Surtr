@@ -112,6 +112,12 @@ ModelImporter:
     100212: transform96
     100214: transform97
     100216: transform98
+    100218: pPyramid90
+    100220: pPyramid91
+    100222: pPyramid92
+    100224: pPyramid93
+    100226: pPyramid94
+    100228: pPyramid95
     400000: //RootNode
     400002: pCube10
     400004: pCube8
@@ -221,6 +227,12 @@ ModelImporter:
     400212: transform96
     400214: transform97
     400216: transform98
+    400218: pPyramid90
+    400220: pPyramid91
+    400222: pPyramid92
+    400224: pPyramid93
+    400226: pPyramid94
+    400228: pPyramid95
     2300000: pCube10
     2300002: pCube8
     2300004: pCube9
@@ -255,6 +267,12 @@ ModelImporter:
     2300062: pCube16
     2300064: pCube17
     2300066: pCube18
+    2300068: pPyramid90
+    2300070: pPyramid91
+    2300072: pPyramid92
+    2300074: pPyramid93
+    2300076: pPyramid94
+    2300078: pPyramid95
     3300000: pCube10
     3300002: pCube8
     3300004: pCube9
@@ -289,6 +307,12 @@ ModelImporter:
     3300062: pCube16
     3300064: pCube17
     3300066: pCube18
+    3300068: pPyramid90
+    3300070: pPyramid91
+    3300072: pPyramid92
+    3300074: pPyramid93
+    3300076: pPyramid94
+    3300078: pPyramid95
     4300000: pCube8
     4300002: pCube9
     4300004: pCube10
@@ -323,6 +347,12 @@ ModelImporter:
     4300062: pCube16
     4300064: pCube17
     4300066: pCube18
+    4300068: pPyramid90
+    4300070: pPyramid91
+    4300072: pPyramid92
+    4300074: pPyramid93
+    4300076: pPyramid94
+    4300078: pPyramid95
     9500000: //RootNode
   materials:
     importMaterials: 0
