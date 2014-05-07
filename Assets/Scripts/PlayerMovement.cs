@@ -23,8 +23,10 @@ public class PlayerMovement : MonoBehaviour {
 	public bool spiritActive;
 	public bool jumping;
 	public bool inSpirit;
+	private FloatChar floatC;
 	void Start () 
 	{
+		floatC = GetComponent<FloatChar>();
 		charAnim = GetComponentInChildren<Animator>(); 
 		charGfx = transform.GetChild(0);
 		activeMovement = true;
@@ -80,6 +82,8 @@ public class PlayerMovement : MonoBehaviour {
 //		}
 		if(!inSpirit)
 		{
+		if(activeMovement && !floatC.floating)
+		{
 		if(Input.GetAxis("Horizontal") > 0.1f && !movingRight)
 		{
 			charGfx.eulerAngles = new Vector3(0,90,0);
@@ -109,11 +113,11 @@ public class PlayerMovement : MonoBehaviour {
 			movingRight = false;
 
 		}
-		}
-		if(activeMovement)
-		{
+
 			motor.inputMoveDirection = Vector3.right * Input.GetAxis("Horizontal") * sprintValue;
 			motor.inputJump = Input.GetKey(KeyCode.JoystickButton0);
+			}
+
 			if(motor.jumping.jumping)
 			{
 				jumping = true;

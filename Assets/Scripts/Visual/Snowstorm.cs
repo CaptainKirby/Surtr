@@ -70,14 +70,14 @@ public class Snowstorm : MonoBehaviour {
 		}
 
 	}
-	IEnumerator Fade(bool fadeIn)
+	IEnumerator Fade(bool fadeIn2)
 	{
 		bool onOff = true;
 		float mTime = 0;
 		while(onOff)
 		{
 			mTime += Time.deltaTime * fadeSpeed;
-			if(fadeIn)
+			if(fadeIn2)
 			{
 				if(mTime < 1)
 				{
@@ -86,6 +86,8 @@ public class Snowstorm : MonoBehaviour {
 				else 
 				{
 					onOff = false;
+//					fadeIn = false;
+//					started = false;
 				}
 				//fade emission up
 			}
@@ -98,6 +100,8 @@ public class Snowstorm : MonoBehaviour {
 				else 
 				{
 					onOff = false;
+//					started = false;
+
 				}
 				//fade emission down
 			}

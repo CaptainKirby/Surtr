@@ -34,7 +34,7 @@ public class SnowVerticeMove : MonoBehaviour {
 		{
 			float curVel = 0;
 			float dist = Vector3.Distance(new Vector3(vertices[i].x, vertices[i].y, vertices[i].z), charPoint);
-			if(dist < 1f)
+			if(dist < 0.5f)
 			{
 				vertices[i]= new Vector3(verticesStart[i].x,Mathf.SmoothDamp(vertices[i].y, dist + 0.5f, ref curVel, 0.1f),verticesStart[i].z);
 //				colors[i] = new Color(200,100,100);
