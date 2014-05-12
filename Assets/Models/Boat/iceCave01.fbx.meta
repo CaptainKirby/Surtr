@@ -1,23 +1,27 @@
 fileFormatVersion: 2
-guid: 8afaa20d0187cfb47b6356fedc57ab84
+guid: 43537d46334336c468d26caf5d84e616
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
     100000: //RootNode
-    100002: polySurface1
-    100004: polySurface2
+    100002: pCube360
+    100004: polySurface36
+    100006: polySurface38
+    100008: polySurface39
     400000: //RootNode
-    400002: polySurface1
-    400004: polySurface2
-    2300000: //RootNode
-    2300002: polySurface1
-    2300004: polySurface2
-    3300000: //RootNode
-    3300002: polySurface1
-    3300004: polySurface2
-    4300000: pCube6
-    4300002: polySurface1
-    4300004: polySurface2
+    400002: pCube360
+    400004: polySurface36
+    400006: polySurface38
+    400008: polySurface39
+    2300000: pCube360
+    2300002: polySurface38
+    2300004: polySurface39
+    3300000: pCube360
+    3300002: polySurface38
+    3300004: polySurface39
+    4300000: pCube360
+    4300002: polySurface38
+    4300004: polySurface39
     9500000: //RootNode
   materials:
     importMaterials: 0
@@ -37,7 +41,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: .150000006
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 0
@@ -55,7 +59,7 @@ ModelImporter:
     splitTangentsAcrossUV: 0
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []

@@ -30,6 +30,7 @@ public class PlayerSwitch : MonoBehaviour {
 
 	void Start () 
 	{
+		spiritObj = GameObject.Find("Spirit");
 		playerController = playerObj.GetComponent<CharacterController>();
 		playerVelocity = playerController.velocity;
 		playerMove = playerObj.GetComponent<PlayerMovement>();

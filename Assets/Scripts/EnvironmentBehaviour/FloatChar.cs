@@ -14,6 +14,8 @@ public class FloatChar : MonoBehaviour {
 	public bool floating;
 	private bool on;
 
+	private SceneFade sceneFade;
+	private bool fall;
 	public bool turnOnFloat;
 	public bool turnOffFloat;
 	private float startFallspeed;
@@ -34,11 +36,13 @@ public class FloatChar : MonoBehaviour {
 		{
 			actionHandler.TakeAction += Floater;
 		}
+		sceneFade = Camera.main.GetComponent<SceneFade>();
 	}
 	
 	void Update () 
 	{
 		anim.SetBool("floating", floating);
+		anim.SetBool("fall", fall);
 	}
 
 	void Floater(GameObject gObj, bool stop)
@@ -58,7 +62,7 @@ public class FloatChar : MonoBehaviour {
 
 		if(turnOnFloat)
 		{
-		yield return new WaitForSeconds(1.3f);
+		yield return new WaitForSeconds(1.5f);
 
 			floating = true;
 			pMotor.movement.maxFallSpeed = 0.2f;
@@ -72,15 +76,42 @@ public class FloatChar : MonoBehaviour {
 		else
 		{
 
-			floating = false;
+//			floating = false;
 			pMotor.movement.maxFallSpeed = startFallspeed;
 			charGfx.eulerAngles = new Vector3(0, 90,0);
 			turnOnFloat = false;
 			turnOffFloat = false;
-			transform.position = new Vector3(spirit.position.x, spirit.position.y +0.2f, spirit.position.z);
+			transform.position = new Vector3(spirit.position.x, spirit.position.y, spirit.position.z);
 			pSwitch.curState = !pSwitch.curState;
 			vig.enabled = false;
+			fall = true;
+			pMove.activeMovement = false;
+			yield return new WaitForSeconds(0.5f);
+			sceneFade.fadeWhite = true;
+			sceneFade.fadeOutScene = true;
+//			StartCoroutine("FadeToWhite");
 
+
+		}
+	}
+
+	IEnumerator FadeToWhite()
+	{
+		float mTime = 0;
+		bool onOff = true;
+		while(onOff)
+		{
+			mTime += Time.deltaTime;
+			if(mTime < 1)
+			{
+				//fade
+			}
+			else
+			{
+				//end scene
+			}
+
+			yield return null;
 		}
 	}
 }

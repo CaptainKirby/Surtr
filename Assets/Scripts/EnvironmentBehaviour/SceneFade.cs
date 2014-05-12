@@ -1,0 +1,166 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class SceneFade : MonoBehaviour {
+
+	private bool startFade;
+
+	public bool fadeAtSceneStart;
+	[HideInInspector]
+	public bool fadeOutScene;
+	[HideInInspector]
+	public bool fadeInScene;
+	public bool fadeBlack;
+	public bool fadeWhite;
+	private GameObject whitePlane;
+	private GameObject blackPlane;
+	private Color whiteColorStart;
+	private Color blackColorStart;
+	public float fadeSpeed =3;
+	public string nextScene;
+	void Start () 
+	{
+		whitePlane = GameObject.Find("WhiteFade");
+		blackPlane = GameObject.Find("BlackFade");
+		if(fadeAtSceneStart)
+		{
+			if(fadeBlack)
+			{
+//				blackPlane.renderer.material.color = Color.black;
+				blackPlane.renderer.enabled = true;
+				StartCoroutine("FadeInScene");
+
+			}
+			if(fadeWhite)
+			{
+//				whitePlane.renderer.material.color = Color.white;
+				whitePlane.renderer.enabled = true;
+				StartCoroutine("FadeInScene");
+			}
+		}
+		whiteColorStart = whitePlane.renderer.material.color;
+		blackColorStart = blackPlane.renderer.material.color;
+
+
+	}
+	
+
+	void Update () 
+	{
+		if(!startFade)
+		{
+
+			if(fadeOutScene)
+			{
+				startFade = true;
+				StartCoroutine("FadeOutScene");
+
+			}
+			if(fadeInScene)
+			{
+				startFade = true;
+				StartCoroutine("FadeInScene");
+			}
+		}
+
+
+	}
+
+	IEnumerator FadeInScene()
+	{
+		bool onOff = true;
+		float mTime = 0;
+
+		while(onOff)
+		{
+			mTime += Time.deltaTime	/ fadeSpeed;
+			if(mTime< 1)
+			{
+				if(fadeWhite)
+				{
+					whitePlane.renderer.material.color = Color.Lerp(new Color(Color.white.r, Color.white.g, Color.white.b, 1), new Color(whiteColorStart.r, whiteColorStart.g, whiteColorStart.b, 0), mTime);
+				}
+				if(fadeBlack)
+				{
+					blackPlane.renderer.material.color = Color.Lerp(new Color(Color.black.r, Color.black.g, Color.black.b, 1), new Color(blackColorStart.r, blackColorStart.g, blackColorStart.b, 0), mTime);
+				}
+			}
+			else
+			{
+				if(fadeAtSceneStart)
+				{
+					fadeAtSceneStart = false;
+				}
+				fadeInScene = false;
+				onOff = false;
+				startFade = false;
+				if(fadeWhite)
+				{
+					whitePlane.renderer.enabled = false;
+					fadeWhite =	false;
+				}
+				if(fadeBlack)
+				{
+					blackPlane.renderer.enabled = false;
+					fadeBlack = false;
+				}
+			}
+			yield return null;
+		}
+		//fade plane væk
+	}
+
+	IEnumerator FadeOutScene()
+	{
+		//fade plane frem
+		bool onOff = true;
+		float mTime = 0;
+
+		if(fadeWhite)
+		{
+			whitePlane.renderer.enabled = true;
+			whitePlane.renderer.material.color = new Color(whiteColorStart.r, whiteColorStart.g, whiteColorStart.b, 0);
+		}
+		if(fadeBlack)
+		{
+			blackPlane.renderer.enabled = true;
+			blackPlane.renderer.material.color = new Color(blackColorStart.r, blackColorStart.g, blackColorStart.b, 0);
+		}
+		while(onOff)
+		{
+			mTime += Time.deltaTime	/ fadeSpeed;
+			if(mTime< 1)
+			{
+				if(fadeWhite)
+				{
+					whitePlane.renderer.material.color = Color.Lerp(new Color(Color.white.r, Color.white.g, Color.white.b, 0), new Color(whiteColorStart.r, whiteColorStart.g, whiteColorStart.b, 1), mTime);
+				}
+				if(fadeBlack)
+				{
+					blackPlane.renderer.material.color = Color.Lerp(new Color(Color.black.r, Color.black.g, Color.black.b, 0), new Color(blackColorStart.r, blackColorStart.g, blackColorStart.b, 1), mTime);
+				}
+			}
+			else
+			{
+				fadeOutScene = false;
+				startFade = false;
+				if(fadeWhite)
+				{
+					fadeWhite = false;
+				}
+				if(fadeBlack)
+				{
+					fadeBlack = false;
+				}
+				onOff = false;
+				if(nextScene != null)
+				{
+					Application.LoadLevel(nextScene);
+				}
+//				
+			}
+			yield return null;
+		}
+	}
+
+}

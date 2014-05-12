@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
-	[HideInInspector]
+//	[HideInInspector]
 	public bool activeMovement = true;
 	private CharacterMotor motor;
 	public float pushPower = 2.0f;
@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour {
 	public bool jumping;
 	public bool inSpirit;
 	private FloatChar floatC;
+
 	void Start () 
 	{
 		floatC = GetComponent<FloatChar>();
@@ -82,42 +83,22 @@ public class PlayerMovement : MonoBehaviour {
 //		}
 		if(!inSpirit)
 		{
-		if(activeMovement && !floatC.floating)
-		{
-		if(Input.GetAxis("Horizontal") > 0.1f && !movingRight)
-		{
-			charGfx.eulerAngles = new Vector3(0,90,0);
-			movingRight = true;
-			movingLeft = false;
-			idle = false;
-			movedRight = true;
-			movedLeft = true;
-			
-		}
-
-		if(Input.GetAxis("Horizontal") < -0.1f && !movingLeft)
-		{
-			charGfx.eulerAngles = new Vector3(0,-90,0);
-
-			movingLeft = true;
-			movingRight = false;
-			idle = false;
-			movedRight = false;
-			movedLeft = true;
-		}
 		
-		if(Input.GetAxis("Horizontal") > -0.1f && Input.GetAxis("Horizontal") < 0.1f && !idle)
-		{
-			idle = true;
-			movingLeft = false;
-			movingRight = false;
-
-		}
-
-			motor.inputMoveDirection = Vector3.right * Input.GetAxis("Horizontal") * sprintValue;
-			motor.inputJump = Input.GetKey(KeyCode.JoystickButton0);
+			if(floatC)
+			{
+			if(activeMovement && !floatC.floating)
+			{
+				Controls ();
+			}
 			}
 
+			if(!floatC)
+			{
+				if(activeMovement)
+				{
+					Controls ();
+				}
+			}
 			if(motor.jumping.jumping)
 			{
 				jumping = true;
@@ -137,6 +118,45 @@ public class PlayerMovement : MonoBehaviour {
 
 	}
 
+	void Controls()
+	{
+
+			if(Input.GetAxis("Horizontal") > 0.1f && !movingRight)
+			{
+				charGfx.eulerAngles = new Vector3(0,90,0);
+				movingRight = true;
+				movingLeft = false;
+				idle = false;
+				movedRight = true;
+				movedLeft = true;
+				
+			}
+			
+			if(Input.GetAxis("Horizontal") < -0.1f && !movingLeft)
+			{
+				charGfx.eulerAngles = new Vector3(0,-90,0);
+				
+				movingLeft = true;
+				movingRight = false;
+				idle = false;
+				movedRight = false;
+				movedLeft = true;
+			}
+			
+			if(Input.GetAxis("Horizontal") > -0.1f && Input.GetAxis("Horizontal") < 0.1f && !idle)
+			{
+				idle = true;
+				movingLeft = false;
+				movingRight = false;
+				
+			}
+			
+			motor.inputMoveDirection = Vector3.right * Input.GetAxis("Horizontal") * sprintValue;
+			motor.inputJump = Input.GetKey(KeyCode.JoystickButton0);
+
+		
+
+	}
 //	void OnControllerColliderHit (ControllerColliderHit hit)
 //	{
 //		Rigidbody body = hit.collider.attachedRigidbody;
