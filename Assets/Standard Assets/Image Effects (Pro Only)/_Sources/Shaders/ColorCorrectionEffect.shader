@@ -26,9 +26,12 @@ fixed4 frag (v2f_img i) : COLOR
 	fixed gg = tex2D(_RampTex, orig.gg).g + 0.00002;
 	fixed bb = tex2D(_RampTex, orig.bb).b + 0.00003;
 	
+	float greyScale = (rr + gg + bb)/3;
+	
 	fixed4 color = fixed4(rr, gg, bb, orig.a);
 
-	return color;
+
+	return lerp(color, fixed4(1,0,0,1), greyScale);
 }
 ENDCG
 

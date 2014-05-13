@@ -1,4 +1,4 @@
-  Shader "Custom/No Normals 4 Vertex Color Only Vertex Transparent" {
+  Shader "Custom/No Normals 4 Vertex Color Only Vertex Transparent Doubleside" {
     Properties {
      _MainTex ("Texture", 2D) = "white" {}
 	_LightCutoff("Maximum distance", Float) = 2.0
@@ -7,7 +7,7 @@
     SubShader {
       Tags { "RenderType" = "Transparent"  "Queue" = "Transparent"}
      
-//		Cull off
+		Cull off
 		Blend SrcAlpha OneMinusSrcAlpha
       CGPROGRAM		
       	#pragma surface surf WrapLambert fullforwardshadows
@@ -36,7 +36,7 @@
       void surf (Input IN, inout SurfaceOutput o) {
           o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb *  IN.color.rgb * _Color;
           o.Alpha = _Color.a * IN.color.a * tex2D (_MainTex, IN.uv_MainTex).a;
-          
+
       }
       ENDCG
     }
