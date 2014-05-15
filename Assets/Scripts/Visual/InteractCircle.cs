@@ -20,6 +20,7 @@ public class InteractCircle : MonoBehaviour {
 	public float distanceCut = 5;
 	public bool spiritInteract;
 	public bool playerInteract;
+	public bool dontFade;
 	void Start () 
 	{
 		startColor = renderer.material.color;
@@ -27,11 +28,14 @@ public class InteractCircle : MonoBehaviour {
 		startScale = transform.localScale;
 		player = GameObject.Find("Player").transform;
 		spirit = GameObject.Find("Spirit").transform;
-		if(outerCircle)
+		if(!dontFade)
 		{
-			StartCoroutine(Scale ());
+			if(outerCircle)
+			{
+				StartCoroutine(Scale ());
+			}
+			StartCoroutine(DistanceCheck());
 		}
-		StartCoroutine(DistanceCheck());
 
 
 	}
@@ -39,18 +43,20 @@ public class InteractCircle : MonoBehaviour {
 	void Update () 
 	{
 		//if spiritdist
-
-		if(!fadedIn && distS > distanceCut)
+		if(!dontFade)
 		{
-//			Debug.Log ("YOLO");
-			fadedIn = true;
-			StartCoroutine("Fade", true);
-		}
+			if(!fadedIn && distS > distanceCut)
+			{
+	//			Debug.Log ("YOLO");
+				fadedIn = true;
+				StartCoroutine("Fade", true);
+			}
 
-		if(fadedIn && distS < distanceCut)
-		{
-			fadedIn = false;
-			StartCoroutine("Fade", false);
+			if(fadedIn && distS < distanceCut)
+			{
+				fadedIn = false;
+				StartCoroutine("Fade", false);
+			}
 		}
 	}
 

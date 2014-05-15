@@ -27,9 +27,14 @@ public class PlayerSwitch : MonoBehaviour {
 
 	private int dir = -1; //-1 == left 1 == right
 	private bool switchable;
-
+	public bool canGoSpirit;
+	public Color spiritLight;
+	private Color startAmbientL;
+	private bool doneFirstSwitch;
 	void Start () 
 	{
+//		RenderSettings.ambientLight = new Color(1,1,1);
+		startAmbientL = RenderSettings.ambientLight;
 		spiritObj = GameObject.Find("Spirit");
 		playerController = playerObj.GetComponent<CharacterController>();
 		playerVelocity = playerController.velocity;
@@ -51,6 +56,13 @@ public class PlayerSwitch : MonoBehaviour {
 
 	void Update () 
 	{
+		if(Input.GetKeyDown(KeyCode.K))
+		{
+			Application.LoadLevel("sceneselect");
+		}
+		if(canGoSpirit)
+		{
+
 		if(Input.GetAxis("Horizontal") >0.2f)
 		{
 			dir = 1;
@@ -122,6 +134,7 @@ public class PlayerSwitch : MonoBehaviour {
 			fadeFromForm = false;
 //
 		}
+		}
 //		if(fadeFromForm)
 //		{
 //			fadeFromForm = false;
@@ -161,6 +174,7 @@ public class PlayerSwitch : MonoBehaviour {
 			{
 				if(mTime < 1)
 				{
+					RenderSettings.ambientLight = Color.Lerp(startAmbientL, spiritLight, mTime);
 					mTime += Time.deltaTime * 1.5f;
 					spiritGfxMesh.renderer.material.color = Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 1), mTime);
 				}
@@ -168,12 +182,17 @@ public class PlayerSwitch : MonoBehaviour {
 				{
 					onOff = false;
 					switchable = true;
+					doneFirstSwitch = true;
 				}
 			}
 			else
 			{
 				if(mTime < 1)
 				{
+					if(doneFirstSwitch)
+					{
+						RenderSettings.ambientLight = Color.Lerp(spiritLight, startAmbientL, mTime);
+					}
 					mTime += Time.deltaTime * 1.5f;
 					spiritGfxMesh.renderer.material.color = Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 0), mTime);
 				}

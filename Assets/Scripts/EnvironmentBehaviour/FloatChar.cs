@@ -72,6 +72,7 @@ public class FloatChar : MonoBehaviour {
 			turnOffFloat = true;
 			on = false;
 			vig.enabled = true;
+			pSwitch.canGoSpirit = true;
 		}
 		else
 		{
