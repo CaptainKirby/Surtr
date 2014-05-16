@@ -39,6 +39,10 @@ public class InputTaker : MonoBehaviour {
 
 	void Update () 
 	{
+		if(pS.goingToSpirit && inside)
+		{
+			inside = false;
+		}
 		if(inside)
 		{
 			if(inputType == InputType.clickInput)
@@ -165,6 +169,7 @@ public class InputTaker : MonoBehaviour {
 			inside = true;
 		}
 	}
+
 
 	void OnTriggerExit(Collider col)
 	{

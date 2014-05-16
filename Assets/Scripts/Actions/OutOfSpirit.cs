@@ -12,9 +12,11 @@ public class OutOfSpirit : MonoBehaviour {
 	}
 	void OutSpirit(GameObject gObj, bool stop)
 	{
-		if(playerSwitch.curState)
+		if(playerSwitch.curState &&  playerSwitch.switchable)
 		{
+//			Debug.Log ("gnesiugns");
 			playerSwitch.curState = !playerSwitch.curState;
+			PlayerSwitch.fadeFromForm = true;
 		}
 	}
 }

@@ -9,14 +9,14 @@ public class PlayerSwitch : MonoBehaviour {
 	public GameObject spiritGfxMesh;
 	public bool switchFreely;
 	private CharacterController playerController;
-	private PlayerMovement playerMove;
+	public PlayerMovement playerMove;
 	private Vector3 playerVelocity;
 
 	private SpiritMovement spiritMove;
 	private Vector3 spiritVelocity;
 
 	public KeyCode switchKey= KeyCode.JoystickButton3;
-	[HideInInspector]
+//	[HideInInspector]
 	public bool curState; //false = player true = spirit
 	[HideInInspector]
 	public static bool fadeFromForm;
@@ -26,11 +26,13 @@ public class PlayerSwitch : MonoBehaviour {
 	private Vector3 curVel;
 
 	private int dir = -1; //-1 == left 1 == right
-	private bool switchable;
+	public bool switchable;
 	public bool canGoSpirit;
 	public Color spiritLight;
 	private Color startAmbientL;
 	private bool doneFirstSwitch;
+	[HideInInspector]
+	public bool goingToSpirit;
 	void Start () 
 	{
 //		RenderSettings.ambientLight = new Color(1,1,1);
@@ -78,6 +80,7 @@ public class PlayerSwitch : MonoBehaviour {
 			//player is shown and moved
 			if(spiritMove.activeMovement && switchable)
 			{
+				goingToSpirit = true;
 				playerMove.inSpirit = false;
 
 				spiritObj.collider.enabled = false;
@@ -92,7 +95,7 @@ public class PlayerSwitch : MonoBehaviour {
 //			spiritObj.transform.position = Vector3.SmoothDamp(spiritObj.transform.position, playerObj.transform.position, ref curVel, Time.deltaTime * 5f);
 		}
 
-		if(curState && playerMove.activeMovement&& switchable)
+		if(curState && playerMove.activeMovement && switchable)
 		{
 			//spirit is shown and moved
 			playerMove.inSpirit = true;
@@ -105,6 +108,7 @@ public class PlayerSwitch : MonoBehaviour {
 			spiritObj.collider.enabled = true;
 			spiritMove.rigidbody.AddForce(new Vector3(dir,0,0) * Mathf.Clamp(playerVelocity.magnitude, 0.3f, 10f) * 2,ForceMode.Impulse);
 			playerMove.spiritActive = true;
+				Debug.Log ("tospirit");
 			StartCoroutine("SpiritFadeout", true);
 
 		}
@@ -114,6 +118,7 @@ public class PlayerSwitch : MonoBehaviour {
 
 		if(Input.GetKeyDown(switchKey) && switchable)
 		{
+//				Debug.Log ("huehuehe");
 //			Debug.Log ("wat22222");
 			curState = !curState;
 //			StartCoroutine(ClickOnce());
@@ -183,6 +188,7 @@ public class PlayerSwitch : MonoBehaviour {
 					onOff = false;
 					switchable = true;
 					doneFirstSwitch = true;
+
 				}
 			}
 			else
@@ -202,6 +208,7 @@ public class PlayerSwitch : MonoBehaviour {
 
 					spiritGfx.SetActive(false);
 					switchable = true;
+					goingToSpirit =	false;
 
 				}
 
