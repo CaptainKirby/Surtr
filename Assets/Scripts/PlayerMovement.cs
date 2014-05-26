@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour {
 	public bool jumping;
 	public bool inSpirit;
 	private FloatChar floatC;
-
+	private ParticleSystem snowPF;
 	void Start () 
 	{
 		floatC = GetComponent<FloatChar>();
@@ -32,12 +32,24 @@ public class PlayerMovement : MonoBehaviour {
 		charGfx = transform.GetChild(0);
 		activeMovement = true;
 		motor = GetComponent<CharacterMotor>();
-
+		snowPF = GetComponentInChildren<ParticleSystem>();
+		snowPF.enableEmission = false;
 	}
 	
 
 	void Update () 
 	{
+
+		//if in snow && grounded && not idle, activate snow particle emission
+		if(!idle && motor.grounded && !snowPF.enableEmission)
+		{
+			snowPF.enableEmission = true;
+		}
+		if((idle || !motor.grounded) && snowPF.enableEmission)
+		{
+			snowPF.enableEmission = false;
+		}
+
 
 		charAnim.SetBool("walkRight", movingRight);
 		charAnim.SetBool("walkLeft", movingLeft);
@@ -203,7 +215,8 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		transform.position = new Vector3(transform.position.x, transform.position.y, 0 );
 	}
-	
+
+
 }
 
 
