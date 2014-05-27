@@ -9,10 +9,13 @@ public class SpiritActivate : MonoBehaviour {
 	public bool disableInSpirit = true;
 	public bool disableInHuman = false;
 
-
+	private Color startColor;
+	private bool fadedIn;
 	void Start () 
 	{
 		playerSwitch = GameObject.FindObjectOfType<PlayerSwitch>();
+		startColor = this.renderer.material.color;
+		fadedIn =true;
 	}
 	
 
@@ -67,9 +70,10 @@ public class SpiritActivate : MonoBehaviour {
 				{
 					if(invisible && renderer)
 					{
-						if(renderer.enabled)
-						{
-							renderer.enabled = false;
+						if(fadedIn)
+						{		
+							fadedIn = false;				
+							StartCoroutine("FadeOut");
 						}
 					}
 					if(uncollidable && collider)
@@ -89,9 +93,10 @@ public class SpiritActivate : MonoBehaviour {
 				{
 					if(invisible && renderer)
 					{
-						if(!renderer.enabled)
+						if(!fadedIn)
 						{
-							renderer.enabled = true;
+						fadedIn = true;
+						StartCoroutine("FadeIn");
 						}
 					}
 					if(uncollidable && collider)
@@ -109,5 +114,47 @@ public class SpiritActivate : MonoBehaviour {
 				}
 			}
 		}
+
+	IEnumerator FadeOut()
+	{
+		bool onOff = true;
+		float mTime = 0;
+		Color curCol = this.renderer.material.color;
+		while(onOff)
+		{
+			if(mTime < 1)
+			{
+				mTime += Time.deltaTime;
+				this.renderer.material.color = Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 0), mTime);
+			}
+			else
+			{
+				onOff = false;
+//				renderer.enabled = false;
+			}
+
+			yield return null;
+		}
+	}
+	IEnumerator FadeIn()
+	{
+		bool onOff = true;
+		float mTime = 0;
+		Color curCol = this.renderer.material.color;
+		while(onOff)
+		{
+			if(mTime < 1)
+			{
+				mTime += Time.deltaTime;
+				this.renderer.material.color = Color.Lerp(curCol, startColor, mTime);
+			}
+			else
+			{
+				onOff = false;
+			}
+			
+			yield return null;
+		}
+	}
 //	}
 }

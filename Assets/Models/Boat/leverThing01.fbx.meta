@@ -1,19 +1,20 @@
 fileFormatVersion: 2
-guid: a85cdf46439673240810a6a90fc97bc7
+guid: a2128d031da35f74d8fb31c1dfbe8778
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: curve2
-    100002: extrudedSurface1
-    100004: nurbsCircle1
-    100006: //RootNode
-    400000: curve2
-    400002: extrudedSurface1
-    400004: nurbsCircle1
-    400006: //RootNode
-    2300000: extrudedSurface1
-    3300000: extrudedSurface1
-    4300000: extrudedSurface1
+    100000: //RootNode
+    100002: pCube375
+    100004: pCube376
+    400000: //RootNode
+    400002: pCube375
+    400004: pCube376
+    2300000: pCube375
+    2300002: pCube376
+    3300000: pCube375
+    3300002: pCube376
+    4300000: pCube375
+    4300002: pCube376
     9500000: //RootNode
   materials:
     importMaterials: 0
@@ -65,5 +66,5 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   userData: 

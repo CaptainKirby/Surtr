@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour {
 	public bool inSpirit;
 	private FloatChar floatC;
 	private ParticleSystem snowPF;
+	private bool snowAtFeet;
 	void Start () 
 	{
 		floatC = GetComponent<FloatChar>();
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour {
 		motor = GetComponent<CharacterMotor>();
 		snowPF = GetComponentInChildren<ParticleSystem>();
 		snowPF.enableEmission = false;
+		snowAtFeet = false;
 	}
 	
 
@@ -41,11 +43,11 @@ public class PlayerMovement : MonoBehaviour {
 	{
 
 		//if in snow && grounded && not idle, activate snow particle emission
-		if(!idle && motor.grounded && !snowPF.enableEmission)
+		if(!idle && motor.grounded && !snowPF.enableEmission  || snowAtFeet)
 		{
 			snowPF.enableEmission = true;
 		}
-		if((idle || !motor.grounded) && snowPF.enableEmission)
+		if((idle || !motor.grounded) && snowPF.enableEmission || !snowAtFeet)
 		{
 			snowPF.enableEmission = false;
 		}
@@ -129,6 +131,39 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	}
+
+	void OnControllerColliderHit(ControllerColliderHit hit)
+	{
+		if(hit.collider.CompareTag("Snow"))
+		{
+			if(!snowAtFeet)
+			{
+				snowAtFeet = true;
+			}
+		}
+		if(hit.collider.CompareTag("NoSnow"))
+		{
+			if(snowAtFeet)
+			{
+				snowAtFeet =	false;
+			}
+		}
+	}
+//	void OnTriggerEnter(Collider col)
+//	{
+//		if(col.CompareTag("NoSnow"))
+//		{
+////						Debug.Log ("SNOW!");
+//			snowAtFeet = false;
+//
+//		}
+//		if(col.CompareTag("Snow"))
+//		{
+//			//						Debug.Log ("SNOW!");
+//			snowAtFeet = true;
+//			
+//		}
+//	}
 
 	void Controls()
 	{

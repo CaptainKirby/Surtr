@@ -33,8 +33,14 @@ public class PlayerSwitch : MonoBehaviour {
 	private bool doneFirstSwitch;
 	[HideInInspector]
 	public bool goingToSpirit;
+	private ParticleSystemRenderer spiritParticlesR;
+	private Color sPRColorStart;
+
 	void Start () 
 	{
+		spiritParticlesR = Camera.main.GetComponentInChildren<ParticleSystemRenderer>();
+		sPRColorStart = spiritParticlesR.material.GetColor("_TintColor");
+		spiritParticlesR.material.SetColor("_TintColor", new Color(sPRColorStart.r, sPRColorStart.g, sPRColorStart.b, 0));
 //		RenderSettings.ambientLight = new Color(1,1,1);
 		startAmbientL = RenderSettings.ambientLight;
 		spiritObj = GameObject.Find("Spirit");
@@ -172,7 +178,9 @@ public class PlayerSwitch : MonoBehaviour {
 		bool onOff = true;
 		float mTime = 0;
 		Color curCol = spiritGfxMesh.renderer.material.color;
+//		Color spCurCol = spiritParticlesR.material.color;
 		switchable = false;
+
 		while(onOff)
 		{
 			if(turnOnSpirit)
@@ -182,6 +190,7 @@ public class PlayerSwitch : MonoBehaviour {
 					RenderSettings.ambientLight = Color.Lerp(startAmbientL, spiritLight, mTime);
 					mTime += Time.deltaTime * 1.5f;
 					spiritGfxMesh.renderer.material.color = Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 1), mTime);
+					spiritParticlesR.material.SetColor("_TintColor", Color.Lerp(new Color(sPRColorStart.r, sPRColorStart.g, sPRColorStart.b, 0), sPRColorStart, mTime));
 				}
 				else
 				{
@@ -201,6 +210,8 @@ public class PlayerSwitch : MonoBehaviour {
 					}
 					mTime += Time.deltaTime * 1.5f;
 					spiritGfxMesh.renderer.material.color = Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 0), mTime);
+					spiritParticlesR.material.SetColor("_TintColor", Color.Lerp(sPRColorStart, new Color(sPRColorStart.r, sPRColorStart.g, sPRColorStart.b, 0), mTime));
+
 				}
 				else
 				{

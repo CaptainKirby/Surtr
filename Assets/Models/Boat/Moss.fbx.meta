@@ -1,19 +1,13 @@
 fileFormatVersion: 2
-guid: a85cdf46439673240810a6a90fc97bc7
+guid: cb3c415e020701246adb7a41656fcc6b
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: curve2
-    100002: extrudedSurface1
-    100004: nurbsCircle1
-    100006: //RootNode
-    400000: curve2
-    400002: extrudedSurface1
-    400004: nurbsCircle1
-    400006: //RootNode
-    2300000: extrudedSurface1
-    3300000: extrudedSurface1
-    4300000: extrudedSurface1
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: polySurface7
     9500000: //RootNode
   materials:
     importMaterials: 0

@@ -1,19 +1,30 @@
 fileFormatVersion: 2
-guid: a85cdf46439673240810a6a90fc97bc7
+guid: 23175f1c480983c498d09b49a977075c
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: curve2
-    100002: extrudedSurface1
-    100004: nurbsCircle1
-    100006: //RootNode
-    400000: curve2
-    400002: extrudedSurface1
-    400004: nurbsCircle1
-    400006: //RootNode
-    2300000: extrudedSurface1
-    3300000: extrudedSurface1
-    4300000: extrudedSurface1
+    100000: //RootNode
+    100002: pCube371
+    100004: pCube372
+    100006: pCube373
+    100008: pCube374
+    400000: //RootNode
+    400002: pCube371
+    400004: pCube372
+    400006: pCube373
+    400008: pCube374
+    2300000: pCube371
+    2300002: pCube372
+    2300004: pCube373
+    2300006: pCube374
+    3300000: pCube371
+    3300002: pCube372
+    3300004: pCube373
+    3300006: pCube374
+    4300000: pCube371
+    4300002: pCube372
+    4300004: pCube373
+    4300006: pCube374
     9500000: //RootNode
   materials:
     importMaterials: 0
