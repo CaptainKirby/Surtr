@@ -5,8 +5,10 @@ using System.Collections;
 public class FadeOutAndIn : MonoBehaviour {
 	public bool faded = false;
 	private ActionHandler actionHandler;
+//	private PlayerSwitch pSwitch;
 	// Use this for initialization
 	void Awake () {
+//		pSwitch = GameObject.Find("Player").GetComponent<PlayerSwitch>();
 		actionHandler =  GetComponent<ActionHandler>();
 		if(actionHandler)
 		{
@@ -21,6 +23,8 @@ public class FadeOutAndIn : MonoBehaviour {
 	}
 	void Fade(GameObject gObj, bool stop)
 	{
+		if(gObj.CompareTag("Player"))
+		{
 		if(!faded)
 		{
 			this.renderer.enabled = false;
@@ -30,6 +34,7 @@ public class FadeOutAndIn : MonoBehaviour {
 		{
 			this.renderer.enabled = true;
 			faded = false;
+		}
 		}
 	}
 }

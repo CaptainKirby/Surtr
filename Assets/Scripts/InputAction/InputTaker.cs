@@ -194,6 +194,28 @@ public class InputTaker : MonoBehaviour {
 				}
 //			}
 		}
+		if(inputType == InputType.trigger)
+		{
+			//					Debug.Log ("GUIEGNUIO");
+			
+			foreach(ActionHandler aD in actionDoers)
+			{
+				if(causeStop)
+				{
+					aD.DoThing(col.gameObject, true);
+				}
+				else
+				{
+					aD.DoThing(col.gameObject, false);
+				}
+				//				if(aD.callFunction)
+				//				{
+				//					aD.collidingObject = col.gameObject;
+				////					aD.Invoke(aD.dynFunctionName, 0);
+				//				}
+			}
+			//			actionDo.DoThing();
+		}
 	}
 //
 //	void OnGUI()
