@@ -16,6 +16,10 @@ public class SpiritActivate : MonoBehaviour {
 		playerSwitch = GameObject.FindObjectOfType<PlayerSwitch>();
 		startColor = this.renderer.material.color;
 		fadedIn =true;
+		if(disableInHuman)
+		{
+			this.renderer.material.color = new Color(startColor.r, startColor.g, startColor.b, 0);
+		}
 	}
 	
 
