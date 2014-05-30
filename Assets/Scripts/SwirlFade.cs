@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SwirlFade : MonoBehaviour {
 	private Color startColor;
@@ -7,14 +8,26 @@ public class SwirlFade : MonoBehaviour {
 	private SpiritMovement sMove;
 	private PlayerSwitch playerSwitch;
 	// Use this for initialization
+//	private List<GameObject> children;
+//	private int i = 0;
 	void Start () {
-	
+
+//		foreach( GameObject gObj in transform)
+//		{
+//			children[i] = gObj;
+//			i++;
+//		}
+
 		startColor = this.renderer.material.GetColor("_TintColor");
 
 		sMove = GameObject.Find("Spirit").GetComponent<SpiritMovement>();
 		playerSwitch = GameObject.FindObjectOfType<PlayerSwitch>();
-		StartCoroutine("FadeOut");
-		fadedIn =	true;
+		if(!sMove.grounded)
+		{
+			StartCoroutine("FadeOut");
+			fadedIn =	true;
+		}
+		this.renderer.material.SetColor("_TintColor", new Color(startColor.r, startColor.g, startColor.b, 0));
 
 	}
 	
@@ -48,7 +61,8 @@ public class SwirlFade : MonoBehaviour {
 	//					lightPulse.StopCoroutine("Pulsate");
 	//				}
 					fadedIn = true;
-					StartCoroutine("FadeOut");
+//					StartCoroutine("FadeOut");
+					StartCoroutine("CheckIfGrounded");
 				}
 			}
 
@@ -57,6 +71,7 @@ public class SwirlFade : MonoBehaviour {
 		{
 			if(!fadedIn)
 			{
+				StopCoroutine("FadeIn");
 				//				if(lightPulse != null)
 				//				{
 				//					lightPulse.enabled = false;
@@ -65,6 +80,14 @@ public class SwirlFade : MonoBehaviour {
 				fadedIn = true;
 				StartCoroutine("FadeOut");
 			}
+		}
+	}
+	IEnumerator CheckIfGrounded()
+	{
+		yield return new WaitForSeconds(0.5f);
+		if(!sMove.grounded)
+		{
+			StartCoroutine("FadeOut");
 		}
 	}
 	IEnumerator FadeOut()
@@ -77,7 +100,9 @@ public class SwirlFade : MonoBehaviour {
 			if(mTime < 1)
 			{
 				mTime += Time.deltaTime;
-				this.renderer.material.SetColor("_TintColor", Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 0), mTime));
+
+					this.renderer.material.SetColor("_TintColor", Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 0), mTime));
+				
 			}
 			else
 			{
@@ -99,7 +124,9 @@ public class SwirlFade : MonoBehaviour {
 			if(mTime < 1)
 			{
 				mTime += Time.deltaTime;
-				this.renderer.material.SetColor("_TintColor", Color.Lerp(curCol, startColor, mTime));
+
+					this.renderer.material.SetColor("_TintColor", Color.Lerp(curCol, startColor, mTime));
+
 			}
 			else
 			{

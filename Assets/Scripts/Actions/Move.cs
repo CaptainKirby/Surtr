@@ -48,10 +48,12 @@ public class Move : MonoBehaviour {
 	private float mTime;
 	private ActionHandler actionHandler;
 	public bool playOnAwake;
+	private PlayerSwitch pSwitch;
 //	public ActionHandler actionHandler;
 	void Awake()
 	{
 //		onOff = true;
+		pSwitch = GameObject.FindObjectOfType<PlayerSwitch>();
 		gameObject.transform.position = moveStartPos;
 		actionHandler =  GetComponent<ActionHandler>();
 		if(actionHandler)
@@ -95,7 +97,7 @@ public class Move : MonoBehaviour {
 
 	private void TransformPositionT(GameObject gObj, bool stop)
 	{
-		if(!gObj.CompareTag("Spirit"))
+		if(pSwitch.curState)
 		{
 
 //		if(started && moveBack && onOff)
