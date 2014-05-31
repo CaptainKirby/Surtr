@@ -1,11 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SwirlFade.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Actions\StartParticles.cs">
     <Files>
-      <File FileName="Assets\Scripts\SwirlFade.cs" Line="88" Column="7" />
-      <File FileName="Assets\Scripts\SpiritMovement.cs" Line="229" Column="3" />
-      <File FileName="Assets\Scripts\Actions\Move.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SwirlFade.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SpiritMovement.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Actions\Move.cs" Line="49" Column="38" />
+      <File FileName="Assets\Scripts\PlayerMovement.cs" Line="41" Column="20" />
       <File FileName="Assets\Editor\InputTakerEditor.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PlayerSwitch.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Actions\HumanToSpirit.cs" Line="1" Column="1" />
@@ -21,6 +21,7 @@
       <File FileName="Assets\Scripts\Actions\FadeOutAndIn.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Visual\DistanceVertexColor.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SimpleRotate.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Actions\StartParticles.cs" Line="10" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

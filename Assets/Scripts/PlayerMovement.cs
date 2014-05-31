@@ -26,8 +26,23 @@ public class PlayerMovement : MonoBehaviour {
 	private FloatChar floatC;
 	private ParticleSystem snowPF;
 	private bool snowAtFeet;
+	[HideInInspector]
+	public bool onSnow;
+	[HideInInspector]
+	public bool onStone;
+	[HideInInspector]
+	public bool onWood;
+
+	public bool startSitting;
+	private bool sitting;
+	private bool inStorm;
 	void Start () 
-	{
+	{	
+//		inStorm = true;
+		if(startSitting)
+		{
+			sitting = true;
+		}
 		floatC = GetComponent<FloatChar>();
 		charAnim = GetComponentInChildren<Animator>(); 
 		charGfx = transform.GetChild(0);
@@ -52,7 +67,8 @@ public class PlayerMovement : MonoBehaviour {
 			snowPF.enableEmission = false;
 		}
 
-
+		charAnim.SetBool("InStorm", inStorm);
+		charAnim.SetBool("sitting", sitting);
 		charAnim.SetBool("walkRight", movingRight);
 		charAnim.SetBool("walkLeft", movingLeft);
 		charAnim.SetBool("idle", idle);
@@ -136,16 +152,33 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		if(hit.collider.CompareTag("Snow"))
 		{
+			onSnow = true;
+			onWood = false;
+			onStone = false;
 			if(!snowAtFeet)
 			{
 				snowAtFeet = true;
+
 			}
 		}
-		if(hit.collider.CompareTag("NoSnow"))
+		if(hit.collider.CompareTag("Wood"))
 		{
+			onSnow = false;
+			onWood = true;
+			onStone = false;
 			if(snowAtFeet)
 			{
 				snowAtFeet =	false;
+			}
+		}
+		if(hit.collider.CompareTag("Stone"))
+		{
+			onSnow = false;
+			onWood = false;
+			onStone = true;
+			if(snowAtFeet)
+			{
+				snowAtFeet = false;
 			}
 		}
 	}
@@ -170,6 +203,10 @@ public class PlayerMovement : MonoBehaviour {
 
 			if(Input.GetAxis("Horizontal") > 0.1f && !movingRight)
 			{
+				if(sitting)
+				{
+					sitting = false;
+				}
 				charGfx.eulerAngles = new Vector3(0,90,0);
 				movingRight = true;
 				movingLeft = false;
@@ -182,7 +219,10 @@ public class PlayerMovement : MonoBehaviour {
 			if(Input.GetAxis("Horizontal") < -0.1f && !movingLeft)
 			{
 				charGfx.eulerAngles = new Vector3(0,-90,0);
-				
+				if(sitting)
+				{
+					sitting = false;
+				}
 				movingLeft = true;
 				movingRight = false;
 				idle = false;
@@ -192,6 +232,10 @@ public class PlayerMovement : MonoBehaviour {
 			
 			if(Input.GetAxis("Horizontal") > -0.1f && Input.GetAxis("Horizontal") < 0.1f && !idle)
 			{
+				if(sitting)
+				{
+					sitting = false;
+				}
 				idle = true;
 				movingLeft = false;
 				movingRight = false;
