@@ -1,11 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Actions\StartParticles.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerMovement.cs">
     <Files>
+      <File FileName="Assets\Scripts\PlayerMovement.cs" Line="62" Column="39" />
       <File FileName="Assets\Scripts\SwirlFade.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SpiritMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Actions\Move.cs" Line="49" Column="38" />
-      <File FileName="Assets\Scripts\PlayerMovement.cs" Line="41" Column="20" />
+      <File FileName="Assets\Scripts\SpiritMovement.cs" Line="228" Column="2" />
+      <File FileName="Assets\Scripts\Actions\Move.cs" Line="145" Column="6" />
       <File FileName="Assets\Editor\InputTakerEditor.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PlayerSwitch.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Actions\HumanToSpirit.cs" Line="1" Column="1" />
@@ -13,15 +13,9 @@
       <File FileName="Assets\Scripts\TargetFollow.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\EnvironmentBehaviour\EnableGravity.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Visual\FullScreen.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EnvironmentBehaviour\FloatChar.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Actions\OutOfSpirit.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\InputAction\InputTaker.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LightFadeout.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LightPulse.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Actions\FadeOutAndIn.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Visual\DistanceVertexColor.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SimpleRotate.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Actions\StartParticles.cs" Line="10" Column="2" />
+      <File FileName="Assets\Scripts\InputAction\InputTaker.cs" Line="184" Column="30" />
+      <File FileName="Assets\Scripts\Visual\InteractCircle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\HiResScreenShots.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

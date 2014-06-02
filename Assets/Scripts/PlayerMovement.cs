@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour {
 	public bool startSitting;
 	private bool sitting;
 	private bool inStorm;
+	public Vector3 prevGroundedPos;
 	void Start () 
 	{	
 //		inStorm = true;
@@ -51,11 +52,41 @@ public class PlayerMovement : MonoBehaviour {
 		snowPF = GetComponentInChildren<ParticleSystem>();
 		snowPF.enableEmission = false;
 		snowAtFeet = false;
+		StartCoroutine("StepUpdate");
 	}
 	
+	IEnumerator StepUpdate()
+	{
+		while(true)
+		{
+			yield return new WaitForSeconds(5);
+			StartCoroutine("SavePos");
+		}
+	}
 
+	IEnumerator SavePos()
+	{
+		while(true)
+		{
+
+			yield return new WaitForSeconds(5);
+			if(motor.grounded)
+			{
+				prevGroundedPos = this.transform.position;
+			}
+		}
+	}
 	void Update () 
 	{
+
+		if(!IsFallingHigh())
+		{
+
+			if(motor.movement.velocity.y < -10)
+			{
+				this.transform.position = prevGroundedPos;
+			}
+		}
 
 		//if in snow && grounded && not idle, activate snow particle emission
 		if(!idle && motor.grounded && !snowPF.enableEmission  || snowAtFeet)
@@ -294,6 +325,17 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		transform.position = new Vector3(transform.position.x, transform.position.y, 0 );
 	}
+
+	bool IsFallingHigh()
+	{
+		return  Physics.Raycast(transform.position, -Vector3.up,2);
+	}
+
+//	IEnumerator DelayedGrounded()
+//	{
+////		yield return WaitForSeconds
+//	}
+
 
 
 }
