@@ -181,6 +181,7 @@ public class InputTaker : MonoBehaviour {
 		{
 //			if(!col.CompareTag("Spirit"))
 //			{
+//			Debug.Log ("GUIEGNUIO");
 				foreach(ActionHandler aD in actionDoers)
 				{
 				if(causeStop)

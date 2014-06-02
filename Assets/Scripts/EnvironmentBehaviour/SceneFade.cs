@@ -6,9 +6,9 @@ public class SceneFade : MonoBehaviour {
 	private bool startFade;
 
 	public bool fadeAtSceneStart;
-	[HideInInspector]
+//	[HideInInspector]
 	public bool fadeOutScene;
-	[HideInInspector]
+//	[HideInInspector]
 	public bool fadeInScene;
 	public bool fadeBlack;
 	public bool fadeWhite;
@@ -18,6 +18,7 @@ public class SceneFade : MonoBehaviour {
 	private Color blackColorStart;
 	public float fadeSpeed =3;
 	public string nextScene;
+	private ActionHandler actionHandler;
 	void Start () 
 	{
 		whitePlane = GameObject.Find("WhiteFade");
@@ -40,30 +41,58 @@ public class SceneFade : MonoBehaviour {
 		}
 		whiteColorStart = whitePlane.renderer.material.color;
 		blackColorStart = blackPlane.renderer.material.color;
+		actionHandler =  GetComponent<ActionHandler>();
+		if(actionHandler)
+		{
 
+			actionHandler.TakeAction += FadeTrigger;
+		}
 
 	}
 	
 
 	void Update () 
 	{
-		if(!startFade)
+		if(!actionHandler)
 		{
-
-			if(fadeOutScene)
+			if(!startFade)
 			{
-				startFade = true;
-				StartCoroutine("FadeOutScene");
 
-			}
-			if(fadeInScene)
-			{
-				startFade = true;
-				StartCoroutine("FadeInScene");
+				if(fadeOutScene)
+				{
+					startFade = true;
+					StartCoroutine("FadeOutScene");
+
+				}
+				if(fadeInScene)
+				{
+					startFade = true;
+					StartCoroutine("FadeInScene");
+				}
 			}
 		}
 
 
+	}
+	void FadeTrigger(GameObject gObj, bool stop)
+	{
+
+			if(!startFade)
+			{
+				
+				if(fadeOutScene)
+				{
+					startFade = true;
+					StartCoroutine("FadeOutScene");
+					
+				}
+				if(fadeInScene)
+				{
+					startFade = true;
+					StartCoroutine("FadeInScene");
+				}
+			}
+		
 	}
 
 	IEnumerator FadeInScene()

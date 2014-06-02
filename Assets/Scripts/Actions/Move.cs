@@ -97,8 +97,8 @@ public class Move : MonoBehaviour {
 
 	private void TransformPositionT(GameObject gObj, bool stop)
 	{
-		if(pSwitch.curState)
-		{
+//		if(!pSwitch.curState)
+//		{
 
 //		if(started && moveBack && onOff)
 //		{
@@ -142,7 +142,7 @@ public class Move : MonoBehaviour {
 	//			onOff = true;
 	//			Debug.Log ("WHALALAL");
 			}
-		}
+//		}
 
 	}
 	
