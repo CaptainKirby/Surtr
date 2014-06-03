@@ -37,8 +37,11 @@ public class PlayerMovement : MonoBehaviour {
 	private bool sitting;
 	private bool inStorm;
 	public Vector3 prevGroundedPos;
+	private PlayerSwitch pSwitch;
+	public bool fallingDeath;
 	void Start () 
 	{	
+		pSwitch = GameObject.FindObjectOfType<PlayerSwitch>();
 //		inStorm = true;
 		if(startSitting)
 		{
@@ -52,7 +55,11 @@ public class PlayerMovement : MonoBehaviour {
 		snowPF = GetComponentInChildren<ParticleSystem>();
 		snowPF.enableEmission = false;
 		snowAtFeet = false;
-		StartCoroutine("StepUpdate");
+		if(pSwitch.canGoSpirit)
+		{
+			StartCoroutine("StepUpdate");
+		}
+
 	}
 	
 	IEnumerator StepUpdate()
@@ -76,15 +83,40 @@ public class PlayerMovement : MonoBehaviour {
 			}
 		}
 	}
+
+	void OnTriggerStay(Collider col)
+	{
+		if(col.CompareTag("Storm"))
+		{
+			inStorm= true;
+		}
+	}
+	void OnTriggerExit(Collider col)
+	{
+		if(col.CompareTag("Storm"))
+		{
+			inStorm = false;
+		}
+	}
 	void Update () 
 	{
-
-		if(!IsFallingHigh())
+		if(!motor.grounded)
 		{
-
-			if(motor.movement.velocity.y < -10)
+			jumping = true;
+		}
+		else
+		{
+			jumping = false;
+		}
+		if(fallingDeath)
+		{
+			if(!IsFallingHigh())
 			{
-				this.transform.position = prevGroundedPos;
+
+				if(motor.movement.velocity.y < -10)
+				{
+					this.transform.position = prevGroundedPos;
+				}
 			}
 		}
 

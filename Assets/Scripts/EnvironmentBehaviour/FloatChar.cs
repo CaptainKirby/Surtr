@@ -20,6 +20,7 @@ public class FloatChar : MonoBehaviour {
 	public bool turnOffFloat;
 	private float startFallspeed;
 	public Vignetting vig;
+	public GameObject leftCol;
 	void Start () 
 	{
 		vig = Camera.main.GetComponent<Vignetting>();
@@ -37,6 +38,7 @@ public class FloatChar : MonoBehaviour {
 			actionHandler.TakeAction += Floater;
 		}
 		sceneFade = Camera.main.GetComponent<SceneFade>();
+		leftCol.collider.enabled=false;
 	}
 	
 	void Update () 
@@ -73,13 +75,16 @@ public class FloatChar : MonoBehaviour {
 			on = false;
 			vig.enabled = true;
 			pSwitch.canGoSpirit = true;
+			leftCol.collider.enabled =true;
 		}
 		else
 		{
 
 //			floating = false;
 			pMotor.movement.maxFallSpeed = startFallspeed;
-			charGfx.eulerAngles = new Vector3(0, 90,0);
+				charGfx.eulerAngles = new Vector3(0, 90,0);
+			
+		
 			turnOnFloat = false;
 			turnOffFloat = false;
 			transform.position = new Vector3(spirit.position.x, spirit.position.y, spirit.position.z);

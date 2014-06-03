@@ -24,6 +24,15 @@ public class StartParticles : MonoBehaviour {
 	}
 	void StartEmission(GameObject gObj, bool stop)
 	{
+//		this.particleSys.enableEmission = true;
+//		this.particleSys.playOnAwake =true;
+		StartCoroutine("ParticleGo");
+	}
+
+	IEnumerator ParticleGo()
+	{
+			this.particleSys.enableEmission = true;
+		yield return new WaitForSeconds(this.particleSys.duration);
 
 	}
 }
