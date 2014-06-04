@@ -51,7 +51,9 @@ public class TargetFollow : MonoBehaviour {
 	}
 	IEnumerator TargetToPlayer()
 	{
-		yield return new WaitForEndOfFrame();
+//		yield return new WaitForEndOfFrame();
+		yield return new WaitForSeconds(0.35f);
+
 		target = player.transform;
 	}
 //		if(!pSwitch.curState && target != player.transform)

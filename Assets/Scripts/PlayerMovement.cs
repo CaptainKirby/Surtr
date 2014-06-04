@@ -45,6 +45,10 @@ public class PlayerMovement : MonoBehaviour {
 	private GameObject whiteFade;
 	void Start () 
 	{	
+		foreach (AudioListener o in FindObjectsOfType<AudioListener>())
+			Debug.Log(o.name, o);
+
+
 		whiteFade = GameObject.Find("WhiteFade");
 		pSwitch = GameObject.FindObjectOfType<PlayerSwitch>();
 //		inStorm = true;
@@ -73,7 +77,7 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			yield return new WaitForSeconds(2f);
 //			StartCoroutine("SavePos");
-			if(motor.grounded && !dieWhenGrounded && Mathf.Abs(motor.movement.velocity.y) < 0.1f)
+			if(motor.grounded && !dieWhenGrounded && Mathf.Abs(motor.movement.velocity.y) < 1f)
 			{
 				prevGroundedPos = this.transform.position;
 				

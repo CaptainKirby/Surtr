@@ -21,8 +21,11 @@ public class InteractCircle : MonoBehaviour {
 	public bool spiritInteract;
 	public bool playerInteract;
 	public bool dontFade;
+	private PlayerSwitch pSwitch;
 	void Start () 
 	{
+
+		pSwitch = GameObject.FindObjectOfType<PlayerSwitch>();
 		startColor = renderer.material.color;
 		noAlphaColor = new Color (renderer.material.color.r, renderer.material.color.g, renderer.material.color.b, 0);
 		startScale = transform.localScale;
@@ -45,18 +48,31 @@ public class InteractCircle : MonoBehaviour {
 		//if spiritdist
 		if(!dontFade)
 		{
-			if(!fadedIn && distS > distanceCut)
+			if(pSwitch.curState)
 			{
-	//			Debug.Log ("YOLO");
-				fadedIn = true;
-				StartCoroutine("Fade", true);
+				if(!fadedIn && distS > distanceCut )
+				{
+		//			Debug.Log ("YOLO");
+					fadedIn = true;
+					StartCoroutine("Fade", true);
+				}
+
+				if(fadedIn && distS < distanceCut)
+				{
+					fadedIn = false;
+					StartCoroutine("Fade", false);
+				}
+			}
+			else
+			{
+				if(!fadedIn )
+				{
+
+					fadedIn = true;
+					StartCoroutine("Fade", true);
+				}
 			}
 
-			if(fadedIn && distS < distanceCut)
-			{
-				fadedIn = false;
-				StartCoroutine("Fade", false);
-			}
 		}
 	}
 

@@ -35,7 +35,7 @@ public class PlayerSwitch : MonoBehaviour {
 	public bool goingToSpirit;
 	private ParticleSystemRenderer spiritParticlesR;
 	private Color sPRColorStart;
-
+	public Transform charMesh;
 	void Start () 
 	{
 		spiritParticlesR = Camera.main.GetComponentInChildren<ParticleSystemRenderer>();
@@ -56,7 +56,7 @@ public class PlayerSwitch : MonoBehaviour {
 //		spiritObj.renderer.enabled = false;
 		spiritObj.collider.enabled = false;
 		spiritGfx.SetActive(false);
-
+		charMesh = transform.GetChild(0).transform.GetChild(0);
 		dir = -1;
 		switchable =true;
 	}
@@ -95,6 +95,8 @@ public class PlayerSwitch : MonoBehaviour {
 //				spiritObj.renderer.enabled = false; // skal være fade ud
 				playerMove.spiritActive = false;
 				StartCoroutine("SpiritFadeout", false);
+//					charMesh.renderer.material.SetFloat("_SliceAmount", 1);
+//					StartCoroutine("PlayerFadeout",false);
 
 			}
 
@@ -116,6 +118,7 @@ public class PlayerSwitch : MonoBehaviour {
 			playerMove.spiritActive = true;
 				Debug.Log ("tospirit");
 			StartCoroutine("SpiritFadeout", true);
+//			StartCoroutine("PlayerFadeout", true);
 
 		}
 
@@ -134,7 +137,9 @@ public class PlayerSwitch : MonoBehaviour {
 		}
 		else if(switchFreely && Input.GetKeyDown(KeyCode.JoystickButton2) && spiritMove.grounded && switchable)
 		{
-			playerObj.transform.position = new Vector3(spiritObj.transform.position.x, spiritObj.transform.position.y +0.2f, spiritObj.transform.position.z);
+			StartCoroutine("PlayerFadeout", true);
+
+//			playerObj.transform.position = new Vector3(spiritObj.transform.position.x, spiritObj.transform.position.y +0.2f, spiritObj.transform.position.z);
 			curState = !curState;
 			fadeFromForm = true;
 
@@ -172,6 +177,50 @@ public class PlayerSwitch : MonoBehaviour {
 
 	// spirit skal kunne 1. fade ud.
 	// 1. player skal kunne komme hen til spirit.
+
+	IEnumerator PlayerFadeout(bool fade)
+	{
+		bool onOff = true;
+		float mTime = 0;
+
+		while(onOff)
+		{
+			if(fade)
+			{
+				if(mTime <1)
+				{
+					mTime += Time.deltaTime * 3;
+					charMesh.renderer.material.SetFloat("_SliceAmount", Mathf.Lerp(0, 1, mTime));
+
+				}
+				else
+				{
+					playerObj.transform.position = new Vector3(spiritObj.transform.position.x, spiritObj.transform.position.y, spiritObj.transform.position.z);
+					fade = false;
+//					onOff = false;
+					mTime=0;
+				}
+
+
+			}
+			else
+			{
+				if(mTime <1)
+				{
+					mTime += Time.deltaTime * 3;
+					charMesh.renderer.material.SetFloat("_SliceAmount", Mathf.Lerp(1, 0, mTime));
+					
+				}
+				else
+				{
+					onOff = false;
+				}
+
+			}
+			yield return null;
+		}
+	}
+
 
 	IEnumerator SpiritFadeout(bool turnOnSpirit)
 	{

@@ -29,15 +29,15 @@ public class Footsteps : MonoBehaviour {
 	{
 		if(pMove.onSnow)
 		{
-			SoundManager.PlaySFX(snowSteps[Random.Range(0, snowSteps.Length)]);
+			SoundManager.PlaySFX(Camera.main.gameObject, snowSteps[Random.Range(0, snowSteps.Length)], false, 0, 0.01f);
 		}
 		if(pMove.onStone)
 		{
-			SoundManager.PlaySFX(stoneSteps[Random.Range(0, stoneSteps.Length)]);
+			SoundManager.PlaySFX(Camera.main.gameObject,stoneSteps[Random.Range(0, stoneSteps.Length)], false, 0, 0.01f);
 		}
 		if(pMove.onWood)
 		{
-			SoundManager.PlaySFX(woodSteps[Random.Range(0, woodSteps.Length)]);
+			SoundManager.PlaySFX(Camera.main.gameObject,woodSteps[Random.Range(0, woodSteps.Length)], false, 0, 0.01f);
 		}
 //		laySFX(AudioClip clip, float volume, float pitch)
 
