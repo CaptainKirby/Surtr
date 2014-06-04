@@ -39,8 +39,13 @@ public class PlayerMovement : MonoBehaviour {
 	public Vector3 prevGroundedPos;
 	private PlayerSwitch pSwitch;
 	public bool fallingDeath;
+
+	private bool dieWhenGrounded;
+	public bool dead;
+	private GameObject whiteFade;
 	void Start () 
 	{	
+		whiteFade = GameObject.Find("WhiteFade");
 		pSwitch = GameObject.FindObjectOfType<PlayerSwitch>();
 //		inStorm = true;
 		if(startSitting)
@@ -66,8 +71,13 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		while(true)
 		{
-			yield return new WaitForSeconds(5);
-			StartCoroutine("SavePos");
+			yield return new WaitForSeconds(2f);
+//			StartCoroutine("SavePos");
+			if(motor.grounded && !dieWhenGrounded && Mathf.Abs(motor.movement.velocity.y) < 0.1f)
+			{
+				prevGroundedPos = this.transform.position;
+				
+			}
 		}
 	}
 
@@ -76,11 +86,9 @@ public class PlayerMovement : MonoBehaviour {
 		while(true)
 		{
 
-			yield return new WaitForSeconds(5);
-			if(motor.grounded)
-			{
-				prevGroundedPos = this.transform.position;
-			}
+
+
+			yield return new WaitForSeconds(3);
 		}
 	}
 
@@ -98,8 +106,20 @@ public class PlayerMovement : MonoBehaviour {
 			inStorm = false;
 		}
 	}
+
+	void OnTriggerEnter(Collider col)
+	{
+		if(col.CompareTag("Kill") && !dead)
+		{
+			activeMovement = false;
+			dead = true;
+			StartCoroutine("Die");
+		}
+	}
 	void Update () 
 	{
+
+//		Debug.Log (motor.movement.velocity.y);
 		if(!motor.grounded)
 		{
 			jumping = true;
@@ -107,6 +127,14 @@ public class PlayerMovement : MonoBehaviour {
 		else
 		{
 			jumping = false;
+			if(dieWhenGrounded && !dead)
+			{
+				activeMovement = false;
+				dead = true;
+				StartCoroutine("Die");
+//				pSwitch.curState = !pSwitch.curState;
+//				PlayerSwitch.fadeFromForm = true;
+			}
 		}
 		if(fallingDeath)
 		{
@@ -115,7 +143,10 @@ public class PlayerMovement : MonoBehaviour {
 
 				if(motor.movement.velocity.y < -10)
 				{
-					this.transform.position = prevGroundedPos;
+//					this.transform.position = prevGroundedPos;
+					dieWhenGrounded = true;
+//					Instantiate(
+
 				}
 			}
 		}
@@ -130,6 +161,7 @@ public class PlayerMovement : MonoBehaviour {
 			snowPF.enableEmission = false;
 		}
 
+		charAnim.SetBool("fall", dead);
 		charAnim.SetBool("InStorm", inStorm);
 		charAnim.SetBool("sitting", sitting);
 		charAnim.SetBool("walkRight", movingRight);
@@ -190,6 +222,7 @@ public class PlayerMovement : MonoBehaviour {
 				if(activeMovement)
 				{
 					Controls ();
+//					Debug.Log (
 				}
 			}
 			if(motor.jumping.jumping)
@@ -211,6 +244,34 @@ public class PlayerMovement : MonoBehaviour {
 
 	}
 
+	IEnumerator Die()
+	{	bool onOff = true;
+		float mTime = 0;
+		whiteFade.renderer.material.color = new Color(1,1,1,0);
+		whiteFade.renderer.enabled = true;
+		while(onOff)
+		{
+			if(mTime < 1)
+			{
+				mTime += Time.deltaTime;
+				whiteFade.renderer.material.color = Color.Lerp(new Color(1,1,1,0), new Color(1,1,1,1), mTime);
+
+			}
+			else
+			{
+				dieWhenGrounded = false;
+
+				this.transform.position = prevGroundedPos;
+				whiteFade.renderer.material.color = new Color(1,1,1,0);
+				activeMovement = true;
+				dead = false;
+				onOff = false;
+
+			}
+
+			yield return null;
+		}
+	}
 	void OnControllerColliderHit(ControllerColliderHit hit)
 	{
 		if(hit.collider.CompareTag("Snow"))
@@ -263,7 +324,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Controls()
 	{
-
+		Debug.Log ("TEXT");
 			if(Input.GetAxis("Horizontal") > 0.1f && !movingRight)
 			{
 				if(sitting)
@@ -355,7 +416,10 @@ public class PlayerMovement : MonoBehaviour {
 //
 	void LateUpdate()
 	{
-		transform.position = new Vector3(transform.position.x, transform.position.y, 0 );
+		if(activeMovement)
+		{
+			transform.position = new Vector3(transform.position.x, transform.position.y, 0 );
+		}
 	}
 
 	bool IsFallingHigh()

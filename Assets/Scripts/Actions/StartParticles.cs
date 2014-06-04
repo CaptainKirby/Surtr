@@ -31,8 +31,10 @@ public class StartParticles : MonoBehaviour {
 
 	IEnumerator ParticleGo()
 	{
-			this.particleSys.enableEmission = true;
+		this.particleSys.enableEmission = true;
 		yield return new WaitForSeconds(this.particleSys.duration);
+		this.particleSys.enableEmission = false;
+
 
 	}
 }
