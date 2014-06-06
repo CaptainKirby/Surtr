@@ -49,6 +49,7 @@ public class Move : MonoBehaviour {
 	private ActionHandler actionHandler;
 	public bool playOnAwake;
 	private PlayerSwitch pSwitch;
+	public bool onlyHuman;
 //	public ActionHandler actionHandler;
 	void Awake()
 	{
@@ -99,6 +100,8 @@ public class Move : MonoBehaviour {
 	{
 //		if(!pSwitch.curState)
 //		{
+		if(gObj.CompareTag("Player") && onlyHuman)
+		{
 
 //		if(started && moveBack && onOff)
 //		{
@@ -116,7 +119,7 @@ public class Move : MonoBehaviour {
 //		if(started && !movedB && moveBack)
 //		{
 
-			Debug.Log ("TEST");
+//			Debug.Log ("TEST");
 //			moveToPos = moveStartPos;
 //			moveStartPos = this.transform.position;
 //			StartCoroutine(TransformPosition());
@@ -142,7 +145,34 @@ public class Move : MonoBehaviour {
 	//			onOff = true;
 	//			Debug.Log ("WHALALAL");
 			}
-//		}
+//			}
+		}
+
+		if(!onlyHuman)
+		{
+			if(!started)
+			{
+				//				Debug.Log ("started");
+				started = true;
+				mTime = 0;
+				StartCoroutine(TransformPosition());
+			}
+			else if(started && moveBack)
+			{
+				Debug.Log ("TGESUIGSGN");
+				moveToPos2 = moveStartPos;
+				moveStartPos2 = moveToPos;
+				//			onOff = false;
+				moveToPos = moveToPos2;
+				moveStartPos = moveStartPos2;
+				
+				mTime = 1- mTime;
+				StartCoroutine(TransformPosition());
+				//			onOff = true;
+				//			Debug.Log ("WHALALAL");
+			}
+
+		}
 
 	}
 	

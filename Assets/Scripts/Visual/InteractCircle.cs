@@ -31,12 +31,13 @@ public class InteractCircle : MonoBehaviour {
 		startScale = transform.localScale;
 		player = GameObject.Find("Player").transform;
 		spirit = GameObject.Find("Spirit").transform;
+		if(outerCircle)
+		{
+			StartCoroutine(Scale ());
+		}
 		if(!dontFade)
 		{
-			if(outerCircle)
-			{
-				StartCoroutine(Scale ());
-			}
+
 			StartCoroutine(DistanceCheck());
 		}
 

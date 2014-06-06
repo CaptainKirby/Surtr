@@ -163,6 +163,7 @@ ModelImporter:
     7400000: CharWalkSlow02
     7400002: Sit
     7400004: SnowStormTop
+    7400006: SitHouse
     9500000: //RootNode
     13700000: polySurface96
   materials:
@@ -579,6 +580,188 @@ ModelImporter:
       heightFromFeet: 0
       mirror: 0
       bodyMask: 00000000010000000100000000000000000000000100000001000000010000000100000000000000000000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: polySurface96
+        weight: 0
+      - path: roon_con
+        weight: 1
+      - path: roon_con/transform154
+        weight: 1
+      - path: roon_con/transform154/root_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/hip_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/hip_jnt/drape01_jnt
+        weight: 0
+      - path: roon_con/transform154/root_jnt/hip_jnt/drape01_jnt/drape02_jnt
+        weight: 0
+      - path: roon_con/transform154/root_jnt/hip_jnt/drape01_jnt/drape02_jnt/drape03_jnt
+        weight: 0
+      - path: roon_con/transform154/root_jnt/hip_jnt/L_thight_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/hip_jnt/L_thight_jnt/L_knee_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/hip_jnt/L_thight_jnt/L_knee_jnt/L_ankle_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/hip_jnt/L_thight_jnt/L_knee_jnt/L_ankle_jnt/L_ball_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/hip_jnt/L_thight_jnt/L_knee_jnt/L_ankle_jnt/L_ball_jnt/L_toe_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/hip_jnt/R_thight_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/hip_jnt/R_thight_jnt/R_knee_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/hip_jnt/R_thight_jnt/R_knee_jnt/R_ankle_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/hip_jnt/R_thight_jnt/R_knee_jnt/R_ankle_jnt/R_ball_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/hip_jnt/R_thight_jnt/R_knee_jnt/R_ankle_jnt/R_ball_jnt/R_toe_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt/L_wrist_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt/L_wrist_jnt/L_hand_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt/L_wrist_jnt/L_hand_jnt/L_index01_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt/L_wrist_jnt/L_hand_jnt/L_index01_jnt/L_index02_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt/L_wrist_jnt/L_hand_jnt/L_index01_jnt/L_index02_jnt/L_index03_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt/L_wrist_jnt/L_hand_jnt/L_middle01_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt/L_wrist_jnt/L_hand_jnt/L_middle01_jnt/L_middle02_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt/L_wrist_jnt/L_hand_jnt/L_middle01_jnt/L_middle02_jnt/L_middle03_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt/L_wrist_jnt/L_hand_jnt/L_pinky01_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt/L_wrist_jnt/L_hand_jnt/L_pinky01_jnt/L_pinky02_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt/L_wrist_jnt/L_hand_jnt/L_pinky01_jnt/L_pinky02_jnt/L_pinky03_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt/L_wrist_jnt/L_hand_jnt/L_ring01_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt/L_wrist_jnt/L_hand_jnt/L_ring01_jnt/L_ring02_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt/L_wrist_jnt/L_hand_jnt/L_ring01_jnt/L_ring02_jnt/L_ring03_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt/L_wrist_jnt/L_hand_jnt/L_thumb01_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt/L_wrist_jnt/L_hand_jnt/L_thumb01_jnt/L_thumb02_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_clavicle_jnt/L_shoulder_jnt/L_elbow_jnt/L_wrist_jnt/L_hand_jnt/L_thumb01_jnt/L_thumb02_jnt/L_thumb03_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_mantle01_jnt
+        weight: 0
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_mantle01_jnt/L_mantle02_jnt
+        weight: 0
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/L_mantle01_jnt/L_mantle02_jnt/L_mantle03_jnt
+        weight: 0
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/lowerNeck_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/lowerNeck_jnt/head_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/lowerNeck_jnt/head_jnt/hat_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/lowerNeck_jnt/head_jnt/jaw_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/lowerNeck_jnt/head_jnt/jaw_jnt/chin_jnt
+        weight: 0
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/mantleBack01_jnt
+        weight: 0
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/mantleBack01_jnt/mantleBack02_jnt
+        weight: 0
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/mantleBack01_jnt/mantleBack02_jnt/mantleBack03_jnt
+        weight: 0
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt/R_wrist_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt/R_wrist_jnt/R_hand_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt/R_wrist_jnt/R_hand_jnt/R_index01_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt/R_wrist_jnt/R_hand_jnt/R_index01_jnt/R_index02_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt/R_wrist_jnt/R_hand_jnt/R_index01_jnt/R_index02_jnt/R_index03_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt/R_wrist_jnt/R_hand_jnt/R_middle01_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt/R_wrist_jnt/R_hand_jnt/R_middle01_jnt/R_middle02_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt/R_wrist_jnt/R_hand_jnt/R_middle01_jnt/R_middle02_jnt/R_middle03_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt/R_wrist_jnt/R_hand_jnt/R_pinky01_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt/R_wrist_jnt/R_hand_jnt/R_pinky01_jnt/R_pinky02_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt/R_wrist_jnt/R_hand_jnt/R_pinky01_jnt/R_pinky02_jnt/R_pinky03_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt/R_wrist_jnt/R_hand_jnt/R_ring01_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt/R_wrist_jnt/R_hand_jnt/R_ring01_jnt/R_ring02_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt/R_wrist_jnt/R_hand_jnt/R_ring01_jnt/R_ring02_jnt/R_ring03_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt/R_wrist_jnt/R_hand_jnt/R_thumb01_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt/R_wrist_jnt/R_hand_jnt/R_thumb01_jnt/R_thumb02_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_clavicle_jnt/R_shoulder_jnt/R_elbow_jnt/R_wrist_jnt/R_hand_jnt/R_thumb01_jnt/R_thumb02_jnt/R_thumb03_jnt
+        weight: 1
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_mantle01_jnt
+        weight: 0
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_mantle01_jnt/R_mantle02_jnt
+        weight: 0
+      - path: roon_con/transform154/root_jnt/spine01_jnt/spine02_jnt/spine03_jnt/spine04_jnt/spine05_jnt/R_mantle01_jnt/R_mantle02_jnt/R_mantle03_jnt
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: SitHouse
+      takeName: Take 001
+      firstFrame: 309
+      lastFrame: 310
+      wrapMode: 0
+      orientationOffsetY: 85
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
       transformMask:

@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour {
 	public bool onWood;
 
 	public bool startSitting;
+	public bool startSittingHouse;
 	private bool sitting;
 	private bool inStorm;
 	public Vector3 prevGroundedPos;
@@ -43,6 +44,10 @@ public class PlayerMovement : MonoBehaviour {
 	private bool dieWhenGrounded;
 	public bool dead;
 	private GameObject whiteFade;
+
+	private float movementSpeed;
+	private bool sittingHouse;
+
 	void Start () 
 	{	
 		foreach (AudioListener o in FindObjectsOfType<AudioListener>())
@@ -55,6 +60,10 @@ public class PlayerMovement : MonoBehaviour {
 		if(startSitting)
 		{
 			sitting = true;
+		}
+		if(startSittingHouse)
+		{
+			sittingHouse = true;
 		}
 		floatC = GetComponent<FloatChar>();
 		charAnim = GetComponentInChildren<Animator>(); 
@@ -164,10 +173,13 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			snowPF.enableEmission = false;
 		}
-
+//		movementSpeed = Mathf.Abs(motor.movement.velocity.x / 3);
+//		charAnim.SetFloat("speed",movementSpeed);
 		charAnim.SetBool("fall", dead);
 		charAnim.SetBool("InStorm", inStorm);
 		charAnim.SetBool("sitting", sitting);
+		charAnim.SetBool("sittingHouse", sittingHouse);
+
 		charAnim.SetBool("walkRight", movingRight);
 		charAnim.SetBool("walkLeft", movingLeft);
 		charAnim.SetBool("idle", idle);
@@ -328,13 +340,14 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Controls()
 	{
-		Debug.Log ("TEXT");
+//		Debug.Log ("TEXT");
 			if(Input.GetAxis("Horizontal") > 0.1f && !movingRight)
 			{
 				if(sitting)
 				{
 					sitting = false;
 				}
+			if(sittingHouse) sittingHouse = false;
 				charGfx.eulerAngles = new Vector3(0,90,0);
 				movingRight = true;
 				movingLeft = false;
@@ -351,6 +364,8 @@ public class PlayerMovement : MonoBehaviour {
 				{
 					sitting = false;
 				}
+			if(sittingHouse) sittingHouse = false;
+
 				movingLeft = true;
 				movingRight = false;
 				idle = false;
@@ -364,6 +379,8 @@ public class PlayerMovement : MonoBehaviour {
 				{
 					sitting = false;
 				}
+//			if(sittingHouse) sittingHouse = false;
+
 				idle = true;
 				movingLeft = false;
 				movingRight = false;

@@ -80,7 +80,7 @@ public class FloatChar : MonoBehaviour {
 		else
 		{
 
-//			floating = false;
+			floating = false;
 			pMotor.movement.maxFallSpeed = startFallspeed;
 				charGfx.eulerAngles = new Vector3(0, 90,0);
 			

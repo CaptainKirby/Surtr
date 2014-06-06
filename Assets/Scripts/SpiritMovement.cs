@@ -194,6 +194,7 @@ public class SpiritMovement : MonoBehaviour {
 			else { 
 				f = 0f;
 				rigidbody.AddForce(new Vector3(inputDir.x * speed, inputDir.y * speed - gravity, 0), ForceMode.VelocityChange);
+				rigidbody.AddForce(new Vector3(0, jumpPower,0), ForceMode.VelocityChange);
 			}
 
 //			if(!grounded && inputDir.y < 0 )
@@ -201,7 +202,7 @@ public class SpiritMovement : MonoBehaviour {
 //				rigidbody.AddForce(new Vector3(0, inputDir.y, 0), ForceMode.VelocityChange);
 //			}
 //
-			rigidbody.AddForce(new Vector3(0, jumpPower,0), ForceMode.VelocityChange);
+
 //
 //			if(rigidbody.velocity.y < 0)
 //			{

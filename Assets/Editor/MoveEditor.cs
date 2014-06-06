@@ -14,6 +14,8 @@ public class MoveEditor : Editor {
 //		if(move.transformMove)
 //		{
 //			SceneView.RepaintAll(); 
+			move.onlyHuman = EditorGUILayout.ToggleLeft("Only Human Trigger", move.onlyHuman);
+
 			move.playOnAwake = EditorGUILayout.ToggleLeft("Play On Awake", move.playOnAwake);
 			move.pauseable = EditorGUILayout.ToggleLeft("Pauseable", move.pauseable);
 			move.moveBack = EditorGUILayout.ToggleLeft("Move Back", move.moveBack);
