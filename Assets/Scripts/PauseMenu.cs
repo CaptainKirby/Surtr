@@ -4,12 +4,134 @@ using System.Collections;
 public class PauseMenu : MonoBehaviour {
 
 	// Use this for initialization
+	private bool pauseVisible;
+	private UIPanel panel;
+	public bool paused;
+
+	public int menuSelection;
+	private UILabel menu1;
+	private UILabel menu2;
+	private UILabel menu3;
+
+	public Color unSelected;
+	public Color selected;
+	public bool moved;
 	void Start () {
-	
+		panel = GetComponent<UIPanel>();
+		panel.alpha = 0;
+		menu1 = GameObject.Find("Menu1").GetComponent<UILabel>();
+		menu2 = GameObject.Find("Menu2").GetComponent<UILabel>();
+		menu3 = GameObject.Find("Menu3").GetComponent<UILabel>();
+
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+	{
+		if(paused)
+		{
+			if(Input.GetAxis("Vertical") < 0.8f && Input.GetAxis("Vertical") > -0.8f)
+			{
+				moved = false;
+			}
+			if(Input.GetAxis("Vertical") > 0.8f)
+			{
+				if(!moved)
+				{
+					moved = true;
+					menuSelection --;
+				}
+			}
+			if(Input.GetAxis("Vertical") < -0.8f)
+			{
+				if(!moved)
+				{
+					moved = true;
+					menuSelection ++;
+				}
+			}
+		}
+		if (Input.GetKeyDown(KeyCode.JoystickButton7)) 
+		{
+			togglePause();
+		}
+		if(paused)
+		{
+			if(menuSelection == 0)
+			{
+				//menu 1
+				if(Input.GetKeyDown(KeyCode.JoystickButton0))
+				{
+					togglePause();
+				}
+				menu1.color = selected;
+				menu2.color = unSelected;
+				menu3.color = unSelected;
+
+			}
+			if(menuSelection == 1)
+			{
+				if(Input.GetKeyDown(KeyCode.JoystickButton0))
+				{
+					togglePause();
+					Application.LoadLevel(Application.loadedLevel);
+				}
+				//menu 2
+				menu2.color = selected;
+				menu3.color = unSelected;
+				menu1.color = unSelected;
+			}
+			if(menuSelection == 2)
+			{
+				if(Input.GetKeyDown(KeyCode.JoystickButton0))
+				{
+					togglePause();
+					Application.LoadLevel("House");
+				}
+				//menu 3
+				menu3.color = selected;
+				menu2.color = unSelected;
+				menu1.color = unSelected;
+			}
+		}
+		if(!paused)
+		{
+			if(menuSelection == 0)
+			{
+				//menu 1
+				menu1.color = unSelected;
+			}
+			if(menuSelection == 1)
+			{
+				//menu 2
+
+				menu2.color = unSelected;
+			}
+			if(menuSelection == 2)
+			{
+				//menu 3
+				menu3.color = unSelected;
+			}
+		}
+		menuSelection = Mathf.Clamp(menuSelection, 0, 2);
+
+	}
+
+	bool togglePause()
+	{
+		if(Time.timeScale == 0.0001f)
+		{
+			Time.timeScale = 1f;
+			paused = false;
+			panel.alpha = 0;
+			return(false);
+		}
+		else
+		{
+			panel.alpha = 1;
+			Time.timeScale = 0.0001f;
+			paused = true;
+			return(true);    
+		}
 	}
 }

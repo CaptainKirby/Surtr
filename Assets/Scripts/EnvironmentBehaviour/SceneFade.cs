@@ -19,8 +19,14 @@ public class SceneFade : MonoBehaviour {
 	public float fadeSpeed =3;
 	public string nextScene;
 	private ActionHandler actionHandler;
+	private UIPanel nguiUI;
 	void Start () 
 	{
+		if(GameObject.Find("UI Root"))
+		{
+			nguiUI = GameObject.Find("UI Root").GetComponent<UIPanel>();
+		}
+
 		whitePlane = GameObject.Find("WhiteFade");
 		blackPlane = GameObject.Find("BlackFade");
 		if(fadeAtSceneStart)
@@ -105,6 +111,10 @@ public class SceneFade : MonoBehaviour {
 			mTime += Time.deltaTime	/ fadeSpeed;
 			if(mTime< 1)
 			{
+//				if(nguiUI)
+//				{
+//					nguiUI.alpha = Mathf.Lerp(0, 1, mTime);
+//				}
 				if(fadeWhite)
 				{
 					whitePlane.renderer.material.color = Color.Lerp(new Color(Color.white.r, Color.white.g, Color.white.b, 1), new Color(whiteColorStart.r, whiteColorStart.g, whiteColorStart.b, 0), mTime);
@@ -160,6 +170,13 @@ public class SceneFade : MonoBehaviour {
 			mTime += Time.deltaTime	/ fadeSpeed;
 			if(mTime< 1)
 			{
+				if(nguiUI)
+				{
+					if(nguiUI.alpha != 0)
+					{
+						nguiUI.alpha = Mathf.Lerp(1, 0, mTime);
+					}
+				}
 				if(fadeWhite)
 				{
 					whitePlane.renderer.material.color = Color.Lerp(new Color(Color.white.r, Color.white.g, Color.white.b, 0), new Color(whiteColorStart.r, whiteColorStart.g, whiteColorStart.b, 1), mTime);

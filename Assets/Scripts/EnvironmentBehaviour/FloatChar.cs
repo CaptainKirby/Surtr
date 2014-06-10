@@ -21,8 +21,11 @@ public class FloatChar : MonoBehaviour {
 	private float startFallspeed;
 	public Vignetting vig;
 	public GameObject leftCol;
+	private AudioSource waterSound;
 	void Start () 
 	{
+		waterSound = GameObject.Find("WaterSound").GetComponent<AudioSource>();
+		waterSound.enabled = false;
 		vig = Camera.main.GetComponent<Vignetting>();
 		spirit = Transform.FindObjectOfType<SpiritMovement>().gameObject.transform;
 
@@ -66,6 +69,7 @@ public class FloatChar : MonoBehaviour {
 		{
 		yield return new WaitForSeconds(1.5f);
 
+			waterSound.enabled = true;
 			floating = true;
 			pMotor.movement.maxFallSpeed = 0.2f;
 			charGfx.eulerAngles = new Vector3(0, 180,0);
@@ -79,6 +83,8 @@ public class FloatChar : MonoBehaviour {
 		}
 		else
 		{
+
+//			waterSound.enabled = false;
 
 			floating = false;
 			pMotor.movement.maxFallSpeed = startFallspeed;
