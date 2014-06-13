@@ -36,8 +36,14 @@ public class PlayerSwitch : MonoBehaviour {
 	private ParticleSystemRenderer spiritParticlesR;
 	private Color sPRColorStart;
 	public Transform charMesh;
+	private AudioReverbZone reverbZone;
+
 	void Start () 
 	{
+		if(Camera.main.GetComponent<AudioReverbZone>())
+		{
+			reverbZone = Camera.main.GetComponent<AudioReverbZone>();
+		}
 		spiritParticlesR = Camera.main.GetComponentInChildren<ParticleSystemRenderer>();
 		sPRColorStart = spiritParticlesR.material.GetColor("_TintColor");
 		spiritParticlesR.material.SetColor("_TintColor", new Color(sPRColorStart.r, sPRColorStart.g, sPRColorStart.b, 0));
@@ -86,6 +92,9 @@ public class PlayerSwitch : MonoBehaviour {
 			//player is shown and moved
 			if(spiritMove.activeMovement && switchable)
 			{
+
+					SoundManager.PlaySFX(Camera.main.gameObject,"spirit form", false, 0, 0.05f, 0.6f); 
+
 				goingToSpirit = true;
 				playerMove.inSpirit = false;
 
@@ -95,6 +104,10 @@ public class PlayerSwitch : MonoBehaviour {
 //				spiritObj.renderer.enabled = false; // skal være fade ud
 				playerMove.spiritActive = false;
 				StartCoroutine("SpiritFadeout", false);
+					if(reverbZone)
+					{
+						reverbZone.enabled = false;
+					}
 //					charMesh.renderer.material.SetFloat("_SliceAmount", 1);
 //					StartCoroutine("PlayerFadeout",false);
 
@@ -105,6 +118,8 @@ public class PlayerSwitch : MonoBehaviour {
 
 		if(curState && playerMove.activeMovement && switchable)
 		{
+				SoundManager.PlaySFX(Camera.main.gameObject,"spirit form", false, 0, 0.05f, 0.5f); 
+
 			//spirit is shown and moved
 			playerMove.inSpirit = true;
 			spiritObj.transform.position = new Vector3(playerObj.transform.position.x, playerObj.transform.position.y + 1, playerObj.transform.position.z);
@@ -118,6 +133,11 @@ public class PlayerSwitch : MonoBehaviour {
 			playerMove.spiritActive = true;
 				Debug.Log ("tospirit");
 			StartCoroutine("SpiritFadeout", true);
+				if(reverbZone)
+				{
+					reverbZone.enabled = true;
+				}
+
 //			StartCoroutine("PlayerFadeout", true);
 
 		}
@@ -182,7 +202,7 @@ public class PlayerSwitch : MonoBehaviour {
 	{
 		bool onOff = true;
 		float mTime = 0;
-
+//		SoundManager.PlaySFX(
 		while(onOff)
 		{
 			if(fade)
@@ -229,7 +249,6 @@ public class PlayerSwitch : MonoBehaviour {
 		Color curCol = spiritGfxMesh.renderer.material.color;
 //		Color spCurCol = spiritParticlesR.material.color;
 		switchable = false;
-
 		while(onOff)
 		{
 			if(turnOnSpirit)
