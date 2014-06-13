@@ -22,6 +22,7 @@ public class FloatChar : MonoBehaviour {
 	public Vignetting vig;
 	public GameObject leftCol;
 	private AudioSource waterSound;
+	public AudioSource stormSound;
 	void Start () 
 	{
 		waterSound = GameObject.Find("WaterSound").GetComponent<AudioSource>();
@@ -69,6 +70,7 @@ public class FloatChar : MonoBehaviour {
 		{
 		yield return new WaitForSeconds(1.5f);
 
+			stormSound.enabled = false;
 			waterSound.enabled = true;
 			floating = true;
 			pMotor.movement.maxFallSpeed = 0.2f;
