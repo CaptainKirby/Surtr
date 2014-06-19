@@ -92,8 +92,10 @@ public class PlayerSwitch : MonoBehaviour {
 			//player is shown and moved
 			if(spiritMove.activeMovement && switchable)
 			{
-
-					SoundManager.PlaySFX(Camera.main.gameObject,"spirit form", false, 0, 0.05f, 0.6f); 
+					if(doneFirstSwitch)
+					{
+					SoundManager.PlaySFX(Camera.main.gameObject,"spirit form", false, 0, 0.05f, 0.5f); 
+					}
 
 				goingToSpirit = true;
 				playerMove.inSpirit = false;
@@ -118,7 +120,7 @@ public class PlayerSwitch : MonoBehaviour {
 
 		if(curState && playerMove.activeMovement && switchable)
 		{
-				SoundManager.PlaySFX(Camera.main.gameObject,"spirit form", false, 0, 0.05f, 0.5f); 
+				SoundManager.PlaySFX(Camera.main.gameObject,"spirit form", false, 0, 0.05f, 0.6f); 
 
 			//spirit is shown and moved
 			playerMove.inSpirit = true;
@@ -274,6 +276,8 @@ public class PlayerSwitch : MonoBehaviour {
 				{
 					if(doneFirstSwitch)
 					{
+
+
 						RenderSettings.ambientLight = Color.Lerp(spiritLight, startAmbientL, mTime);
 					}
 					mTime += Time.deltaTime * 1.5f;
