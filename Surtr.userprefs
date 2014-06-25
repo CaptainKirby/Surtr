@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnvironmentBehaviour\FloatChar.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerMovement.cs">
     <Files>
       <File FileName="Assets\Scripts\SwirlFade.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SpiritMovement.cs" Line="1" Column="1" />
@@ -16,9 +16,11 @@
       <File FileName="Assets\Scripts\HiResScreenShots.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Actions\StartParticles.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Actions\PlaySound.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EnvironmentBehaviour\FloatChar.cs" Line="87" Column="33" />
-      <File FileName="Assets\Scripts\EnvironmentBehaviour\SceneFade.cs" Line="177" Column="7" />
-      <File FileName="Assets\Scripts\PauseMenu.cs" Line="103" Column="5" />
+      <File FileName="Assets\Scripts\EnvironmentBehaviour\FloatChar.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\EnvironmentBehaviour\SceneFade.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PauseMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PlayerMovement.cs" Line="50" Column="33" />
+      <File FileName="Assets\Scripts\EndThroughDoor.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -9,7 +9,7 @@ public class EndThroughDoor : MonoBehaviour {
 	private PlayerMovement pMove;
 	private PlayerSwitch pSwitch;
 	private SpiritMovement sMove;
-	private GameObject fadeBlack;
+	public GameObject fadeBlack;
 	private ActionHandler actionHandler;
 
 	void Start () {
@@ -54,8 +54,15 @@ public class EndThroughDoor : MonoBehaviour {
 		pSwitch.switchable = false;
 		pMove.activeMovement = false;
 		pSwitch.canGoSpirit = false;
+
 		yield return new WaitForSeconds(7);
-	
+//		Debug.Log ("EGNUOSG");
+		pMove.movingRight = true;
+		anim.SetBool("walkRight", true);
+		anim.SetBool("idle", false);
+		anim.SetBool("inSpirit", false);
+		pMove.inSpirit = false;
+		pMove.idle = false;
 		pMove.movingRight = true;
 
 
@@ -70,6 +77,10 @@ public class EndThroughDoor : MonoBehaviour {
 				{
 					mTime += Time.deltaTime / 5;
 					fadeBlack.renderer.material.color = Color.Lerp(new Color(0,0,0,0), new Color(0,0,0,1), mTime);
+				}
+				else
+				{
+					Application.LoadLevel("House");
 				}
 //				Debug.Log ("NGUIEGNU");
 

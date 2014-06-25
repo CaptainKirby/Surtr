@@ -57,6 +57,7 @@ public class InputTaker : MonoBehaviour {
 						}
 						else
 						{
+							SoundManager.PlaySFX(Camera.main.gameObject,"jump fail", false, 0, 0.1f, 1f); 
 						aD.DoThing(aD.gameObject, false);
 						}
 					}

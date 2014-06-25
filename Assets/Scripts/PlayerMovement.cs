@@ -9,8 +9,8 @@ public class PlayerMovement : MonoBehaviour {
 	public float pushPower = 2.0f;
 	public float weight = 6.0f;
 
-	public bool movingRight;
 	public bool movingLeft;
+	public bool movingRight;
 	public bool idle;
 	private bool movedRight;
 	private bool movedLeft;
@@ -47,9 +47,10 @@ public class PlayerMovement : MonoBehaviour {
 
 	private float movementSpeed;
 	private bool sittingHouse;
-
+	private bool canSprint = false;
 	void Start () 
 	{	
+		canSprint = false;
 		foreach (AudioListener o in FindObjectsOfType<AudioListener>())
 			Debug.Log(o.name, o);
 
@@ -186,6 +187,8 @@ public class PlayerMovement : MonoBehaviour {
 		charAnim.SetBool ("jumping", jumping);
 		charAnim.SetBool ("inSpirit", inSpirit);
 //		Debug.Log (Input.GetAxis("RTrigger"));
+		if(canSprint)
+		{
 		if(Input.GetAxis("RTrigger") > 0.8f && !sprinting)
 		{
 			sprinting = true;
@@ -195,6 +198,7 @@ public class PlayerMovement : MonoBehaviour {
 		{
 			sprinting = false;
 			sprintValue = 1;
+		}
 		}
 		// til hoppet skal jeg finde input dir retning(venstre el. højre).
 		// i meget kort tid skal jeg checke om hop knappen er hold inde i kort eller længere tid for at finde ud af hvor langt hopet skal være(ddete skal ske undervejs i hoppet)
@@ -265,6 +269,8 @@ public class PlayerMovement : MonoBehaviour {
 		float mTime = 0;
 		whiteFade.renderer.material.color = new Color(1,1,1,0);
 		whiteFade.renderer.enabled = true;
+		SoundManager.PlaySFX(Camera.main.gameObject,"jump fail", false, 0, 0.1f, 0.2f); 
+
 		while(onOff)
 		{
 			if(mTime < 1)
