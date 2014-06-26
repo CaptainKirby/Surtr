@@ -69,7 +69,8 @@ public class FloatChar : MonoBehaviour {
 		if(turnOnFloat)
 		{
 		yield return new WaitForSeconds(1.5f);
-
+			pMotor.movement.maxForwardSpeed = 0;
+			pMotor.movement.maxBackwardsSpeed = 0f;
 			stormSound.enabled = false;
 			waterSound.enabled = true;
 			floating = true;
