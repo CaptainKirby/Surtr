@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour {
 	private UILabel menu1;
 	private UILabel menu2;
 	private UILabel menu3;
+	private UILabel menu4;
 
 	public Color unSelected;
 	public Color selected;
@@ -22,6 +23,7 @@ public class PauseMenu : MonoBehaviour {
 		menu1 = GameObject.Find("Menu1").GetComponent<UILabel>();
 		menu2 = GameObject.Find("Menu2").GetComponent<UILabel>();
 		menu3 = GameObject.Find("Menu3").GetComponent<UILabel>();
+		menu4 = GameObject.Find("Menu4").GetComponent<UILabel>();
 
 	}
 	
@@ -30,6 +32,14 @@ public class PauseMenu : MonoBehaviour {
 	{
 		if(paused)
 		{
+			if(Input.GetKeyDown(KeyCode.DownArrow))
+			{
+				menuSelection ++;
+			}
+			if(Input.GetKeyDown(KeyCode.UpArrow))
+			{
+				menuSelection --;
+			}
 			if(Input.GetAxis("Vertical") < 0.8f && Input.GetAxis("Vertical") > -0.8f)
 			{
 				moved = false;
@@ -51,7 +61,7 @@ public class PauseMenu : MonoBehaviour {
 				}
 			}
 		}
-		if (Input.GetKeyDown(KeyCode.JoystickButton7)) 
+		if (Input.GetKeyDown(KeyCode.JoystickButton7) || Input.GetKeyDown(KeyCode.Escape)) 
 		{
 			togglePause();
 		}
@@ -60,18 +70,19 @@ public class PauseMenu : MonoBehaviour {
 			if(menuSelection == 0)
 			{
 				//menu 1
-				if(Input.GetKeyDown(KeyCode.JoystickButton0))
+				if(Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.B))
 				{
 					togglePause();
 				}
 				menu1.color = selected;
 				menu2.color = unSelected;
 				menu3.color = unSelected;
+				menu4.color = unSelected;
 
 			}
 			if(menuSelection == 1)
 			{
-				if(Input.GetKeyDown(KeyCode.JoystickButton0))
+				if(Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.B))
 				{
 					togglePause();
 					Application.LoadLevel(Application.loadedLevel);
@@ -80,10 +91,12 @@ public class PauseMenu : MonoBehaviour {
 				menu2.color = selected;
 				menu3.color = unSelected;
 				menu1.color = unSelected;
+				menu4.color = unSelected;
+
 			}
 			if(menuSelection == 2)
 			{
-				if(Input.GetKeyDown(KeyCode.JoystickButton0))
+				if(Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.B))
 				{
 					togglePause();
 					Application.LoadLevel("House");
@@ -92,6 +105,22 @@ public class PauseMenu : MonoBehaviour {
 				menu3.color = selected;
 				menu2.color = unSelected;
 				menu1.color = unSelected;
+				menu4.color = unSelected;
+
+			}
+			if(menuSelection == 3)
+			{
+					if(Input.GetKeyDown(KeyCode.JoystickButton0) || Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.B))
+				{
+					togglePause();
+					Application.Quit();
+				}
+				//menu 3
+				menu3.color = unSelected;
+				menu2.color = unSelected;
+				menu1.color = unSelected;
+				menu4.color = selected;
+				
 			}
 		}
 		if(!paused)
@@ -112,8 +141,13 @@ public class PauseMenu : MonoBehaviour {
 				//menu 3
 				menu3.color = unSelected;
 			}
+			if(menuSelection == 3)
+			{
+				//menu 3
+				menu4.color = unSelected;
+			}
 		}
-		menuSelection = Mathf.Clamp(menuSelection, 0, 2);
+		menuSelection = Mathf.Clamp(menuSelection, 0, 3);
 
 	}
 
