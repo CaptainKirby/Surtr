@@ -70,10 +70,10 @@ public class PlayerSwitch : MonoBehaviour {
 
 	void Update () 
 	{
-		if(Input.GetKeyDown(KeyCode.K))
-		{
-			Application.LoadLevel("sceneselect");
-		}
+//		if(Input.GetKeyDown(KeyCode.K))
+//		{
+//			Application.LoadLevel("sceneselect");
+//		}
 		if(canGoSpirit)
 		{
 
@@ -147,7 +147,7 @@ public class PlayerSwitch : MonoBehaviour {
 
 
 
-		if(Input.GetKeyDown(switchKey) && switchable)
+		if((Input.GetKeyDown(switchKey) || Input.GetKeyDown(KeyCode.B)) && switchable)
 		{
 //				Debug.Log ("huehuehe");
 //			Debug.Log ("wat22222");
@@ -157,7 +157,7 @@ public class PlayerSwitch : MonoBehaviour {
 //			curState = true;
 //			fadeFromForm = !fadeFromForm;
 		}
-		else if(switchFreely && Input.GetKeyDown(KeyCode.JoystickButton2) && spiritMove.grounded && switchable)
+		else if(switchFreely && (Input.GetKeyDown(KeyCode.JoystickButton2) || Input.GetKeyDown(KeyCode.X)) && spiritMove.grounded && switchable)
 		{
 			StartCoroutine("PlayerFadeout", true);
 

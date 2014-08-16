@@ -47,7 +47,7 @@ public class InputTaker : MonoBehaviour {
 		{
 			if(inputType == InputType.clickInput)
 			{
-				if(Input.GetKeyDown(KeyCode.JoystickButton3))
+				if(Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.Y))
 				{
 					foreach(ActionHandler aD in actionDoers)
 					{
