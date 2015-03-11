@@ -42,7 +42,7 @@ public class FloatChar : MonoBehaviour {
 			actionHandler.TakeAction += Floater;
 		}
 		sceneFade = Camera.main.GetComponent<SceneFade>();
-		leftCol.collider.enabled=false;
+		leftCol.GetComponent<Collider>().enabled=false;
 	}
 	
 	void Update () 
@@ -82,7 +82,7 @@ public class FloatChar : MonoBehaviour {
 			on = false;
 			vig.enabled = true;
 			pSwitch.canGoSpirit = true;
-			leftCol.collider.enabled =true;
+			leftCol.GetComponent<Collider>().enabled =true;
 		}
 		else
 		{

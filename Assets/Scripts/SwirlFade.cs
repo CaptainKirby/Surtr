@@ -18,7 +18,7 @@ public class SwirlFade : MonoBehaviour {
 //			i++;
 //		}
 
-		startColor = this.renderer.material.GetColor("_TintColor");
+		startColor = this.GetComponent<Renderer>().material.GetColor("_TintColor");
 
 		sMove = GameObject.Find("Spirit").GetComponent<SpiritMovement>();
 		playerSwitch = GameObject.FindObjectOfType<PlayerSwitch>();
@@ -27,7 +27,7 @@ public class SwirlFade : MonoBehaviour {
 			StartCoroutine("FadeOut");
 			fadedIn =	true;
 		}
-		this.renderer.material.SetColor("_TintColor", new Color(startColor.r, startColor.g, startColor.b, 0));
+		this.GetComponent<Renderer>().material.SetColor("_TintColor", new Color(startColor.r, startColor.g, startColor.b, 0));
 
 	}
 	
@@ -94,14 +94,14 @@ public class SwirlFade : MonoBehaviour {
 	{
 		bool onOff = true;
 		float mTime = 0;
-		Color curCol = this.renderer.material.GetColor("_TintColor");
+		Color curCol = this.GetComponent<Renderer>().material.GetColor("_TintColor");
 		while(onOff)
 		{
 			if(mTime < 1)
 			{
 				mTime += Time.deltaTime;
 
-					this.renderer.material.SetColor("_TintColor", Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 0), mTime));
+					this.GetComponent<Renderer>().material.SetColor("_TintColor", Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 0), mTime));
 				
 			}
 			else
@@ -118,14 +118,14 @@ public class SwirlFade : MonoBehaviour {
 	{
 		bool onOff = true;
 		float mTime = 0;
-		Color curCol = this.renderer.material.GetColor("_TintColor");
+		Color curCol = this.GetComponent<Renderer>().material.GetColor("_TintColor");
 		while(onOff)
 		{
 			if(mTime < 1)
 			{
 				mTime += Time.deltaTime;
 
-					this.renderer.material.SetColor("_TintColor", Color.Lerp(curCol, startColor, mTime));
+					this.GetComponent<Renderer>().material.SetColor("_TintColor", Color.Lerp(curCol, startColor, mTime));
 
 			}
 			else

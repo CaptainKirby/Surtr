@@ -27,12 +27,12 @@ public class FadeOutAndIn : MonoBehaviour {
 		{
 		if(!faded)
 		{
-			this.renderer.enabled = false;
+			this.GetComponent<Renderer>().enabled = false;
 			faded = true;
 		}
 		else
 		{
-			this.renderer.enabled = true;
+			this.GetComponent<Renderer>().enabled = true;
 			faded = false;
 		}
 		}

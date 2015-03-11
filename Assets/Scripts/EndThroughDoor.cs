@@ -45,8 +45,8 @@ public class EndThroughDoor : MonoBehaviour {
 		bool onOff = true;
 		bool onOff2 = true;
 		float mTime = 0;
-		fadeBlack.renderer.enabled = true;
-		fadeBlack.renderer.material.color = new Color(0,0,0,0);
+		fadeBlack.GetComponent<Renderer>().enabled = true;
+		fadeBlack.GetComponent<Renderer>().material.color = new Color(0,0,0,0);
 //		bool startFading =false;;
 		float count = 0;
 //		yield return new WaitForSeconds(1);
@@ -76,7 +76,7 @@ public class EndThroughDoor : MonoBehaviour {
 				if(mTime < 1)
 				{
 					mTime += Time.deltaTime / 5;
-					fadeBlack.renderer.material.color = Color.Lerp(new Color(0,0,0,0), new Color(0,0,0,1), mTime);
+					fadeBlack.GetComponent<Renderer>().material.color = Color.Lerp(new Color(0,0,0,0), new Color(0,0,0,1), mTime);
 				}
 				else
 				{

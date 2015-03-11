@@ -116,16 +116,16 @@ public class SpiritMovement_old : MonoBehaviour {
 	void FixedUpdate()
 	{
 
-			rigidbody.AddForce(new Vector3(inputDir.x * speed, -gravity, 0), ForceMode.VelocityChange);
+			GetComponent<Rigidbody>().AddForce(new Vector3(inputDir.x * speed, -gravity, 0), ForceMode.VelocityChange);
 //			rigidbody.AddForce(inputDir.normalized * speed, ForceMode.Impulse);
-			rigidbody.AddForce(new Vector3(0, jumpPower,0), ForceMode.Impulse);
+			GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpPower,0), ForceMode.Impulse);
 
-		if(rigidbody.velocity.y < 0)
+		if(GetComponent<Rigidbody>().velocity.y < 0)
 		{
 			//falling
-			rigidbody.AddForce(new Vector3(0, inputDir.y/diluteInput,0), ForceMode.VelocityChange);
+			GetComponent<Rigidbody>().AddForce(new Vector3(0, inputDir.y/diluteInput,0), ForceMode.VelocityChange);
 		}
-		Debug.Log(rigidbody.velocity.y);
+		Debug.Log(GetComponent<Rigidbody>().velocity.y);
 
 //		}
 //		speed = speed + accel * inputDir.magnitude * Time.deltaTime;

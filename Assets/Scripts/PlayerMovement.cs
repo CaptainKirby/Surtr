@@ -267,8 +267,8 @@ public class PlayerMovement : MonoBehaviour {
 	IEnumerator Die()
 	{	bool onOff = true;
 		float mTime = 0;
-		whiteFade.renderer.material.color = new Color(1,1,1,0);
-		whiteFade.renderer.enabled = true;
+		whiteFade.GetComponent<Renderer>().material.color = new Color(1,1,1,0);
+		whiteFade.GetComponent<Renderer>().enabled = true;
 		SoundManager.PlaySFX(Camera.main.gameObject,"jump fail", false, 0, 0.1f, 0.2f); 
 
 		while(onOff)
@@ -276,7 +276,7 @@ public class PlayerMovement : MonoBehaviour {
 			if(mTime < 1)
 			{
 				mTime += Time.deltaTime;
-				whiteFade.renderer.material.color = Color.Lerp(new Color(1,1,1,0), new Color(1,1,1,1), mTime);
+				whiteFade.GetComponent<Renderer>().material.color = Color.Lerp(new Color(1,1,1,0), new Color(1,1,1,1), mTime);
 
 			}
 			else
@@ -284,7 +284,7 @@ public class PlayerMovement : MonoBehaviour {
 				dieWhenGrounded = false;
 
 				this.transform.position = prevGroundedPos;
-				whiteFade.renderer.material.color = new Color(1,1,1,0);
+				whiteFade.GetComponent<Renderer>().material.color = new Color(1,1,1,0);
 				activeMovement = true;
 				dead = false;
 				onOff = false;

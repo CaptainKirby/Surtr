@@ -26,8 +26,8 @@ public class InteractCircle : MonoBehaviour {
 	{
 
 		pSwitch = GameObject.FindObjectOfType<PlayerSwitch>();
-		startColor = renderer.material.color;
-		noAlphaColor = new Color (renderer.material.color.r, renderer.material.color.g, renderer.material.color.b, 0);
+		startColor = GetComponent<Renderer>().material.color;
+		noAlphaColor = new Color (GetComponent<Renderer>().material.color.r, GetComponent<Renderer>().material.color.g, GetComponent<Renderer>().material.color.b, 0);
 		startScale = transform.localScale;
 		player = GameObject.Find("Player").transform;
 		spirit = GameObject.Find("Spirit").transform;
@@ -90,7 +90,7 @@ public class InteractCircle : MonoBehaviour {
 
 	IEnumerator Fade(bool shown)
 	{
-		Color beginColor = renderer.material.color;
+		Color beginColor = GetComponent<Renderer>().material.color;
 		bool onOff = true;
 		float mTime = 0;
 		while(onOff)
@@ -101,7 +101,7 @@ public class InteractCircle : MonoBehaviour {
 				//fade ind
 				if(mTime < 1)
 				{
-					renderer.material.color = Color.Lerp(noAlphaColor, startColor, mTime); 
+					GetComponent<Renderer>().material.color = Color.Lerp(noAlphaColor, startColor, mTime); 
 				}
 				else
 				{
@@ -112,7 +112,7 @@ public class InteractCircle : MonoBehaviour {
 			{
 				if(mTime < 1)
 				{
-					renderer.material.color = Color.Lerp(startColor, noAlphaColor, mTime); 
+					GetComponent<Renderer>().material.color = Color.Lerp(startColor, noAlphaColor, mTime); 
 				}
 				else
 				{

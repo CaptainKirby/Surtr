@@ -34,19 +34,19 @@ public class SceneFade : MonoBehaviour {
 			if(fadeBlack)
 			{
 //				blackPlane.renderer.material.color = Color.black;
-				blackPlane.renderer.enabled = true;
+				blackPlane.GetComponent<Renderer>().enabled = true;
 				StartCoroutine("FadeInScene");
 
 			}
 			if(fadeWhite)
 			{
 //				whitePlane.renderer.material.color = Color.white;
-				whitePlane.renderer.enabled = true;
+				whitePlane.GetComponent<Renderer>().enabled = true;
 				StartCoroutine("FadeInScene");
 			}
 		}
-		whiteColorStart = whitePlane.renderer.material.color;
-		blackColorStart = blackPlane.renderer.material.color;
+		whiteColorStart = whitePlane.GetComponent<Renderer>().material.color;
+		blackColorStart = blackPlane.GetComponent<Renderer>().material.color;
 		actionHandler =  GetComponent<ActionHandler>();
 		if(actionHandler)
 		{
@@ -117,11 +117,11 @@ public class SceneFade : MonoBehaviour {
 //				}
 				if(fadeWhite)
 				{
-					whitePlane.renderer.material.color = Color.Lerp(new Color(Color.white.r, Color.white.g, Color.white.b, 1), new Color(whiteColorStart.r, whiteColorStart.g, whiteColorStart.b, 0), mTime);
+					whitePlane.GetComponent<Renderer>().material.color = Color.Lerp(new Color(Color.white.r, Color.white.g, Color.white.b, 1), new Color(whiteColorStart.r, whiteColorStart.g, whiteColorStart.b, 0), mTime);
 				}
 				if(fadeBlack)
 				{
-					blackPlane.renderer.material.color = Color.Lerp(new Color(Color.black.r, Color.black.g, Color.black.b, 1), new Color(blackColorStart.r, blackColorStart.g, blackColorStart.b, 0), mTime);
+					blackPlane.GetComponent<Renderer>().material.color = Color.Lerp(new Color(Color.black.r, Color.black.g, Color.black.b, 1), new Color(blackColorStart.r, blackColorStart.g, blackColorStart.b, 0), mTime);
 				}
 			}
 			else
@@ -135,12 +135,12 @@ public class SceneFade : MonoBehaviour {
 				startFade = false;
 				if(fadeWhite)
 				{
-					whitePlane.renderer.enabled = false;
+					whitePlane.GetComponent<Renderer>().enabled = false;
 					fadeWhite =	false;
 				}
 				if(fadeBlack)
 				{
-					blackPlane.renderer.enabled = false;
+					blackPlane.GetComponent<Renderer>().enabled = false;
 					fadeBlack = false;
 				}
 			}
@@ -157,13 +157,13 @@ public class SceneFade : MonoBehaviour {
 
 		if(fadeWhite)
 		{
-			whitePlane.renderer.enabled = true;
-			whitePlane.renderer.material.color = new Color(whiteColorStart.r, whiteColorStart.g, whiteColorStart.b, 0);
+			whitePlane.GetComponent<Renderer>().enabled = true;
+			whitePlane.GetComponent<Renderer>().material.color = new Color(whiteColorStart.r, whiteColorStart.g, whiteColorStart.b, 0);
 		}
 		if(fadeBlack)
 		{
-			blackPlane.renderer.enabled = true;
-			blackPlane.renderer.material.color = new Color(blackColorStart.r, blackColorStart.g, blackColorStart.b, 0);
+			blackPlane.GetComponent<Renderer>().enabled = true;
+			blackPlane.GetComponent<Renderer>().material.color = new Color(blackColorStart.r, blackColorStart.g, blackColorStart.b, 0);
 		}
 		while(onOff)
 		{
@@ -179,11 +179,11 @@ public class SceneFade : MonoBehaviour {
 				}
 				if(fadeWhite)
 				{
-					whitePlane.renderer.material.color = Color.Lerp(new Color(Color.white.r, Color.white.g, Color.white.b, 0), new Color(whiteColorStart.r, whiteColorStart.g, whiteColorStart.b, 1), mTime);
+					whitePlane.GetComponent<Renderer>().material.color = Color.Lerp(new Color(Color.white.r, Color.white.g, Color.white.b, 0), new Color(whiteColorStart.r, whiteColorStart.g, whiteColorStart.b, 1), mTime);
 				}
 				if(fadeBlack)
 				{
-					blackPlane.renderer.material.color = Color.Lerp(new Color(Color.black.r, Color.black.g, Color.black.b, 0), new Color(blackColorStart.r, blackColorStart.g, blackColorStart.b, 1), mTime);
+					blackPlane.GetComponent<Renderer>().material.color = Color.Lerp(new Color(Color.black.r, Color.black.g, Color.black.b, 0), new Color(blackColorStart.r, blackColorStart.g, blackColorStart.b, 1), mTime);
 				}
 			}
 			else

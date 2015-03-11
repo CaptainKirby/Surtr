@@ -14,11 +14,11 @@ public class SpiritActivate : MonoBehaviour {
 	void Start () 
 	{
 		playerSwitch = GameObject.FindObjectOfType<PlayerSwitch>();
-		startColor = this.renderer.material.color;
+		startColor = this.GetComponent<Renderer>().material.color;
 		fadedIn =true;
 		if(disableInHuman)
 		{
-			this.renderer.material.color = new Color(startColor.r, startColor.g, startColor.b, 0);
+			this.GetComponent<Renderer>().material.color = new Color(startColor.r, startColor.g, startColor.b, 0);
 		}
 	}
 	
@@ -30,35 +30,35 @@ public class SpiritActivate : MonoBehaviour {
 			{
 				if(playerSwitch.curState)
 				{
-					if(invisible && renderer)
+					if(invisible && GetComponent<Renderer>())
 					{
-						if(renderer.enabled)
+						if(GetComponent<Renderer>().enabled)
 						{
-							renderer.enabled = false;
+							GetComponent<Renderer>().enabled = false;
 						}
 					}
-					if(uncollidable && collider)
+					if(uncollidable && GetComponent<Collider>())
 					{
-						if(collider.enabled)
+						if(GetComponent<Collider>().enabled)
 						{
-							collider.enabled = false;
+							GetComponent<Collider>().enabled = false;
 						}
 					}
 				}
 				else
 				{
-					if(invisible && renderer)
+					if(invisible && GetComponent<Renderer>())
 					{
-						if(!renderer.enabled)
+						if(!GetComponent<Renderer>().enabled)
 						{
-							renderer.enabled = true;
+							GetComponent<Renderer>().enabled = true;
 						}
 					}
-					if(uncollidable && collider)
+					if(uncollidable && GetComponent<Collider>())
 					{
-						if(!collider.enabled)
+						if(!GetComponent<Collider>().enabled)
 						{
-							collider.enabled = true;
+							GetComponent<Collider>().enabled = true;
 						}
 					}
 				//					if(!collider.enabled || !renderer.enabled)
@@ -72,7 +72,7 @@ public class SpiritActivate : MonoBehaviour {
 			{
 				if(!playerSwitch.curState)
 				{
-					if(invisible && renderer)
+					if(invisible && GetComponent<Renderer>())
 					{
 						if(fadedIn)
 						{		
@@ -80,11 +80,11 @@ public class SpiritActivate : MonoBehaviour {
 							StartCoroutine("FadeOut");
 						}
 					}
-					if(uncollidable && collider)
+					if(uncollidable && GetComponent<Collider>())
 					{
-						if(collider.enabled)
+						if(GetComponent<Collider>().enabled)
 						{
-							collider.enabled = false;
+							GetComponent<Collider>().enabled = false;
 						}
 					}
 				//					if(collider.enabled || renderer.enabled)
@@ -95,7 +95,7 @@ public class SpiritActivate : MonoBehaviour {
 				}
 				else
 				{
-					if(invisible && renderer)
+					if(invisible && GetComponent<Renderer>())
 					{
 						if(!fadedIn)
 						{
@@ -103,11 +103,11 @@ public class SpiritActivate : MonoBehaviour {
 						StartCoroutine("FadeIn");
 						}
 					}
-					if(uncollidable && collider)
+					if(uncollidable && GetComponent<Collider>())
 					{
-						if(!collider.enabled)
+						if(!GetComponent<Collider>().enabled)
 						{
-							collider.enabled = true;
+							GetComponent<Collider>().enabled = true;
 						}
 					}
 				//					if(!collider.enabled || !renderer.enabled)
@@ -123,13 +123,13 @@ public class SpiritActivate : MonoBehaviour {
 	{
 		bool onOff = true;
 		float mTime = 0;
-		Color curCol = this.renderer.material.color;
+		Color curCol = this.GetComponent<Renderer>().material.color;
 		while(onOff)
 		{
 			if(mTime < 1)
 			{
 				mTime += Time.deltaTime;
-				this.renderer.material.color = Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 0), mTime);
+				this.GetComponent<Renderer>().material.color = Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 0), mTime);
 			}
 			else
 			{
@@ -144,13 +144,13 @@ public class SpiritActivate : MonoBehaviour {
 	{
 		bool onOff = true;
 		float mTime = 0;
-		Color curCol = this.renderer.material.color;
+		Color curCol = this.GetComponent<Renderer>().material.color;
 		while(onOff)
 		{
 			if(mTime < 1)
 			{
 				mTime += Time.deltaTime;
-				this.renderer.material.color = Color.Lerp(curCol, startColor, mTime);
+				this.GetComponent<Renderer>().material.color = Color.Lerp(curCol, startColor, mTime);
 			}
 			else
 			{

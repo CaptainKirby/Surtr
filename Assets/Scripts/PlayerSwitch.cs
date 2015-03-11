@@ -60,7 +60,7 @@ public class PlayerSwitch : MonoBehaviour {
 
 		spiritMove.activeMovement = false;
 //		spiritObj.renderer.enabled = false;
-		spiritObj.collider.enabled = false;
+		spiritObj.GetComponent<Collider>().enabled = false;
 		spiritGfx.SetActive(false);
 		charMesh = transform.GetChild(0).transform.GetChild(0);
 		dir = -1;
@@ -100,7 +100,7 @@ public class PlayerSwitch : MonoBehaviour {
 				goingToSpirit = true;
 				playerMove.inSpirit = false;
 
-				spiritObj.collider.enabled = false;
+				spiritObj.GetComponent<Collider>().enabled = false;
 				spiritMove.activeMovement = false;
 				playerMove.activeMovement = true;
 //				spiritObj.renderer.enabled = false; // skal være fade ud
@@ -130,8 +130,8 @@ public class PlayerSwitch : MonoBehaviour {
 			spiritMove.activeMovement = true;
 //			spiritObj.renderer.enabled = true;
 			spiritGfx.SetActive(true);
-			spiritObj.collider.enabled = true;
-			spiritMove.rigidbody.AddForce(new Vector3(dir,0,0) * Mathf.Clamp(playerVelocity.magnitude, 0.3f, 10f) * 2,ForceMode.Impulse);
+			spiritObj.GetComponent<Collider>().enabled = true;
+			spiritMove.GetComponent<Rigidbody>().AddForce(new Vector3(dir,0,0) * Mathf.Clamp(playerVelocity.magnitude, 0.3f, 10f) * 2,ForceMode.Impulse);
 			playerMove.spiritActive = true;
 				Debug.Log ("tospirit");
 			StartCoroutine("SpiritFadeout", true);
@@ -212,7 +212,7 @@ public class PlayerSwitch : MonoBehaviour {
 				if(mTime <1)
 				{
 					mTime += Time.deltaTime * 3;
-					charMesh.renderer.material.SetFloat("_SliceAmount", Mathf.Lerp(0, 1, mTime));
+					charMesh.GetComponent<Renderer>().material.SetFloat("_SliceAmount", Mathf.Lerp(0, 1, mTime));
 
 				}
 				else
@@ -230,7 +230,7 @@ public class PlayerSwitch : MonoBehaviour {
 				if(mTime <1)
 				{
 					mTime += Time.deltaTime * 3;
-					charMesh.renderer.material.SetFloat("_SliceAmount", Mathf.Lerp(1, 0, mTime));
+					charMesh.GetComponent<Renderer>().material.SetFloat("_SliceAmount", Mathf.Lerp(1, 0, mTime));
 					
 				}
 				else
@@ -248,7 +248,7 @@ public class PlayerSwitch : MonoBehaviour {
 	{
 		bool onOff = true;
 		float mTime = 0;
-		Color curCol = spiritGfxMesh.renderer.material.color;
+		Color curCol = spiritGfxMesh.GetComponent<Renderer>().material.color;
 //		Color spCurCol = spiritParticlesR.material.color;
 		switchable = false;
 		while(onOff)
@@ -259,7 +259,7 @@ public class PlayerSwitch : MonoBehaviour {
 				{
 					RenderSettings.ambientLight = Color.Lerp(startAmbientL, spiritLight, mTime);
 					mTime += Time.deltaTime * 1.5f;
-					spiritGfxMesh.renderer.material.color = Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 1), mTime);
+					spiritGfxMesh.GetComponent<Renderer>().material.color = Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 1), mTime);
 					spiritParticlesR.material.SetColor("_TintColor", Color.Lerp(new Color(sPRColorStart.r, sPRColorStart.g, sPRColorStart.b, 0), sPRColorStart, mTime));
 				}
 				else
@@ -281,7 +281,7 @@ public class PlayerSwitch : MonoBehaviour {
 						RenderSettings.ambientLight = Color.Lerp(spiritLight, startAmbientL, mTime);
 					}
 					mTime += Time.deltaTime * 1.5f;
-					spiritGfxMesh.renderer.material.color = Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 0), mTime);
+					spiritGfxMesh.GetComponent<Renderer>().material.color = Color.Lerp(curCol, new Color(curCol.r, curCol.g, curCol.b, 0), mTime);
 					spiritParticlesR.material.SetColor("_TintColor", Color.Lerp(sPRColorStart, new Color(sPRColorStart.r, sPRColorStart.g, sPRColorStart.b, 0), mTime));
 
 				}

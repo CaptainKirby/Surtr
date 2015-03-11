@@ -10,7 +10,7 @@
 //		Cull off
 		Blend SrcAlpha OneMinusSrcAlpha
       CGPROGRAM		
-      	#pragma surface surf WrapLambert fullforwardshadows
+      	#pragma surface surf WrapLambert fullforwardshadows alpha:blend
 		
 		uniform float _LightCutoff;
 		uniform float4 _Color;

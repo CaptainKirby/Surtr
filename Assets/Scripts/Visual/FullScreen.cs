@@ -11,14 +11,14 @@ public class FullScreen : MonoBehaviour {
 	private Color sColor;
 
 	void Start () {
-		sColor = renderer.material.color;
-		noAlpha =new Color(renderer.material.color.r, renderer.material.color.g, renderer.material.color.b, 0);
+		sColor = GetComponent<Renderer>().material.color;
+		noAlpha =new Color(GetComponent<Renderer>().material.color.r, GetComponent<Renderer>().material.color.g, GetComponent<Renderer>().material.color.b, 0);
 		actionHandler =  GetComponent<ActionHandler>();
 		if(actionHandler)
 		{
 			actionHandler.TakeAction += Fader;
 		}
-		renderer.enabled = false;
+		GetComponent<Renderer>().enabled = false;
 	}
 
 	void Update () {
@@ -40,7 +40,7 @@ public class FullScreen : MonoBehaviour {
 //		if(!onOff)
 //		{
 		yield return new WaitForSeconds(0.3f);
-		renderer.enabled = true;
+		GetComponent<Renderer>().enabled = true;
 		float mTime = 0;
 		yield return new WaitForSeconds(1.2f);
 		onOff = true;
@@ -50,7 +50,7 @@ public class FullScreen : MonoBehaviour {
 			mTime += Time.deltaTime;
 			if(mTime < 1)
 			{
-				renderer.material.color = Color.Lerp(sColor, noAlpha, mTime);
+				GetComponent<Renderer>().material.color = Color.Lerp(sColor, noAlpha, mTime);
 			}
 			yield return null;
 		}

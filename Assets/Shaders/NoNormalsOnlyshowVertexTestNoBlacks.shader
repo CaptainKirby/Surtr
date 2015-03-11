@@ -5,7 +5,7 @@
 	  _Color ("Main Color", Color) = (1,1,1,1)
     }
     SubShader {
-      Tags { "RenderType" = "Transparent"}
+      Tags { "RenderType" = "Opaque"}
 
       CGPROGRAM		
       	#pragma surface surf WrapLambert fullforwardshadows
@@ -36,7 +36,7 @@
       void surf (Input IN, inout SurfaceOutput o) {
           o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb *  IN.color.rgb * _Color;
           //o.Emission = _Color.rgb; // * _Color.a;
-      	  o.Alpha = _Color.a;
+//      	  o.Alpha = _Color.a;
       }
       ENDCG
     }

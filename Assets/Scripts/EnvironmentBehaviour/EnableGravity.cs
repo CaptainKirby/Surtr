@@ -24,8 +24,8 @@ public class EnableGravity : MonoBehaviour {
 
 	void EnableG(GameObject gObj,bool stop)
 	{
-		rigidbody.useGravity = true;
+		GetComponent<Rigidbody>().useGravity = true;
 		mCol.enabled = false;
-		rigidbody.AddTorque(100,100,100);
+		GetComponent<Rigidbody>().AddTorque(100,100,100);
 	}
 }

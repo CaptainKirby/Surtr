@@ -189,12 +189,12 @@ public class SpiritMovement : MonoBehaviour {
 			if(Vector3.Distance(player.position, this.transform.position) > 15)
 			{
 				f += Time.deltaTime;
-				rigidbody.AddForce(-p2s / 30 * f, ForceMode.VelocityChange);
+				GetComponent<Rigidbody>().AddForce(-p2s / 30 * f, ForceMode.VelocityChange);
 			}
 			else { 
 				f = 0f;
-				rigidbody.AddForce(new Vector3(inputDir.x * speed, inputDir.y * speed - gravity, 0), ForceMode.VelocityChange);
-				rigidbody.AddForce(new Vector3(0, jumpPower,0), ForceMode.VelocityChange);
+				GetComponent<Rigidbody>().AddForce(new Vector3(inputDir.x * speed, inputDir.y * speed - gravity, 0), ForceMode.VelocityChange);
+				GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpPower,0), ForceMode.VelocityChange);
 			}
 
 //			if(!grounded && inputDir.y < 0 )
